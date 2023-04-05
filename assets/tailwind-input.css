@@ -16,7 +16,7 @@
   }
 
   body {
-    @apply bg-white body text-joint-green;
+    @apply bg-white body-sm;
   }
 
   /* Typography*/
