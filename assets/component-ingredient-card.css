@@ -1,0 +1,21 @@
+.ingredient-card {
+  perspective: 1000px;
+}
+
+.ingredient-card__inner {
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.ingredient-card.ingredient-card--flipped .ingredient-card__inner {
+  transform: rotateY(180deg);
+}
+
+.ingredient-card__front, .ingredient-card__back {
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
+
+.ingredient-card__back {
+  transform: rotateY(180deg);
+}

@@ -1,0 +1,84 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-search",
+      "settings": {
+        "show_rating": true
+      }
+    },
+    "valueprops": {
+      "type": "valueprops",
+      "blocks": {
+        "template--16742673383659__71ee6ea3-2b46-4404-bf33-eda5e9112eaa-1674575181b13bca22-0": {
+          "type": "prop",
+          "settings": {
+            "text": "Vet-Created",
+            "image": "shopify://shop_images/vet.png"
+          }
+        },
+        "template--16742673383659__71ee6ea3-2b46-4404-bf33-eda5e9112eaa-1674575181b13bca22-1": {
+          "type": "prop",
+          "settings": {
+            "text": "Effective dosing",
+            "image": "shopify://shop_images/dog_head_bowl.png"
+          }
+        },
+        "template--16742673383659__71ee6ea3-2b46-4404-bf33-eda5e9112eaa-1674575181b13bca22-2": {
+          "type": "prop",
+          "settings": {
+            "text": "3rd-Party Tested",
+            "image": "shopify://shop_images/treat.png"
+          }
+        },
+        "template--16742673383659__71ee6ea3-2b46-4404-bf33-eda5e9112eaa-1674575181b13bca22-3": {
+          "type": "prop",
+          "settings": {
+            "text": "Clean Ingredients",
+            "image": "shopify://shop_images/cup_with_tree_a15bf273-fd5c-4791-be91-fef6ca9d32b3.png"
+          }
+        },
+        "template--16742673383659__71ee6ea3-2b46-4404-bf33-eda5e9112eaa-1674575181b13bca22-4": {
+          "type": "prop",
+          "settings": {
+            "text": "High % of Activities",
+            "image": "shopify://shop_images/dog_with_ball.png"
+          }
+        }
+      },
+      "block_order": [
+        "template--16742673383659__71ee6ea3-2b46-4404-bf33-eda5e9112eaa-1674575181b13bca22-0",
+        "template--16742673383659__71ee6ea3-2b46-4404-bf33-eda5e9112eaa-1674575181b13bca22-1",
+        "template--16742673383659__71ee6ea3-2b46-4404-bf33-eda5e9112eaa-1674575181b13bca22-2",
+        "template--16742673383659__71ee6ea3-2b46-4404-bf33-eda5e9112eaa-1674575181b13bca22-3",
+        "template--16742673383659__71ee6ea3-2b46-4404-bf33-eda5e9112eaa-1674575181b13bca22-4"
+      ],
+      "settings": {
+        "heading": "<p>Science first, because we want the <em><strong>best</strong></em> for our pets.</p>",
+        "bold_color": "bold-green"
+      }
+    },
+    "split-screen": {
+      "type": "split-screen",
+      "disabled": true,
+      "settings": {
+        "image": "shopify://shop_images/Screen_Shot_2022-11-14_at_11.12_2.jpg",
+        "enable_video_looping": true,
+        "autoplay": true,
+        "controls": false,
+        "muted": true,
+        "bg_color": "bg-tan-light",
+        "image_bg_color": "",
+        "bold_color": "bold-green",
+        "cta_color": "button--joint-green",
+        "image_inset": false,
+        "image_on_right": true,
+        "text_before_image_mobile": false
+      }
+    }
+  },
+  "order": [
+    "main",
+    "valueprops",
+    "split-screen"
+  ]
+}

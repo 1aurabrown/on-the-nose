@@ -1,0 +1,33 @@
+{{ 'component-card-product.css' | asset_url | stylesheet_tag }}
+
+{%- assign paginate_by = 10 -%}
+
+{%- paginate collections by paginate_by -%}
+<ul
+  class="grid grid-cols-2 lg:grid-cols-4 gap-x-5 gap-y-10 lg:gap-y-15"
+  role="list"
+>
+  {%- for collection in collections -%}
+    <li>
+      {% render 'card-collection',
+        card_collection: collection,
+        media_aspect_ratio: "square",
+        columns: 3
+      %}
+    </li>
+  {%- endfor -%}
+</ul>
+{% render 'pagination', paginate: paginate %}
+{%- endpaginate -%}
+
+{% schema %}
+{
+  "name": "t:sections.main-list-collections.name",
+  "class": "section",
+  "enabled_on": {
+    "templates": [
+      "list-collections"
+    ]
+  }
+}
+{% endschema %}

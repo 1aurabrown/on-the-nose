@@ -1,0 +1,60 @@
+<script>
+  loadDynamicScriptTag("{{ 'product-form.js' | asset_url }}")
+
+  loadDynamicScriptTag("{{ 'embla-carousel.js' | asset_url }}", function() { document.dispatchEvent(new Event('emblaLoaded')); })
+  loadDynamicScriptTag("{{ 'component-embla-wrapper.js' | asset_url }}")
+
+
+</script>
+
+{% assign products = recommendations.products %}
+{% assign limit = 4 %}
+
+<div id="RecommendedProducts-{{ section.id }}" data-section="{{ section.id }}">
+
+  <product-recommendations class="recommended-products no-js-hidden my-10 md:my-15" data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ limit }}">
+
+    {% if recommendations.performed and recommendations.products_count > 0 %}
+	  	{% render 'featured-or-recommended-products', section: section, products: products, limit: limit %}
+  	{% endif %}
+
+	</product-recommendations>
+</div>
+
+{% schema %}
+{
+  "name": "Recommended Products",
+  "tag": "section",
+  "enabled_on": {
+    "templates": [
+      "product"
+    ]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Recommended products",
+      "label": "t:sections.featured-collection.settings.title.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "default": true,
+      "label": "t:sections.featured-collection.settings.show_rating.label",
+      "info": "t:sections.featured-collection.settings.show_rating.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_quick_add",
+      "default": true,
+      "label": "t:sections.featured-collection.settings.enable_quick_buy.label"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Recommended products"
+    }
+  ]
+}
+{% endschema %}

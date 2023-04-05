@@ -1,0 +1,270 @@
+{{ 'section-blog-post.css' | asset_url | stylesheet_tag }}
+
+<article class="article-template">
+  {%- for block in section.blocks -%}
+    {%- case block.type -%}
+
+      {%- when 'featured_image'-%}
+        {%- if article.image -%}
+          <section class="article-template__featured-image-split md:flex {% if block.settings.image_on_right == true %}md:flex-row-reverse{% else %}md:flex-row{% endif %}">
+            <div class="relative md:h-auto md:w-1/2 {{ block.settings.image_bg_color }} {% if block.settings.image_inset %}px-5 py-10 md:p-12 lg:p-15{% endif %}">
+
+              {% capture wrapper_class %}w-full min-h-full{% if block.settings.image_inset %} rounded overflow-hidden {% endif %}{% endcapture %}
+              
+              <div class="relative {{ wrapper_class }}">
+                <div style="padding-bottom: 100%">
+                  {% render 'image',
+                    image: article.image,
+                    use_padding: false,
+                    fit: 'cover',
+                    sizes: "100vw, (min-width: 768px) 50vw",
+                    class: 'absolute w-full h-full inset-0'
+                  %}
+                </div>
+              </div>
+            </div>
+
+            <div class="relative flex flex-col justify-center {% if block.settings.image_on_right == true %} items-end {% endif %} padding-x pt-19 pb-10 md:w-1/2 md:px-0 md:py-0 {{ block.settings.bg_color }}">
+              <div class="w-full md:p-12 lg:p-15">
+
+                <div class="max-w-screen-md w-full mx-auto">
+                  <div class="relative max-w-xl">
+                
+                    {% liquid
+                      assign label = article.metafields.custom.badge | metafield_text
+
+                      if label contains 'Dogs'
+                        assign label_color = 'flag--cardiac'
+                      elsif label contains 'Cats'
+                        assign label_color = 'flag--cranberry'
+                      elsif label contains 'Lifestyle'
+                        assign label_color = 'flag--joint-mint-green'
+                      elsif label contains 'Nutrition'
+                        assign label_color = 'flag--mushroom'
+                      elsif label contains 'Recipes'
+                        assign label_color = 'flag--light-blue'
+                      endif
+                    %}
+
+                    {% if label %}
+                      <div class="z-10 flag flag--sm {{ label_color }} flag--reverse mb-5">{{ label }}</div>
+                    {% endif %}
+
+                    <h1 class="h2 mb-[18px] lg:h1 {% if block.settings.bg_color == 'bg-joint-green' %}text-whiter{% endif %}">{{ article.title | escape }}</h1>
+
+                    {%- if block.settings.blog_show_date -%}
+                      <span class="body-lg text-joint-green-light">{{ article.published_at | time_tag: format: 'date' }}</span>
+                    {%- endif -%}
+
+                    <h3 class="h5 mt-[18px] lg:h3 {% if block.settings.bg_color == 'bg-joint-green' %}text-white{% endif %}">{{ article.excerpt }}</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        {%- endif -%}
+
+        {%- when 'content'-%}
+          <section class="article-template__content rte padding-x mt-12 mb-20 md:max-w-[874px] md:mx-auto md:mt-23 lg:px-0" {{ block.shopify_attributes }}>
+              {{ article.content }}
+          </section>
+
+        {%- when 'share' -%}
+          <section class="article-template__share padding-x md:max-w-[874px] md:mx-auto lg:px-0">
+            <div class="mb-4">
+              <b>{{ block.settings.share_heading }}</b>
+            </div>
+            <div class="relative flex justify-between max-w-[214px] px-8 py-5 mb-20 md:mb-21 bg-mushroom rounded-xl">
+              {% assign share_url = request.origin | append: article.url %}
+
+              <a href="http://twitter.com/share?&url={{ share_url }}" target="_blank" rel="noopener">
+                {% render 'icon-twitter', share_link: share_url %}
+              </a>
+              <a href="https://www.instagram.com/?url={{ share_url }}" target="_blank" rel="noopener">
+                {% render 'icon-instagram', share_link: share_url %}
+              </a>
+              <a href="https://www.facebook.com/sharer.php?u={{ share_url }}" target="_blank" rel="noopener">
+                {% render 'icon-facebook', share_link: share_url %}
+              </a>
+            </div>
+          </section>
+
+    {%- endcase -%}
+  {%- endfor -%}
+
+</article>
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "articleBody": {{ article.content | strip_html | json }},
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": {{ request.origin | append: page.url | json }}
+    },
+    "headline": {{ article.title | json }},
+    {% if article.excerpt != blank %}
+      "description": {{ article.excerpt | strip_html | json }},
+    {% endif %}
+    {% if article.image %}
+      "image": [
+        {{ article | image_url: width: article.image.width | prepend: "https:" | json }}
+      ],
+    {% endif %}
+    "datePublished": {{ article.published_at | date: '%Y-%m-%dT%H:%M:%SZ' | json }},
+    "dateCreated": {{ article.created_at | date: '%Y-%m-%dT%H:%M:%SZ' | json }},
+    "author": {
+      "@type": "Person",
+      "name": {{ article.author | json }}
+    },
+    "publisher": {
+      "@type": "Organization",
+      {% if settings.share_image %}
+        "logo": {
+          "@type": "ImageObject",
+          "height": {{ settings.share_image.height | json }},
+          "url": {{ settings.share_image | image_url: width: settings.share_image.width | prepend: "https:" | json }},
+          "width": {{ settings.share_image.width | json }}
+        },
+      {% endif %}
+      "name": {{ shop.name | json }}
+    }
+  }
+</script>
+
+
+{% schema %}
+{
+  "name": "Article Page",
+  "tag": "section",
+  "enabled_on": {
+    "templates": [
+      "article"
+    ]
+  },
+  "blocks": [
+    {
+      "type": "featured_image",
+      "name": "Featured Image",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Colors"
+        },
+        {
+          "type": "select",
+          "id": "image_bg_color",
+          "label": "Image Background Color",
+          "info": "Use to apply a background color to a transparent PNG, or around an inset image.",
+          "default": "",
+          "options": [
+            {
+              "label": "None",
+              "value": ""
+            },
+            {
+              "label": "Green",
+              "value": "bg-joint-green"
+            },
+            {
+              "label": "Light Green",
+              "value": "bg-green-light"
+            },
+            {
+              "label": "Tan",
+              "value": "bg-tan-light"
+            },
+            {
+              "label": "White",
+              "value": "bg-white"
+            }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "bg_color",
+          "label": "Background Color",
+          "info": "Use to apply a background color behind the article heading text.",
+          "default": "",
+          "options": [
+            {
+              "label": "None",
+              "value": ""
+            },
+            {
+              "label": "Green",
+              "value": "bg-joint-green"
+            },
+            {
+              "label": "Light Green",
+              "value": "bg-green-light"
+            },
+            {
+              "label": "Tan",
+              "value": "bg-tan-light"
+            },
+            {
+              "label": "White",
+              "value": "bg-white"
+            }
+          ]
+        },
+        {
+          "type": "header",
+          "content": "Layout"
+        },
+        {
+          "type": "checkbox",
+          "id": "image_on_right",
+          "label": "Check box to swap layout",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "image_inset",
+          "label": "Check box to inset image. Uncheck for full-bleed",
+          "default": true
+        },
+        {
+          "type": "header",
+          "content": "Text"
+        },
+        {
+          "type": "checkbox",
+          "id": "blog_show_date",
+          "label": "Show date",
+          "default": true
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "name": "t:sections.main-article.blocks.content.name",
+      "limit": 1
+    },
+    {
+      "type": "share",
+      "name": "t:sections.main-article.blocks.share.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Text"
+        },
+        {
+          "type": "text",
+          "id": "share_heading",
+          "label": "Heading Text",
+          "default": "Share Your Learnings"
+        },
+        {
+          "type": "header",
+          "content": "Social"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

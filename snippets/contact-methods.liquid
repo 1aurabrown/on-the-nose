@@ -1,0 +1,88 @@
+<div class="flex items-end text-center {{ class }}">
+  {%- if settings.retailers_page != blank -%}
+    <div class="w-1/5" >
+      <a target="_blank" href="{{ settings.retailers_page }}" class="block w-fit">
+      {% render 'icon-address', class: 'block mx-auto' %}
+        <span class="block mt-2 text-link label" >
+          Retailers
+        </span>
+      </a>
+    </div>
+  {%- endif -%}
+  {%- if settings.contact_text != blank -%}
+    <div class="w-1/5">
+      <a target="_blank" href="sms:{{ settings.contact_text }}" class="block w-fit">
+        {% render 'icon-text', class: 'block mx-auto' %}
+        <span class="block mt-2 text-link label" >
+          Text
+        </span>
+      </a>
+    </div>
+  {%- endif -%}
+  {%- if settings.contact_email != blank -%}
+    <div class="w-1/5">
+      <a target="_blank" href="mailto:{{ settings.contact_email }}" class="block w-fit">
+        {% render 'icon-email', class: 'block mx-auto' %}
+       <span class="block mt-2 text-link label" >
+          Email
+        </span>
+      </a>
+    </div>
+  {%- endif -%}
+  {%- if settings.contact_phone != blank -%}
+    <div class="w-1/5">
+      <a target="_blank" href="tel:{{ settings.contact_phone }}" class="block w-fit">
+        {% render 'icon-phone', class: 'block mx-auto' %}
+        <span class="block mt-2 text-link label">
+          Phone
+        </span>
+      </a>
+    </div>
+  {%- endif -%}
+  <chat-button class="block hidden w-1/5">
+    <button title="Chat" class="block w-fit">
+      {% render 'icon-chat', class: 'block mx-auto' %}
+     <span class="block mt-2 text-link label" >
+        Chat
+      </span>
+    </button>
+  </chat-button>
+</div>
+
+<script>
+
+if (!customElements.get('chat-button')) {
+  class ChatButton extends HTMLElement {
+    constructor() {
+      super();
+      this.openChat = this.openChat.bind(this)
+    }
+
+    getChatIframe() {
+      return document.querySelector('iframe#ShopifyChat') || document.querySelector('iframe#dummy-chat-button-iframe');
+    }
+    connectedCallback() {
+      setTimeout( () => {
+        if (!this.getChatIframe()) return;
+        this.classList.remove('hidden')
+        this.button = this.querySelector('button')
+        this.button.addEventListener('click', this.openChat)
+      }, 3000)
+    }
+
+    openChat() {
+      const iframeDocument = this.getChatIframe().contentDocument
+      const isOpen = !!iframeDocument.querySelector('.chat-app--is-open')
+      if (isOpen) return;
+
+      const widgetButton = iframeDocument.querySelector('.chat-toggle') || iframeDocument.querySelector('#dummy-chat-button')
+      if (widgetButton) { widgetButton.click() }
+    }
+
+    disconnectedCallback() {
+      this.button.removeEventListener('click', this.openChat)
+    }
+  }
+  customElements.define('chat-button', ChatButton);
+}
+</script>

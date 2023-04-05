@@ -1,0 +1,175 @@
+{% liquid
+  assign sizes = '100vw'
+  assign image_class = 'brightness-[.8] absolute inset-0 w-full h-full'
+  assign wrapper_class = 'text-white justify-end md:flex-row-reverse'
+  if section.settings.force_screen_height
+  assign wrapper_class = wrapper_class | append: ' min-h-screen-less-header'
+  endif
+  assign text_class = 'md:w-full '
+
+  assign mobile_image_class = image_class
+  assign desktop_image_class = image_class
+
+  if section.settings.image and section.settings.mobile_image
+    assign mobile_image_class = mobile_image_class | append: ' md:hidden'
+    assign desktop_image_class = desktop_image_class | append: ' hidden md:block'
+  endif
+
+  assign anchorButtonOne = page.metafields.custom.anchor-id-1
+  assign anchorButtonTwo = page.metafields.custom.anchor-id-2
+  assign anchorButtonThree = page.metafields.custom.anchor-id-3
+
+%}
+
+<section class="about-page-banner_container bg-white">
+  <div class="relative {% if section.settings.force_screen_height %}md:min-h-screen-less-header md:h-screen-less-header md:max-h-[900px] {% endif %} md:min-h-fit items-stretch flex flex-col md:flex-row {{ wrapper_class }}">
+
+    {% if section.settings.image %}
+      {% render 'image',
+        image: section.settings.image,
+        preload: true,
+        class: desktop_image_class,
+        fit: 'cover',
+        sizes: sizes
+      %}
+    {% endif %}
+
+    {% if section.settings.mobile_image %}
+      {% render 'image',
+        image: section.settings.mobile_image,
+        preload: true,
+        class: mobile_image_class,
+        fit: 'cover',
+        sizes: sizes
+      %}
+    {% endif %}
+
+    <div class="padding-x py-20 md:py-30 z-10 flex items-end {{ text_class }}">
+      <div class="max-w-3xl {{ section.settings.bold_color }} ">
+        
+        {% if section.settings.title != blank %}
+          <h1 class="h1 md:hero">
+            {{ section.settings.title | newline_to_br }}
+          </h1>
+        {% endif %}
+
+        <div class="button-container flex gap-x-3 mt-8 md:gap-x-10 md:mt-10">
+          {% if anchorButtonOne != blank %}
+            <a class="button px-3 md:px-12 w-fit {{ section.settings.cta_color }}" href='#{{ anchorButtonOne }}'><span>{{ section.settings.button_one_text }}</span></a>
+          {% endif %}
+
+          {% if anchorButtonTwo != blank %}
+            <a class="button px-3 md:px-12 w-fit {{ section.settings.cta_color }}" href='#{{ anchorButtonTwo }}'><span>{{ section.settings.button_two_text }}</span></a>
+          {% endif %}
+
+          {% if anchorButtonThree != blank %}
+            <a class="button px-3 md:px-12 w-fit {{ section.settings.cta_color }}" href='#{{ anchorButtonThree }}'><span>{{ section.settings.button_three_text }}</span></a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "About Page Banner",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Hero Section"
+    },
+    {
+      "label": "Desktop Image",
+      "id": "image",
+      "type": "image_picker",
+      "info": "should be at least 2560x1600"
+    },
+    {
+      "label": "Mobile Image",
+      "id": "mobile_image",
+      "type": "image_picker",
+      "info": "should be at least 1534px wide"
+    },
+    {
+      "label": "Force Screen Height",
+      "id": "force_screen_height",
+      "type": "checkbox",
+      "default": true,
+      "info": "Force the module to occupy the full viewport height. May result in image clipping."
+    },
+    {
+      "type": "header",
+      "content": "Text"
+    },
+    {
+      "label": "Heading",
+      "id": "title",
+      "type": "richtext",
+      "default": "<p>Lorem <i><strong>ipsum</strong> dolor</i> sit amet, consectetur elit.</p>"
+    },
+    {
+      "type": "select",
+      "id": "bold_color",
+      "label": "Bold Color",
+      "options": [
+        {
+          "label": "Green",
+          "value": "bold-green"
+        },
+        {
+          "label": "Yellow",
+          "value": "bold-yellow-dark"
+        },
+        {
+          "label": "White",
+          "value": "bold-whiter"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Anchor Button Settings"
+    },
+    {
+      "type": "select",
+      "id": "cta_color",
+      "label": "Anchor Button Color",
+      "default": "button--joint-green",
+      "options": [
+        {
+          "label": "Joint Green",
+          "value": "button--joint-green"
+        },
+        {
+          "label": "Yellow",
+          "value": "button--yellow"
+        },
+        {
+          "label": "White",
+          "value": "button--white"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "button_one_text",
+      "label": "Button One Text",
+      "default": "Our Story"
+    },
+    {
+      "type": "text",
+      "id": "button_two_text",
+      "label": "Button Two Text",
+      "default": "Why On The Nose"
+    },
+    {
+      "type": "text",
+      "id": "button_three_text",
+      "label": "Button Three Text",
+      "default": "Giving Back"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,19 @@
+.card-product .card-product__image-wrapper .card-product__image:last-child {
+  transition: opacity 200ms ease-in-out;
+  opacity: 0;
+}
+
+.card-product .card-product__image-wrapper .card-product__image:first-child {
+  transition: opacity 200ms ease-in-out;
+  opacity: 1;
+}
+
+@media screen and (min-width: 768px) and (hover:hover) {
+  .card-product .card-product__image-wrapper:hover .card-product__image:first-child {
+    opacity: 0;
+  }
+
+  .card-product .card-product__image-wrapper:hover .card-product__image:last-child {
+    opacity: 1;
+  }
+}

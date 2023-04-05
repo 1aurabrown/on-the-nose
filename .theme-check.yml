@@ -1,0 +1,6 @@
+MatchingTranslations:
+  enabled: false
+TemplateLength:
+  enabled: false
+NestedSnippet:
+  max_nesting_level: 10

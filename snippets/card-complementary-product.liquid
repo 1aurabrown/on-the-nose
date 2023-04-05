@@ -1,0 +1,126 @@
+{% comment %}
+  Renders a product card
+
+  Accepts:
+  - card_product: {Object} Product Liquid object (optional)
+  - show_rating: {Boolean} Show the product rating. Default: false
+  - show_quick_add: {Boolean} Show the quick add button.
+  - section_id: {String} The ID of the section that contains this card.
+  - description
+  Usage:
+  {% render 'card-product', show_vendor: section.settings.show_vendor %}
+{% endcomment %}
+{{ 'component-rating.css' | asset_url | stylesheet_tag }}
+{{ 'component-card-product.css' | asset_url | stylesheet_tag }}
+{% render 'rating-star-mask.svg' %}
+
+
+{%- if card_product and card_product != empty -%}
+  {% liquid
+    for tag in card_product.tags
+      if tag contains 'label:'
+        assign label = tag | split: 'label:' | last
+        break
+      endif
+    endfor
+  %}
+
+  <div class="card-product p-5 rounded-xl bg-true-white drop-shadow">
+    <div class="flex items-start justify-start">
+
+      <div class="bg-white relative rounded-xl">
+
+        {%- if card_product.featured_image -%}
+          {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
+          <div>
+            {% render 'image', image: card_product.featured_image,
+              wrapper_class: 'overflow-hidden w-40',
+              sizes: '160px',
+              width: 160,
+              use_padding: true
+            %}
+          </div>
+
+        {%- endif -%}
+        {% comment %}theme-check-enable ImgLazyLoading{% endcomment %}
+
+        <a title="{{ title | default: card_product.title }}" tabindex="-1" aria-hidden="true" class="z-10 absolute inset-0"  href="{{ card_product.url | within: collection }}"></a>
+
+      </div>
+
+      <div class="ml-5">
+
+
+        {% if label %}
+          <div class="z-10 flag flag--reverse flag--sm mr-auto">{{ label }}</div>
+        {% endif %}
+
+        {%- if show_rating and card_product.metafields.reviews.rating.value != blank -%}
+          {% liquid
+            assign rating_value = card_product.metafields.reviews.rating.value
+            assign rating_count = card_product.metafields.reviews.rating_count
+            assign scale_max = rating_value.scale_max
+            assign rating = rating_value.rating
+          %}
+
+          {% render 'rating', rating_count: rating_count, scale_max: scale_max, rating: rating, class: 'mt-[0.625rem] md:mt-3' %}
+        {%- endif -%}
+
+
+        <h3 class="mt-[0.625rem] md:mt-3 " id="title-{{ section_id }}-{{ card_product.id }}">
+          <a
+            class="focus-visible:ring h4 md:h3"
+            href="{{ card_product.url | within: collection }}"
+            aria-label="{{ title | default: card_prduct.title }}"
+            title="{{ title | default: card_prduct.title }}"
+          >
+            {{ title | default: card_product.title }}
+          </a>
+        </h3>
+
+        <p class="mt-[0.625rem] md:mt-3 text-joint-green-light">{{ card_product.metafields.my_fields.product_short_description | default: card_product.description | truncatewords: 14 | strip_html }}</p>
+
+        {%- if show_quick_add -%}
+          <div class="mt-4 quick-add no-js-hidden">
+            {%- assign product_form_id = 'quick-add-nonhoverable-' | append: section_id | append: card_product.id -%}
+              <product-form>
+                {%- form 'product', card_product, id: product_form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+                  <input
+                    type="hidden"
+                    name="id"
+                    value="{{ card_product.selected_or_first_available_variant.id }}"
+                    disabled
+                  >
+                  <button
+                    id="{{ product_form_id }}-submit"
+                    type="submit"
+                    name="add"
+                    class="label hover:text-green transition-colors duration-200"
+                    aria-haspopup="dialog"
+                    aria-label="{{ product_form_id }}-submit"
+                    aria-live="polite"
+                    data-sold-out-message="true"
+                    {% if card_product.selected_or_first_available_variant.available == false %}
+                      disabled
+                    {% endif %}
+                  >
+                    <span>
+                      {%- if card_product.selected_or_first_available_variant.available -%}
+                        {{ card_product.selected_or_first_available_variant.price | money }} - Add to Cart
+                      {%- else -%}
+                        {{ 'products.product.sold_out' | t }}
+                      {%- endif -%}
+                    </span>
+                    <span class="sold-out-message hidden">
+                      {{ 'products.product.sold_out' | t }}
+                    </span>
+                  </button>
+                {%- endform -%}
+              </product-form>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+

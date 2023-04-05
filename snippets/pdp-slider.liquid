@@ -1,0 +1,84 @@
+<style>
+  .pdp-slider {
+    --pdp-image-max-height: calc(100vh - var(--header-height) - 120px);
+  }
+  @media screen and (min-width: 768px) {
+    .pdp-slider__max-width, .pdp-slider .pdp-image {
+       max-height: var(--pdp-image-max-height);
+       max-width: var(--pdp-image-max-height);
+    }
+    .pdp-slider__thumbs {
+       max-width: var(--pdp-image-max-height);
+    }
+  }
+</style>
+
+{% liquid
+  for tag in product.tags
+    if tag contains 'label:'
+      assign label = tag | split: 'label:' | last
+      break
+    endif
+  endfor
+%}
+
+<pdp-slider id="MediaGallery-{{ section.id }}" role="region" aria-label="{{ 'products.product.media.gallery_viewer' | t }}" class="pdp-slider block overflow-hidden">
+  <div id="GalleryStatus-{{ section.id }}" class="visually-hidden" role="status"></div>
+  <a class="skip-to-content-link button visually-hidden" href="#ProductInfo-{{ section.id }}">
+    {{ "accessibility.skip_to_product_info" | t }}
+  </a>
+  <div class="pdp-slider__inner">
+    <div class="pdp-slider__max-width mx-auto overflow-hidden">
+      <div class="" {% if product.media.size > 1 %} data-slider {% endif %} id="GalleryViewer-{{ section.id }}">
+        <ul class="flex items-start embla__container" role="list">
+          {%- for media in product.media -%}
+            <li id="{{ section.id }}-{{ media.id }}"
+              data-media-position="{{ forloop.index0 }}"
+              class="mr-5 min-w-full embla__slide">
+              <div class="pdp-image relative pdp-image--{{ forloop.index }}">
+                {% if forloop.index == 1 %}
+                  {% if label %}
+                    <div class="z-10 flag absolute top-7 md:top-10 right-0">{{ label }}</div>
+                  {% endif %}
+                {% endif %}
+                {% render 'pdp-slider-media', media: media, section: section %}
+              </div>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </div>
+    </div>
+
+    {% if product.media.size > 1 %}
+      <div class="mt-4 pdp-slider__thumbs overflow-hidden mx-auto" id="GalleryThumbnails-{{ section.id }}">
+
+        <ul id="Slider-Thumbnails-{{ section.id }}" class="flex embla__container space-x-4">
+
+          {%- for media in product.media -%}
+             <li id="Slide-Thumbnails-{{ section.id }}-{{ forloop.index0 }}"  data-target="{{ section.id }}-{{ media.id }}" data-media-position="{{ forloop.index0 }}">
+              <button
+                class="w-16 h-16 rounded-xl flex items-center justify-center transition-all duration-200 overflow-hidden opacity-60"
+                aria-label="{%- if media.media_type == 'image' -%}{{ 'products.product.media.load_image' | t: index: forloop.index0 }}{%- elsif media.media_type == 'model' -%}{{ 'products.product.media.load_model' | t: index: forloop.index0 }}{%- elsif media.media_type == 'video' or media.media_type == 'external_video' -%}{{ 'products.product.media.load_video' | t: index: forloop.index0 }}{%- endif -%}"
+                {% if forloop.index0 == 1 %} aria-current="true"{% endif %}
+                aria-controls="GalleryViewer-{{ section.id }}"
+                aria-describedby="Thumbnail-{{ section.id }}-{{ forloop.index0 }}"
+                data-index={{ forloop.index0 }}
+              >
+
+                {{ media.preview_image | image_url: width: 192 | image_tag:
+                  width: 64,
+                  height: 64,
+                  class: 'object-contain w-full h-full bg-white',
+                  widths: '64, 128, 192',
+                  sizes: "64px",
+                  id: id
+                }}
+              </button>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </div>
+    {%
+    endif %}
+  </div>
+</pdp-slider>

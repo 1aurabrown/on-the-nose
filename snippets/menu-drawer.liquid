@@ -1,0 +1,92 @@
+<style>
+.menu-drawer {
+  max-height: calc(100vh - var(--announcement-bar-height));
+}
+
+.scrolled .menu-drawer {
+  max-height: 100vh;
+}
+
+</style>
+
+<div
+  x-ref="menu-drawer"
+  class="menu-drawer-container lg:hidden"
+  x-data="headerTab('mobileMenu')"
+  @keyup.escape="close"
+  @click.outside="close">
+
+  <button x-ref="menu-button" @click.prevent.stop="toggle" class="block" aria-label="{{ 'sections.header.menu' | t }}">
+    <span x-cloak x-show="isOpen">{% render 'icon-close' %}</span>
+    <span x-show="!isOpen">{% render 'icon-hamburger' %}</span>
+  </button>
+  <div x-cloak
+    id="menu-drawer"
+    x-show="isOpen"
+    x-transition:enter="transition-transform ease-out duration-200"
+    x-transition:enter-start="-translate-x-full"
+    x-transition:enter-end="translate-x-0"
+    x-transition:leave="transition-transform ease-in duration-200"
+    x-transition:leave-start="translate-x-0"
+    x-transition:leave-end="-translate-x-full"
+    class="absolute z-[-1] left-0 top-0 right-0 w-full h-screen pt-header overflow-x-hidden menu-drawer z-3 w-full flex flex-col items-stretch justify-stretch bg-white "
+    >
+
+    {% assign links = section.settings.menu.links %}
+
+    <div class="menu-drawer__inner-container flex-1 overflow-y-scroll">
+      <div class="menu-drawer__navigation-container">
+        <nav class="menu-drawer__navigation padding-x pt-19 pb-15">
+          <ul class="menu-drawer__menu has-submenu" role="list"
+            x-data="{
+              currentChildMenu: null,
+            }">
+
+            {%- for link in links -%}
+              <li class="border-b-2 border-mint py-8">
+                {%- if link.links.size > 0 -%}
+                  <div
+                    x-init="$watch('$store.tab.current', (value, oldValue) => (oldValue == tabId && setTimeout( () => { currentChildMenu = null }, 200)))"
+                    x-data="{
+                    childMenuId: {{ forloop.index }},
+                    get submenuIsOpen() {
+                      return currentChildMenu == this.childMenuId
+                    },
+                    open() {
+                      currentChildMenu = this.childMenuId;
+                      setTimeout(() => {
+                        trapFocus($refs['menu-drawer'], $refs['menu-close'])
+                      }, 200)
+                    },
+                    close() {
+                      currentChildMenu = null
+                      $nextTick(() => {
+                        trapFocus($refs['menu-drawer'], $refs['child-link-{{ forloop.index }}'])
+                      })
+                    },
+                    toggle() {
+                      this.submenuIsOpen ? this.close() : this.open()
+                    }
+                  }">
+
+                    <div>
+                      <button :disabled="!!currentChildMenu" x-ref="child-link-{{ forloop.index }}" @click.stop="toggle" class="flex justify-between items-center w-full">
+                        <span class="label font-bold">{{ link.title | escape }}</span>{% render 'icon-arrow', class: 'w-4 h-4' %}
+                      </button>
+
+                      {% render 'mobile-submenu-pane', childlinks: link.links %}
+                    </div>
+                  </div>
+                {%- else -%}
+                  <a :tabindex="currentChildMenu ? -1 : 0" title="{{ link.title }}" href="{{ link.url }}" class="flex justify-between items-center w-full"{% if link.current %} aria-current="page"{% endif %}>
+                    <span class="label font-bold">{{ link.title | escape }}</span>{% render 'icon-arrow', class: 'w-4 h-4' %}
+                  </a>
+                {%- endif -%}
+              </li>
+            {%- endfor -%}
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>

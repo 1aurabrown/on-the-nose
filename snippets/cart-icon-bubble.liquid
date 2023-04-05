@@ -1,0 +1,4 @@
+<div class="flex items-center space-x-1">
+	{% render 'icon-cart' %}
+	{% unless cart == empty %}<span class="label font-bold">{{ cart.item_count }}</span>{% endunless %}
+</div>

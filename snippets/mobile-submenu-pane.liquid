@@ -1,0 +1,34 @@
+<div x-cloak
+  @keyup.escape.stop="close"
+  x-show="submenuIsOpen"
+  x-transition:enter="transition-transform ease-out duration-200"
+  x-transition:enter-start="translate-x-full"
+  x-transition:enter-end="translate-x-0"
+  x-transition:leave="transition-transform ease-in duration-200"
+  x-transition:leave-start="translate-x-0"
+  x-transition:leave-end="translate-x-full"
+  class="absolute pt-header left-0 right-0 top-0 bottom-0 duration-200 transition-all bg-whiter overflow-y-auto motion-reduce">
+
+    <div class="padding-x py-15">
+      <button class="block" x-ref="menu-close" :disabled="!submenuIsOpen" @click="close">{% render 'icon-arrow', class: 'w-4 h-4 rotate-180' %}</button>
+
+      <ul class="lg:flex lg:w-1/2" role="list">
+        <!-- 2nd Level Links -->
+        {%- for childlink in childlinks -%}
+          <li class="py-8 border-b-2 border-green/40">
+
+            {%- if childlink.links.size > 0 -%}
+              {%- render 'mobile-submenu-toggle', childlink: childlink -%}
+            {%- else -%}
+
+              <a :tabindex="submenuIsOpen ? 0 : -1" title="{{ childlink.title }}" href="{{ childlink.url }}" class="flex justify-between items-center w-full"{% if childlink.current %} aria-current="page"{% endif %}>
+                <span class="label font-bold">{{ childlink.title | escape }}</span>{% render 'icon-arrow', class: 'w-4 h-4' %}
+              </a>
+            {%- endif -%}
+
+          </li>
+        {%- endfor -%}
+      </ul>
+
+  </div>
+</div>

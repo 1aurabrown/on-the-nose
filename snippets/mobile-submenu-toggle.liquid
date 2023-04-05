@@ -1,0 +1,36 @@
+<div
+  x-init="$watch('currentChildMenu', (value, oldValue) => { (oldValue == childMenuId && setTimeout(() => {accordionIsOpen = false}, 200)) })"
+  @resize.window.debounce="$nextTick(() => {contentHeight = $refs.content.scrollHeight + 'px'})"
+  x-data="{
+    contentHeight: 'auto',
+    accordionIsOpen: false,
+    open() {
+      this.contentHeight = $refs.content.scrollHeight + 'px';
+      this.accordionIsOpen = true
+    },
+    close(){
+      this.accordionIsOpen = false
+    },
+    toggle() {
+      this.accordionIsOpen ? this.close() : this.open()
+    }
+  }">
+
+  <button @click="toggle" :disabled="!submenuIsOpen" class="w-full flex justify-between items-center">
+    <span class="font-bold label">{{ childlink.title }}</span>
+    <span class="transition-transform" :class="accordionIsOpen && 'rotate-90'">{% render 'icon-arrow', class: 'w-4 h-4' %}</span>
+  </button>
+
+  <div x-cloak
+    :style='`height: ${accordionIsOpen ? contentHeight : "0px"}`'
+    class="duration-200 transition-height overflow-hidden relative">
+
+    <ul x-ref="content" class="space-y-7 pt-8">
+      {%- for grandchildlink in childlink.links -%}
+        <li>
+          <a :tabindex="accordionIsOpen && submenuIsOpen ? 0 : -1" class="body-lg" href="{{ grandchildlink.url }}" title="{{ grandchildlink.title }}"> {{ grandchildlink.title }}</a>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</div>

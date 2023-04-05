@@ -1,0 +1,41 @@
+<script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
+
+<div
+  x-cloak
+  x-show="$store.tab.current == 'cart'"
+  x-transition:enter="transition-transform ease-in duration-200"
+  x-transition:enter-start="translate-x-full"
+  x-transition:enter-end="translate-x-0"
+  x-transition:leave="transition-transform ease-out duration-200"
+  x-transition:leave-start=" translate-x-0"
+  x-transition:leave-end="translate-x-full"
+  @keyup.escape="$store.tab.close()" @click.outside="$store.tab.close()"
+  id="MegaMenu-Content-{{ forloop.index }}"
+  class="fixed bg-cream w-full md:w-[548px] right-0 top-0 bottom-0 z-40 overflow-y-auto motion-reduce cart-drawer-container bg-whiter">
+
+  <cart-drawer class="{% if cart == empty %} is-empty{% endif %}">
+    {% section 'cart-contents' %}
+  </cart-drawer>
+</div>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    function isIE() {
+      const ua = window.navigator.userAgent;
+      const msie = ua.indexOf('MSIE ');
+      const trident = ua.indexOf('Trident/');
+
+      return (msie > 0 || trident > 0);
+    }
+
+    if (!isIE()) return;
+    const cartSubmitInput = document.createElement('input');
+    cartSubmitInput.setAttribute('name', 'checkout');
+    cartSubmitInput.setAttribute('type', 'hidden');
+    document.querySelector('#cart').appendChild(cartSubmitInput);
+    document.querySelector('#checkout').addEventListener('click', function(event) {
+      document.querySelector('#cart').submit();
+    });
+  });
+</script>

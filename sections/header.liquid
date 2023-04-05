@@ -1,0 +1,360 @@
+<link rel="stylesheet" href="{{ 'component-card-product.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-cart-items.css' | asset_url }}" media="print" onload="this.media='all'">
+
+{{ 'section-header.css' | asset_url | stylesheet_tag }}
+{{ 'component-quantity.css' | asset_url | stylesheet_tag }}
+{{ 'component-totals.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'component-discounts.css' | asset_url | stylesheet_tag }}
+{{ 'component-loading-overlay.css' | asset_url | stylesheet_tag }}
+
+<noscript>{{ 'component-card-product.css' | asset_url | stylesheet_tag }}</noscript>
+<noscript>{{ 'component-cart-items.css' | asset_url | stylesheet_tag }}</noscript>
+
+<div class="section-header z-10 relative">
+  <header class="header h-header padding-x z-20 bg-whiter border-whiter border-b" :class="{ 'border-green-light': $store.tab.current, 'border-whiter': !$store.tab.current }">
+    {%- if section.settings.menu != blank -%}
+      {% render 'menu-drawer' %}
+    {%- endif -%}
+
+    {%- if request.page_type == 'index' -%}
+      <h1 class="text-center">
+    {%- endif -%}
+        <a href="{{ routes.root_url }}" title="{{ shop.name }}" class="h-[26px] md:h-[37px] block md:mb-2">
+          {% render 'logo.svg', class: 'h-full w-auto' %}
+        </a>
+    {%- if request.page_type == 'index' -%}
+      </h1>
+    {%- endif -%}
+
+
+    {%- if section.settings.menu != blank -%}
+      <nav class="hidden lg:block">
+        <ul class="flex space-x-14" role="list">
+
+          <!-- Top Level Links -->
+          {%- for link in section.settings.menu.links -%}
+            {% assign top_link_index = forloop.index %}
+            <li>
+              {%- if link.links.size > 0 -%}
+                <div x-data="headerTab({{ forloop.index }})"
+                  @keyup.escape="close"
+                  @click.outside="close">
+                  <div>
+                    <button x-ref="menu-button" @click.prevent.stop="toggle" class="text-link" :class="{ underline : ({{ link.current }} || {{ link.child_current }} || isOpen )}" >
+                      {{ link.title | escape }}
+                    </button>
+                    <div x-cloak
+                      x-show="$store.tab.current == tabId"
+                      x-transition:enter="transition-transform ease-out duration-200"
+                      x-transition:enter-start="-translate-y-full"
+                      x-transition:enter-end="translate-y-0"
+                      x-transition:leave="transition-transform ease-in duration-200"
+                      x-transition:leave-start="translate-y-0"
+                      x-transition:leave-end="-translate-y-full"
+                      id="MegaMenu-Content-{{ forloop.index }}"
+                      class="absolute left-0 right-0 top-0 pt-header duration-200 transition-all bg-whiter z-[-1] overflow-y-auto motion-reduce">
+
+                      <div class="padding-x py-15 lg:flex justify-between">
+                        <ul class="md:flex lg:w-1/2" role="list">
+                          <!-- 2nd Level Links -->
+                          {%- for childlink in link.links -%}
+                            <li class="md:w-1/3 md:flex-grow-0 md:space-y-4">
+
+
+                              {%- if childlink.links.size > 0 -%}
+                                <span class="label font-bold"> {{ childlink.title }}</span>
+
+                                <ul class="md:space-y-4">
+                                  {%- for grandchildlink in childlink.links -%}
+                                    <li>
+                                      <a class="text-link{% if grandchildlink.current %} underline{% endif %}" href="{{ grandchildlink.url }}" title="{{ grandchildlink.title }}"> {{ grandchildlink.title }}</a>
+                                    </li>
+                                  {%- endfor -%}
+                                </ul>
+                              {% else -%}
+                                <a class="label font-bold text-link{% if grandchildlink.current %} underline{% endif %}" href="{{ childlink.url }}" title="{{ childlink.title }}"> {{ childlink.title }}</a>
+
+                              {%- endif -%}
+
+                            </li>
+                          {%- endfor -%}
+                        </ul>
+
+                        {% for block in section.blocks %}
+                          {% if block.settings.position == top_link_index %}
+                            <div class="hidden lg:flex w-1/2 space-x-8">
+                              {% if block.settings.image_1 %}
+                                <div class="w-1/2">
+                                  <div class="relative animate-spring-up overflow-hidden">
+                                    <div class="pb-[100%]">
+                                      {% if block.settings.cta_1 == blank %}
+                                        <a href="{{ block.settings.link_1 }}">
+                                          {% render 'image',
+                                            class: "rounded absolute inset-0 w-full h-full"
+                                            image: block.settings.image_1,
+                                            fit: 'cover',
+                                            sizes: "100vw, (min-width: 1024px) 25vw" %}
+                                          <div class="flag z-0 absolute top-6 right-0">{{ block.settings.label_1 }}</div>
+                                        </a>
+                                      {% else %}
+                                        {% render 'image',
+                                          class: "rounded absolute inset-0 w-full h-full"
+                                          image: block.settings.image_1,
+                                          fit: 'cover',
+                                          sizes: "100vw, (min-width: 1024px) 25vw" %}
+                                        <div class="flag z-0 absolute top-6 right-0">{{ block.settings.label_1 }}</div>
+                                      {% endif %}
+                                    </div>
+
+                                    {% if block.settings.cta_1 != blank %}
+                                      <div class="spring-up absolute z-10 inset-x-5 py-5 bottom-0 ">
+                                        <a class="w-full button button--white" href="{{ block.settings.link_1 }}" title="{{ block.settings.cta_1 }}">{{ block.settings.cta_1 }}</a>
+                                      </div>
+                                    {% endif %}
+                                  </div>
+
+                                  {% if block.settings.text_1 != blank %}
+                                    <a class="block label text-link font-bold mt-3" href="{{ block.settings.link_1 }}" title="{{ block.settings.text_1 }}">{{ block.settings.text_1 }}</a>
+                                  {% endif %}
+                                </div>
+                              {% endif %}
+
+                              {% if block.settings.image_2 %}
+                                <div class="w-1/2">
+                                  <div class="relative animate-spring-up overflow-hidden">
+                                      <div class="pb-[100%]">
+                                        {% if block.settings.cta_2 == blank %}
+                                          <a href="{{ block.settings.link_2 }}">
+                                            {% render 'image',
+                                              class: "rounded absolute inset-0 w-full h-full"
+                                              image: block.settings.image_2,
+                                              fit: 'cover',
+                                              sizes: "100vw, (min-width: 1024px) 25vw" %}
+                                            <div class="flag z-0 absolute top-6 right-0">{{ block.settings.label_2 }}</div>
+                                          </a>
+                                        {% else %}
+                                          {% render 'image',
+                                            class: "rounded absolute inset-0 w-full h-full"
+                                            image: block.settings.image_2,
+                                            fit: 'cover',
+                                            sizes: "100vw, (min-width: 1024px) 25vw" %}
+                                          <div class="flag z-0 absolute top-6 right-0">{{ block.settings.label_2 }}</div>
+                                        {% endif %}
+                                      </div>
+
+                                    {% if block.settings.cta_2 != blank %}
+                                      <div class="spring-up absolute z-10 inset-x-5 py-5 bottom-0 ">
+                                        <a class="w-full button button--white" href="{{ block.settings.link_2 }}" title="{{ block.settings.cta_2 }}">{{ block.settings.cta_2 }}</a>
+                                      </div>
+                                    {% endif %}
+                                  </div>
+
+                                  <a class="block label text-link font-bold mt-3" href="{{ block.settings.link_2 }}" title="{{ block.settings.text_2 }}">{{ block.settings.text_2 }}</a>
+
+                                </div>
+                              {% endif %}
+                            </div>
+                            {% break %}
+                          {% endif %}
+                        {% endfor %}
+
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              {%- else -%}
+                <a title="{{ link.title }}" href="{{ link.url }}" class="text-link{% if link.active or link.child_current %} underline{% endif %}"{% if link.current %} aria-current="page"{% endif %}>
+                  <span>{{ link.title | escape }}</span>
+                </a>
+              {%- endif -%}
+            </li>
+          {%- endfor -%}
+        </ul>
+      </nav>
+
+    {%- endif -%}
+
+    <div class="flex justify-end space-x-14 items-center">
+      <a title="{{ 'general.search.search' | t }}" href="{{ routes.search_url }}" class="focus-inset{% if section.settings.menu != blank %} hidden md:inline{% endif %}">
+        {% render 'icon-search' %}
+        <span class="visually-hidden">
+          {{ 'general.search.search' | t }}
+        </span>
+      </a>
+
+      {%- if shop.customer_accounts_enabled -%}
+        <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}" class="focus-inset{% if section.settings.menu != blank %} hidden md:inline{% endif %}">
+          {% render 'icon-account' %}
+          <span class="visually-hidden">
+            {%- liquid
+              if customer
+                echo 'customer.account_fallback' | t
+              else
+                echo 'customer.log_in' | t
+              endif
+            -%}
+          </span>
+        </a>
+      {%- endif -%}
+
+      {%- render "cart-button" -%}
+
+      {%- if section.settings.button_text and section.settings.button_link -%}
+        <a title={{ section.settings.button_text }} href="{{ section.settings.button_link }}" class="text-whiter button button--sm button--green" style="background-color: {{ section.settings.button_color }}">{{ section.settings.button_text }}</a>
+      {%- endif -%}
+    </div>
+
+  </header>
+</div>
+
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Organization",
+    "name": {{ shop.name | json }},
+    "sameAs": [
+      {{ settings.social_twitter_link | json }},
+      {{ settings.social_facebook_link | json }},
+      {{ settings.social_pinterest_link | json }},
+      {{ settings.social_instagram_link | json }},
+      {{ settings.social_tiktok_link | json }},
+      {{ settings.social_tumblr_link | json }},
+      {{ settings.social_snapchat_link | json }},
+      {{ settings.social_youtube_link | json }},
+      {{ settings.social_vimeo_link | json }}
+    ],
+    "url": {{ request.origin | append: page.url | json }}
+  }
+</script>
+
+{%- if request.page_type == 'index' -%}
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": {{ shop.name | json }},
+      "url": {{ request.origin | append: page.url | json }}
+    }
+  </script>
+{%- endif -%}
+
+
+{% schema %}
+{
+  "name": "t:sections.header.name",
+  "class": "header-wrapper sticky top-0 z-30",
+  "enabled_on": {
+    "groups": [
+      "header"
+    ]
+  },
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "default": "main-menu",
+      "label": "t:sections.header.settings.menu.label"
+    },
+    {
+      "type": "header",
+      "content": "Big Right-hand Button"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button Color",
+      "default": "#234237"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "megamenu",
+      "name": "Megamenu",
+      "settings": [
+        {
+          "type": "number",
+          "id": "position",
+          "label": "Position",
+          "info": "Position of the top-level nav item corresponding to this mega-menu.",
+          "default": 1
+        },
+        {
+          "type": "header",
+          "content": "Block 1"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_1",
+          "label": "Image 1",
+          "info": "should be a high resolution square"
+        },
+        {
+          "type": "text",
+          "id": "text_1",
+          "label": "Text 1"
+        },
+        {
+          "type": "url",
+          "id": "link_1",
+          "label": "Link 1"
+        },
+        {
+          "type": "text",
+          "id": "cta_1",
+          "label": "Button Text 1",
+          "default": "Learn More"
+        },
+        {
+          "type": "text",
+          "id": "label_1",
+          "label": "Label 1"
+        },
+        {
+          "type": "header",
+          "content": "Block 2"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_2",
+          "label": "Image 2",
+          "info": "should be a high resolution square"
+        },
+        {
+          "type": "text",
+          "id": "text_2",
+          "label": "Text 2"
+        },
+        {
+          "type": "url",
+          "id": "link_2",
+          "label": "Link 2"
+        },
+        {
+          "type": "text",
+          "id": "cta_2",
+          "label": "Button Text 2",
+          "default": "Learn More"
+        },
+        {
+          "type": "text",
+          "id": "label_2",
+          "label": "Label 2"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

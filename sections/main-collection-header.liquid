@@ -1,0 +1,33 @@
+<div class="relative min-h-fit flex items-end justify-start collection-header bg-joint-green w-full h-[72vw] sm:h-[28vw]">
+
+  {% if collection.image %}
+    {% render 'image',
+      image: collection.image,
+      preload: true,
+      class: "absolute w-full h-full inset-0 brightness-[.8]",
+      fit: 'cover',
+      sizes: "100vw"
+    %}
+  {% endif %}
+
+  <div class="body md:body-lg text-white relative z-10 padding-x py-5 md:py-15 max-w-md md:max-w-screen-sm">
+    {% if collection.description != blank %}
+      {{ collection.description }}
+    {% else %}
+      <h1>{{ collection.title }}</h1>
+    {% endif %}
+  </div>
+
+</div>
+
+{% schema %}
+{
+  "name": "Collection Header",
+  "tag": "section",
+  "enabled_on": {
+    "templates": [
+      "collection"
+    ]
+  }
+}
+{% endschema %}

@@ -1,0 +1,122 @@
+<div class="padding-x {{ section.settings.mobile_top_padding }} {{ section.settings.mobile_bottom_padding }} {{ section.settings.desktop_top_padding }} {{ section.settings.desktop_bottom_padding }}">
+  <div class="section-{{ section.id }}-padding">
+    {{ section.settings.custom_liquid }}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.custom-liquid.name",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "liquid",
+      "id": "custom_liquid",
+      "label": "t:sections.custom-liquid.settings.custom_liquid.label",
+      "info": "t:sections.custom-liquid.settings.custom_liquid.info"
+    },
+    {
+      "type": "select",
+      "id": "mobile_top_padding",
+      "label": "Mobile Top Padding",
+      "default": "pt-10",
+      "options": [
+        {
+          "label": "0px",
+          "value": "pt-0"
+        },
+        {
+          "label": "40px",
+          "value": "pt-10"
+        },
+        {
+          "label": "60px",
+          "value": "pt-15"
+        },
+        {
+          "label": "80px",
+          "value": "pt-20"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "mobile_bottom_padding",
+      "label": "Mobile Bottom Padding",
+      "default": "pb-10",
+      "options": [
+        {
+          "label": "0px",
+          "value": "pb-0"
+        },
+        {
+          "label": "40px",
+          "value": "pb-10"
+        },
+        {
+          "label": "60px",
+          "value": "pb-15"
+        },
+        {
+          "label": "80px",
+          "value": "pb-20"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "desktop_top_padding",
+      "label": "Desktop Top Padding",
+      "default": "md:pt-20",
+      "options": [
+        {
+          "label": "0px",
+          "value": "md:pt-0"
+        },
+        {
+          "label": "80px",
+          "value": "md:pt-20"
+        },
+        {
+          "label": "100px",
+          "value": "md:pt-25"
+        },
+        {
+          "label": "120px",
+          "value": "md:pt-30"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "desktop_bottom_padding",
+      "label": "Desktop Bottom Padding",
+      "default": "md:pb-20",
+      "options": [
+        {
+          "label": "0px",
+          "value": "md:pb-0"
+        },
+        {
+          "label": "80px",
+          "value": "md:pb-20"
+        },
+        {
+          "label": "100px",
+          "value": "md:pb-25"
+        },
+        {
+          "label": "120px",
+          "value": "md:pb-30"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.custom-liquid.presets.name"
+    }
+  ]
+}
+{% endschema %}

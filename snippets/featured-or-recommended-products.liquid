@@ -1,0 +1,31 @@
+<div class="mx-auto max-w-screen-2xl py-20 md:py-30 mx-auto">
+  <h2 class="padding-x text-center h2 md:h1 max-w-md md:max-w-2xl mx-auto">{{ section.settings.heading }}</h2>
+
+  <embla-wrapper data-options='{ "align": "center", "loop": true, "breakpoints": { "(min-width: 1280px)": { "active": false } } }' class="lg:padding-x mt-8 md:mt-15 block">
+    <div class="embla overflow-hidden ">
+      <ul class="embla__container flex xl:gap-x-5 xl:grid xl:grid-cols-4">
+        {%- for product in products -%}
+          <li class="mx-[0.625rem] xl:mx-0 embla__slide flex-shrink-0 w-2/3 md:w-1/2 lg:w-[calc((100%/3)-(2*20px/3))] xl:w-auto min-w-0">
+            {% render 'card-product',
+              card_product: product,
+              title: product.title,
+              description: product.metafields.my_fields.product_short_description,
+              show_rating: section.settings.show_rating,
+              show_quick_add: section.settings.enable_quick_add,
+              show_description: section.settings.show_description,
+              section_id: section.id,
+              collection: section.settings.collection
+            %}
+          </li>
+        {%- else -%}
+          {%- for i in (1..4) -%}
+            <li class="">
+              {% render 'card-product' %}
+            </li>
+          {%- endfor -%}
+        {%- endfor -%}
+      </ul>
+
+    </div>
+  </embla-wrapper>
+</div>

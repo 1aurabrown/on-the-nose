@@ -1,0 +1,76 @@
+<script>
+  loadDynamicScriptTag("{{ 'embla-carousel.js' | asset_url }}", function() { document.dispatchEvent(new Event('emblaLoaded')); })
+  loadDynamicScriptTag("{{ 'component-embla-wrapper.js' | asset_url }}")
+</script>
+
+{%- assign anchorId = '#products' -%}
+
+<div class="my-10 md:my-15 {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}mt:5 md:mt-5{% endif %}">
+  <div id="products" class="relative -top-header w-full h-0"></div>
+  {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
+    <script src="{{ 'facets.js' | asset_url }}" defer="defer"></script>
+    {{ 'component-facets.css' | asset_url | stylesheet_tag }}
+    <aside
+      class="my-5 facets-wrapper{% unless section.settings.enable_filtering %} facets-wrapper--no-filters{% endunless %}"
+      id="main-collection-filters"
+      data-id="{{ section.id }}"
+    >
+      {% render 'facets',
+        results: collection,
+        enable_filtering: section.settings.enable_filtering,
+        enable_sorting: section.settings.enable_sorting,
+        filter_type: section.settings.filter_type
+      %}
+    </aside>
+  {%- endif -%}
+
+  <div id="ProductGridContainer">
+  	{% paginate collection.products by 12 %}
+  		{% render 'collection-grid', title: collection.title, products: collection.products, section: section %}
+  		{% render 'pagination', paginate: paginate, class: 'mt-16 mb-10', anchor: anchorId %}
+  	{% endpaginate %}
+  </div>
+</div>
+
+
+{% schema %}
+{
+  "name": "Collection Product Grid",
+  "tag": "section",
+  "enabled_on": {
+    "templates": [
+      "collection"
+    ]
+  },
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "default": true,
+      "label": "t:sections.main-collection-product-grid.settings.show_rating.label",
+      "info": "t:sections.main-collection-product-grid.settings.show_rating.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_quick_add",
+      "default": true,
+      "label": "t:sections.main-collection-product-grid.settings.enable_quick_buy.label",
+      "info": "t:sections.main-collection-product-grid.settings.enable_quick_buy.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_sorting",
+      "default": true,
+      "label": "t:sections.main-collection-product-grid.settings.enable_sorting.label",
+      "info": "t:sections.main-collection-product-grid.settings.enable_sorting.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_filtering",
+      "default": true,
+      "label": "t:sections.main-collection-product-grid.settings.enable_filtering.label",
+      "info": "t:sections.main-collection-product-grid.settings.enable_filtering.info"
+    }
+  ]
+}
+{% endschema %}

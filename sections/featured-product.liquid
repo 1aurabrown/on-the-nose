@@ -1,0 +1,200 @@
+{% comment %} Article pages don't support dynamic sources in their sections for some reason. Get the product explicitly here.{% endcomment %}
+{% liquid
+  if template == 'article'
+    assign product = article.metafields.custom.featured_product.value
+  else
+    assign product = section.settings.product
+  endif
+%}
+<div class="max-w-screen-2xl mx-auto padding-x" data-section="{{ section.id }}">
+  {{ 'component-rating.css' | asset_url | stylesheet_tag }}
+
+  <div class="md:grid md:grid-cols-2 ">
+    <div class="md:pr-15 lg:pr-30">
+      <div class="sticky top-header mt-10 pb-15">
+        {% render 'image', image: product.featured_image, wrapper_class: 'rounded overflow-hidden bg-white' use_padding: true %}
+      </div>
+    </div>
+    <div>
+      <div class="my-10 md:mb-15 md:max-w-[36rem]">
+
+        {%- for block in section.blocks -%}
+          {%- case block.type -%}
+          {%- when 'title' -%}
+            <div class="product__title my-3 md:my-5" {{ block.shopify_attributes }}>
+              <p class="label-sm md:label">
+                {%- assign tags = product.tags | join: "," | downcase | split: "," %}
+                {% if tags contains 'cat' and tags contains 'dog' %}
+                  For Cats + Dogs
+                {% elsif tags contains 'cat' %}
+                  For Cats
+                {% elsif tags contains 'dog' %}
+                  For Dogs
+                {% endif %}
+              </p>
+
+              <h1 class="mt-3 h2 md:h1">
+                {{ product.title | escape }}
+              </h1>
+            </div>
+          {%- when 'description' -%}
+            <div class="rte my-7 h4 md:h3 md:max-w-[30rem]" {{ block.shopify_attributes }}>{{ product.description | strip_html }}</div>
+          {%- when 'rating' -%}
+            {% render 'rating-star-mask.svg' %}
+           {%- if product.metafields.reviews.rating.value != blank -%}
+              {% liquid
+                assign rating_value = product.metafields.reviews.rating.value
+                assign rating_count = product.metafields.reviews.rating_count
+                assign scale_max = rating_value.scale_max
+                assign rating = rating_value.rating
+              %}
+
+              <div class="my-2 md:my-5 relative" {{ block.shopify_attributes }}>
+                {% render 'rating', rating_count: rating_count, scale_max: scale_max, rating: rating %}
+                <a href="#reviews" title="Scroll To reviews" class="block opacity-0 absolute inset-0">Scroll To Reviews</a>
+              </div>
+            {%- endif -%}
+
+          {%- when 'cta' -%}
+            {% if product != blank %}
+              {% if block.settings.cta_text != blank %}
+                <button class="mt-10 lg:mt-15 button {{ block.settings.cta_color }} font-bold">
+                  <a href="{{ product.url }}">
+                    {{ block.settings.cta_text }}
+                  </a>
+                </button>
+              {% endif %}
+            {% endif %}
+          {%- endcase -%}
+        {%- endfor -%}
+
+      </div>
+    </div>
+  </div>
+
+  {%- liquid
+    if product.selected_or_first_available_variant.featured_media
+      assign seo_media = product.selected_or_first_available_variant.featured_media
+    else
+      assign seo_media = product.featured_media
+    endif
+  -%}
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org/",
+      "@type": "Product",
+      "name": {{ product.title | json }},
+      "url": {{ request.origin | append: product.url | json }},
+      {% if seo_media -%}
+        "image": [
+          {{ seo_media | image_url: width: seo_media.preview_image.width | prepend: "https:" | json }}
+        ],
+      {%- endif %}
+      "description": {{ product.description | strip_html | json }},
+      {% if product.selected_or_first_available_variant.sku != blank -%}
+        "sku": {{ product.selected_or_first_available_variant.sku | json }},
+      {%- endif %}
+      {%- if product.metafields.reviews.rating.value != blank -%}
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "{{ product.metafields.reviews.rating.value | json }}",
+          "reviewCount": "{{ product.metafields.reviews.rating_count.value | json }}|"
+        },
+      {%- endif -%}
+      "brand": {
+        "@type": "Brand",
+        "name": {{ product.vendor | json }}
+      },
+      "offers": [
+        {%- for variant in product.variants -%}
+          {
+            "@type" : "Offer",
+            {%- if variant.sku != blank -%}
+              "sku": {{ variant.sku | json }},
+            {%- endif -%}
+            "availability" : "http://schema.org/{% if variant.available %}InStock{% else %}OutOfStock{% endif %}",
+            "price" : {{ variant.price | divided_by: 100.00 | json }},
+            "priceCurrency" : {{ cart.currency.iso_code | json }},
+            "url" : {{ request.origin | append: variant.url | json }}
+          }{% unless forloop.last %},{% endunless %}
+        {%- endfor -%}
+      ]
+    }
+  </script>
+</div>
+
+{% schema %}
+{
+  "name": "Featured Product",
+  "tag": "section",
+  "enabled_on": {
+    "templates": [
+      "article"
+    ]
+  },
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "On Article pages, assign a product to the Article's 'Featured Product' metafield to populate this section automatically."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "title",
+      "name": "t:sections.main-product.blocks.title.name",
+      "limit": 1
+    },
+    {
+      "type": "rating",
+      "name": "Star Rating",
+      "limit": 1
+    },
+    {
+      "type": "description",
+      "name": "t:sections.main-product.blocks.description.name",
+      "limit": 1
+    },
+    {
+      "type": "cta",
+      "name": "CTA Button",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "cta_text",
+          "label": "CTA Text"
+        },
+        {
+          "type": "select",
+          "id": "cta_color",
+          "label": "CTA Color",
+          "default": "button--joint-green",
+          "options": [
+            {
+              "label": "Joint Green",
+              "value": "button--joint-green"
+            },
+            {
+              "label": "Yellow",
+              "value": "button--yellow"
+            },
+            {
+              "label": "White",
+              "value": "button--white"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Product"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,44 @@
+.filters-form input[type=checkbox] {
+	opacity: 0;
+	width: 0;
+	height: 0;
+	display: block;
+}
+
+.filters-form input[type=checkbox]:focus + label:before {
+	outline-width: 2px;
+	outline-color: currentColor;
+	outline-style: solid;
+	outline-offset: 1px;
+}
+
+.filters-form input[type=checkbox] + label {
+	position: relative;
+}
+
+.filters-form input[type=checkbox] + label:before {
+	display: block;
+	content: '';
+	min-width: 15px;
+	width: 15px;
+	height: 15px;
+	border: 2px solid currentColor;
+	border-radius: 2px;
+	margin-top: 2px;
+	margin-right: 4px;
+}
+
+
+.filters-form input[type=checkbox]:checked + label:after {
+	position: absolute;
+	display: block;
+	left: 0;
+	top: 2px;
+	width: 7px;
+	height: 7px;
+	margin: 4px;
+	background-image: url("data:image/svg+xml,%3Csvg width='13' height='13' viewBox='0 0 13 13' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='1.64361' y1='1.73642' x2='11.4246' y2='11.1859' stroke='%23234237' stroke-width='1.4' stroke-linecap='round'/%3E%3Cline x1='1.5264' y1='11.3565' x2='10.9759' y2='1.57556' stroke='%23234237' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E%0A");
+	content: '';
+  background-repeat: no-repeat;
+  background-position: center;
+}

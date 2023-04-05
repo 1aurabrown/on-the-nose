@@ -1,0 +1,218 @@
+<link rel="dns-prefetch" href="https://klaviyo.com"crossorigin>
+
+{% comment %}theme-check-disable UndefinedObject{% endcomment %}
+
+<footer class="section-footer bg-joint-green text-whiter footer padding-x py-5">
+
+  <div class="md:flex md:flex-row md:my-15">
+    <div class="md:w-1/2 my-10 md:my-0">
+      <!-- Newsletter -->
+      {%- if section.settings.newsletter_enable and section.settings.newsletter_list_id -%}
+        <div class="md:w-4/5 max-w-md">
+          <div class="space-y-5">
+            {%- if section.settings.newsletter_heading != blank -%}
+              <h2 class="h2">{{ section.settings.newsletter_heading | escape }}</h2>
+            {%- endif -%}
+            {%- if section.settings.newsletter_body != blank -%}
+              <p class="body-lg">{{ section.settings.newsletter_body | escape }}</p>
+            {%- endif -%}
+          </div>
+
+          <div id="footer-klaviyo" class="relative mt-8"
+            x-data='klaviyo({ listId: {{ section.settings.newsletter_list_id | json }}, source: "footer" })'>
+
+            <form @submit.prevent="submitForm" class="relative w-full text-joint-green  ">
+              <input
+                type="email"
+                name="email"
+                x-model="email"
+                class="bg-whiter w-full pl-8 pr-20 h-14 rounded-[2rem] placeholder-joint-green label-lg"
+                aria-required="true"
+                autocorrect="off"
+                autocapitalize="off"
+                autocomplete="email"
+                :autofocus="errors.length > 0"
+                :aria-invalid="errors.length > 0"
+                :aria-describedby="if (errors.length > 0) { 'ContactFooter-error' } else if (success) { 'ContactFooter-success' }"
+                placeholder="{{ section.settings.newsletter_placeholder }}"
+                required>
+
+              <button :disabled='inFlight' type="submit" class="animate-arrow absolute right-6 top-1/2 -translate-y-1/2 text-joint-green" aria-label="{{ 'newsletter.button_label' | t }}">
+                {% render 'icon-arrow', class: "w-4 h-4" %}
+              </button>
+
+            </form>
+
+            <div id="ContactFooter-error"
+            class="x-cloak absolute w-full top-full pt-2 left-0 right-0 transition-opacity duration-200 body-lg"
+            x-show="error"
+            x-transition:enter-start="opacity-0"
+            x-transition:leave-end="opacity-0">
+              <span x-text="errors.length ? errors.join(' ') : '{{ section.settings.newsletter_error }}'"></span>
+            </div>
+
+            <div id="ContactFooter-success"
+            class="x-cloak absolute w-full top-full pt-2 left-0 right-0 transition-opacity duration-200 body-lg"
+            x-show="success && !error"
+            x-transition:enter-start="opacity-0"
+            x-transition:leave-end="opacity-0">
+              {{ section.settings.newsletter_success }}
+            </div>
+          </div>
+        </div>
+      {%- endif -%}
+    </div>
+    <hr class="border border-x-0 border-solid border-white/40 my-10 md:hidden"/>
+    <div class="md:w-1/2 my-10 md:my-0">
+      <div class="md:w-90-per max-w-md md:mx-auto">
+        <div class="space-y-5">
+          {%- if section.settings.contact_heading != blank -%}
+            <h2 class="h2">{{ section.settings.contact_heading | escape }}</h2>
+          {%- endif -%}
+          {%- if section.settings.contact_body != blank -%}
+            <p class="body-lg">{{ section.settings.contact_body | escape }}</p>
+          {%- endif -%}
+        </div>
+        {% render 'contact-methods', class: 'mt-8' %}
+      </div>
+    </div>
+  </div>
+
+  <hr class="border border-x-0 border-solid border-white/40 my-10 hidden md:block"/>
+
+  <div class="my-10 md:my-15 border-white/40">
+    <!-- Blocks -->
+    <div class="md:flex md:space-x-6">
+      {%- if section.blocks.size > 0 -%}
+        {%- for block in section.blocks -%}
+          {% render 'footer-menu-column', block: block %}
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+  </div>
+
+</footer>
+
+{% comment %}theme-check-enable UndefinedObject{% endcomment %}
+
+
+{% schema %}
+{
+  "name": "t:sections.footer.name",
+  "max_blocks": 5,
+  "enabled_on": {
+    "groups": [
+      "footer"
+    ]
+  },
+  "blocks": [
+    {
+      "type": "link_list",
+      "name": "t:sections.footer.blocks.link_list.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "default": "footer",
+          "label": "t:sections.footer.blocks.link_list.settings.menu.label",
+          "info": "t:sections.footer.blocks.link_list.settings.menu.info"
+        }
+      ]
+    },
+    {
+      "type": "social",
+      "name": "Social Links",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Social",
+          "info": "Edit social links in [theme settings](/editor?context=theme&category=logo)."
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "header",
+      "content": "Newsletter Signup"
+    },
+    {
+      "type": "checkbox",
+      "id": "newsletter_enable",
+      "default": true,
+      "label": "t:sections.footer.settings.newsletter_enable.label"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_placeholder",
+      "default": "Your Email, Please",
+      "label": "Newsletter Placeholder"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_heading",
+      "default": "Lorem ipsum dolor sit amet, consectetur elit.",
+      "label": "Newsletter Heading"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_body",
+      "default": "Lorem ipsum dolor sit amet, consectetur elit.",
+      "label": "Newsletter Body"
+    },
+    {
+      "type": "textarea",
+      "id": "newsletter_success",
+      "default": "Welcome to our kitchen.",
+      "label": "Newsletter Success Message"
+    },
+    {
+      "type": "textarea",
+      "id": "newsletter_error",
+      "default": "There was an error, please try again.",
+      "label": "Newsletter Error Message"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_list_id",
+      "label": "Klaviyo List ID"
+    },
+    {
+      "type": "header",
+      "content": "Contact"
+    },
+    {
+      "type": "text",
+      "id": "contact_heading",
+      "default": "Lorem ipsum dolor sit amet, consectetur elit.",
+      "label": "Contact Heading"
+    },
+    {
+      "type": "text",
+      "id": "contact_body",
+      "default": "Lorem ipsum dolor sit amet, consectetur elit.",
+      "label": "Contact Body"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_social",
+      "default": false,
+      "label": "t:sections.footer.settings.show_social.label"
+    }
+  ],
+  "default": {
+    "blocks": [
+      {
+        "type": "link_list"
+      }
+    ]
+  }
+}
+{% endschema %}

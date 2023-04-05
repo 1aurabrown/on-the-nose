@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json.schemastore.org/web-manifest-combined.json",
+  "name": "On The Nose",
+  "short_name": "On The Nose",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#FFFCFA",
+  "theme_color": "#E4E8DF",
+  "description": "{{ shop.description }}",
+  "icons": [{
+    "src": "{{ settings.favicon | image_url: width: 48, height: 48 }}",
+    "sizes": "48x48",
+    "type": "image/png"
+  }, {
+    "src": "{{ settings.favicon | image_url: width: 72, height: 72 }}",
+    "sizes": "72x72",
+    "type": "image/png"
+  }, {
+    "src": "{{ settings.favicon | image_url: width: 96, height: 96 }}",
+    "sizes": "96x96",
+    "type": "image/png"
+  }, {
+    "src": "{{ settings.favicon | image_url: width: 32, height: 32 }}",
+    "sizes": "144x144",
+    "type": "image/png"
+  }, {
+    "src": "{{ settings.favicon | image_url: width: 168, height: 168 }}",
+    "sizes": "168x168",
+    "type": "image/png"
+  }, {
+    "src": "{{ settings.favicon | image_url: width: 192, height: 192 }}",
+    "sizes": "192x192",
+    "type": "image/png"
+  }, {
+    "src": "{{ settings.favicon | image_url: width: 512, height: 512 }}",
+    "sizes": "512x512",
+    "type": "image/png"
+  }, {
+    "src": "{{ settings.favicon | image_url: width: 192, height: 192 }}",
+    "sizes": "192x192",
+    "purpose": "maskable",
+    "type": "image/png"
+  }, {
+    "src": "{{ settings.favicon | image_url: width: 512, height: 512 }}",
+    "sizes": "512x512",
+    "purpose": "maskable",
+    "type": "image/png"
+  }]
+}

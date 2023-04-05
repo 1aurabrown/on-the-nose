@@ -1,0 +1,67 @@
+{
+  "type": "footer",
+  "name": "Footer",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "c09dbf57-b1e8-4354-acc0-405b73c686e4": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Shop",
+            "menu": "shop-v2"
+          }
+        },
+        "cf661558-82b7-42fc-9596-f7066ca57f15": {
+          "type": "link_list",
+          "settings": {
+            "heading": "About",
+            "menu": "about-us-test"
+          }
+        },
+        "d1bb5f80-6170-4383-b855-b396af765947": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Support",
+            "menu": "support-v2"
+          }
+        },
+        "df7ac6ff-a98e-4047-9954-06ee2c4ddc58": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Legal",
+            "menu": "legal-v2"
+          }
+        },
+        "a4fadecb-23f9-48ae-91f3-88e812dab055": {
+          "type": "social",
+          "settings": {
+            "heading": "Social"
+          }
+        }
+      },
+      "block_order": [
+        "c09dbf57-b1e8-4354-acc0-405b73c686e4",
+        "cf661558-82b7-42fc-9596-f7066ca57f15",
+        "d1bb5f80-6170-4383-b855-b396af765947",
+        "df7ac6ff-a98e-4047-9954-06ee2c4ddc58",
+        "a4fadecb-23f9-48ae-91f3-88e812dab055"
+      ],
+      "settings": {
+        "newsletter_enable": true,
+        "newsletter_placeholder": "Email Address",
+        "newsletter_heading": "Join the On The Nose family.",
+        "newsletter_body": "Subscribe and get exclusive access to sales, health tips, and more.",
+        "newsletter_success": "We're so happy you're here and can't wait to share monthly promotions, exciting product launches, and health tips from our CEO and veterinarian!",
+        "newsletter_error": "There was an error, please try again.",
+        "newsletter_list_id": "Xn7mB4",
+        "contact_heading": "Get in touch with the pack.",
+        "contact_body": "office hours: weekdays 9 am to 5 pm PT",
+        "show_social": true
+      }
+    }
+  },
+  "order": [
+    "footer"
+  ]
+}

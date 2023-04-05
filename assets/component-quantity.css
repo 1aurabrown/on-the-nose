@@ -1,0 +1,51 @@
+
+/* component-quantity */
+.quantity {
+  position: relative;
+  display: flex;
+}
+
+.quantity:after {
+  pointer-events: none;
+  content: '';
+  position: absolute;
+  border: 0.1rem solid transparent;
+  z-index: 1;
+}
+
+.quantity:before {
+  pointer-events: none;
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.quantity__input {
+  color: currentColor;
+  text-align: center;
+  background-color: transparent;
+  border: 0;
+  width: 100%;
+  flex-grow: 1;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.quantity__input:-webkit-autofill,
+.quantity__input:-webkit-autofill:hover,
+.quantity__input:-webkit-autofill:active {
+}
+
+.quantity__input::-webkit-outer-spin-button,
+.quantity__input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.quantity__input[type='number'] {
+  -moz-appearance: textfield;
+}

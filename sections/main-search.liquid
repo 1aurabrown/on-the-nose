@@ -1,0 +1,144 @@
+{{ 'template-collection.css' | asset_url | stylesheet_tag }}
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+
+{%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
+  {{ 'component-facets.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'facets.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
+  <div class="bg-joint-green-light padding-x py-8 z-20 sticky top-header">
+    <main-search class="block mx-auto">
+      <form action="{{ routes.search_url }}" method="get" role="search" class="w-full lg:max-w-4xl mx-auto relative">
+        <div class="w-full">
+          <input
+            {% unless search.performed %}
+            autofocus
+            {% endunless %}
+            class="h-14 rounded-full bg-whiter px-8 label placeholder-joint-green w-full"
+            id="Search-In-Template"
+            name="q"
+            placeholder="{{ 'general.search.search' | t }}"
+            type="search"
+            value="{{ search.terms | escape }}"
+          >
+
+          <label class="visually-hidden" for="Search-In-Template">{{ 'general.search.search' | t }}</label>
+          <input name="options[prefix]" type="hidden" value="last">
+          <input name="type" type="hidden" value="product">
+
+          <button type="reset" class="visually-hidden" aria-label="Reset">
+            {% render 'icon-close' %}
+          </button>
+
+          <button type="submit" class="absolute right-4 top-1/2 -translate-y-1/2" aria-label="{{ 'general.search.search' | t }}">
+            {% render 'icon-arrow' %}
+          </button>
+        </div>
+      </form>
+    </main-search>
+  </div>
+
+  {%- if search.performed -%}
+    <div class="my-10 md:my-15 padding-x relative z-10 max-w-screen-2xl mx-auto">
+
+      {%- if search.results.size == 0 -%}
+        <h2 class="text-center h2 md:h1">
+          {{ 'sections.collection_template.empty' | t }}
+        </h2>
+      {%- else -%}
+        {% paginate search.results by 24 %}
+          <div>
+            <ul class="grid grid-cols-2 lg:grid-cols-4 gap-x-5 gap-y-10 lg:gap-y-15" role="list">
+              {%- for item in search.results -%}
+                {% assign lazy_load = false %}
+                {%- if forloop.index > 2 -%}
+                  {%- assign lazy_load = true -%}
+                {%- endif -%}
+
+                <li>
+                  {%- case item.object_type -%}
+                    {%- when 'product' -%}
+                      {%- capture product_settings -%}{%- if section.settings.product_show_vendor -%}vendor,{%- endif -%}title,price{%- endcapture -%}
+                      {% render 'card-product',
+                        card_product: item,
+                        media_aspect_ratio: section.settings.image_ratio,
+                        show_rating: section.settings.show_rating,
+                        show_quick_add: true,
+                        show_secondary_image: true,
+                        lazy_load: lazy_load
+                      %}
+                    {%- when 'article' -%}
+                      {% render 'article-card',
+                        article: item,
+                        show_badge: true,
+                        lazy_load: lazy_load
+                      %}
+                    {%- when 'page' -%}
+                      <div class="article-card-wrapper card-wrapper underline-links-hover">
+                        <div class="card card--card card--text ratio color-{{ settings.blog_card_color_scheme }}" style="--ratio-percent: 100%;">
+                          <div class="card__content">
+                            <div class="card__information">
+                              <h3 class="card__heading">
+                                <a href="{{ item.url }}" class="full-unstyled-link">
+                                  {{ item.title | truncate: 50 | escape }}
+                                </a>
+                              </h3>
+                            </div>
+                            <div class="card__badge {{ settings.badge_position }}">
+                              <span class="badge color-background-1">{{ 'templates.search.page' | t }}</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                  {%- endcase -%}
+                </li>
+              {%- endfor -%}
+            </ul>
+            {%- if paginate.pages > 1 -%}
+              {% render 'pagination', paginate: paginate %}
+            {%- endif -%}
+          </div>
+        {% endpaginate %}
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+
+
+<style>
+/* clears the 'X' from Internet Explorer */
+input[type=search]::-ms-clear {  display: none; width : 0; height: 0; }
+input[type=search]::-ms-reveal {  display: none; width : 0; height: 0; }
+
+/* clears the 'X' from Chrome */
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration { display: none; }
+
+</style>
+
+{% schema %}
+{
+  "name": "t:sections.main-search.name",
+  "tag": "section",
+  "enabled_on": {
+    "templates": [
+      "search"
+    ]
+  },
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "default": true,
+      "label": "t:sections.main-search.settings.show_rating.label",
+      "info": "t:sections.main-search.settings.show_rating.info"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.main-collection-product-grid.settings.header__1.content"
+    }
+  ]
+}
+{% endschema %}

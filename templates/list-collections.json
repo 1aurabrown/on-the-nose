@@ -1,0 +1,20 @@
+{
+  "sections": {
+    "banner": {
+      "type": "main-list-collections-banner",
+      "settings": {
+        "heading": "Shop our Dog and Cat Collections",
+        "text": ""
+      }
+    },
+    "main": {
+      "type": "main-list-collections",
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "main"
+  ]
+}

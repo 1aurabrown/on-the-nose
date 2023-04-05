@@ -1,0 +1,24 @@
+.article-template__comments-comment:not(:last-of-type) {
+  border-bottom: 2px solid #E3DBCD;
+}
+
+.article-template__comments .article-template__comments-comment:not(:first-of-type) {
+  padding-top: 40px;
+}
+
+.article-template__comments-comment > p {
+  max-width: 764px;
+}
+
+
+
+
+@media screen and (min-width: 990px) {
+  .article-template__comments .pagination-wrapper {
+    margin: 5rem 0 8rem;
+  }
+}
+
+.article-template__back:last-child {
+  margin-bottom: 3.2rem;
+}
