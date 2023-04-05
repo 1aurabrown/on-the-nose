@@ -2,7 +2,7 @@
 
 {% comment %}theme-check-disable UndefinedObject{% endcomment %}
 
-<footer class="section-footer bg-joint-green text-whiter footer padding-x py-5">
+<footer class="section-footer text-whiter footer padding-x py-5">
 
   <div class="md:flex md:flex-row md:my-15">
     <div class="md:w-1/2 my-10 md:my-0">
@@ -21,12 +21,12 @@
           <div id="footer-klaviyo" class="relative mt-8"
             x-data='klaviyo({ listId: {{ section.settings.newsletter_list_id | json }}, source: "footer" })'>
 
-            <form @submit.prevent="submitForm" class="relative w-full text-joint-green  ">
+            <form @submit.prevent="submitForm" class="relative w-full">
               <input
                 type="email"
                 name="email"
                 x-model="email"
-                class="bg-whiter w-full pl-8 pr-20 h-14 rounded-[2rem] placeholder-joint-green label-lg"
+                class="w-full pl-8 pr-20 h-14 rounded-[2rem] placeholder-joint-green label-lg"
                 aria-required="true"
                 autocorrect="off"
                 autocapitalize="off"
@@ -37,7 +37,7 @@
                 placeholder="{{ section.settings.newsletter_placeholder }}"
                 required>
 
-              <button :disabled='inFlight' type="submit" class="animate-arrow absolute right-6 top-1/2 -translate-y-1/2 text-joint-green" aria-label="{{ 'newsletter.button_label' | t }}">
+              <button :disabled='inFlight' type="submit" class="animate-arrow absolute right-6 top-1/2 -translate-y-1/2" aria-label="{{ 'newsletter.button_label' | t }}">
                 {% render 'icon-arrow', class: "w-4 h-4" %}
               </button>
 

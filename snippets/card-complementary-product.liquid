@@ -78,7 +78,7 @@
           </a>
         </h3>
 
-        <p class="mt-[0.625rem] md:mt-3 text-joint-green-light">{{ card_product.metafields.my_fields.product_short_description | default: card_product.description | truncatewords: 14 | strip_html }}</p>
+        <p class="mt-[0.625rem] md:mt-3">{{ card_product.metafields.my_fields.product_short_description | default: card_product.description | truncatewords: 14 | strip_html }}</p>
 
         {%- if show_quick_add -%}
           <div class="mt-4 quick-add no-js-hidden">

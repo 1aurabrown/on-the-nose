@@ -3,10 +3,6 @@
     "main": {
       "type": "main-blog",
       "settings": {
-        "cta_color": "button--yellow",
-        "show_excerpt": false,
-        "bg_color": "bg-white",
-        "swap_layout": false
       }
     }
   },

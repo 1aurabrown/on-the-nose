@@ -12,7 +12,7 @@
 <noscript>{{ 'component-cart-items.css' | asset_url | stylesheet_tag }}</noscript>
 
 <div class="section-header z-10 relative">
-  <header class="header h-header padding-x z-20 bg-whiter border-whiter border-b" :class="{ 'border-green-light': $store.tab.current, 'border-whiter': !$store.tab.current }">
+  <header class="header h-header padding-x z-20 border-whiter border-b" :class="{ 'border-green-light': $store.tab.current, 'border-whiter': !$store.tab.current }">
     {%- if section.settings.menu != blank -%}
       {% render 'menu-drawer' %}
     {%- endif -%}
@@ -53,7 +53,7 @@
                       x-transition:leave-start="translate-y-0"
                       x-transition:leave-end="-translate-y-full"
                       id="MegaMenu-Content-{{ forloop.index }}"
-                      class="absolute left-0 right-0 top-0 pt-header duration-200 transition-all bg-whiter z-[-1] overflow-y-auto motion-reduce">
+                      class="absolute left-0 right-0 top-0 pt-header duration-200 transition-all z-[-1] overflow-y-auto motion-reduce">
 
                       <div class="padding-x py-15 lg:flex justify-between">
                         <ul class="md:flex lg:w-1/2" role="list">

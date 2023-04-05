@@ -11,7 +11,7 @@
   x-transition:leave-end="translate-x-full"
   @keyup.escape="$store.tab.close()" @click.outside="$store.tab.close()"
   id="MegaMenu-Content-{{ forloop.index }}"
-  class="fixed bg-cream w-full md:w-[548px] right-0 top-0 bottom-0 z-40 overflow-y-auto motion-reduce cart-drawer-container bg-whiter">
+  class="fixed bg-cream w-full md:w-[548px] right-0 top-0 bottom-0 z-40 overflow-y-auto motion-reduce cart-drawer-container">
 
   <cart-drawer class="{% if cart == empty %} is-empty{% endif %}">
     {% section 'cart-contents' %}

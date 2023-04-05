@@ -1,8 +1,3 @@
-<script>
-  loadDynamicScriptTag("{{ 'embla-carousel.js' | asset_url }}", function() { document.dispatchEvent(new Event('emblaLoaded')); })
-  loadDynamicScriptTag("{{ 'component-embla-wrapper.js' | asset_url }}")
-</script>
-
 {%- assign anchorId = '#products' -%}
 
 <div class="my-10 md:my-15 {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}mt:5 md:mt-5{% endif %}">
@@ -43,13 +38,6 @@
     ]
   },
   "settings": [
-    {
-      "type": "checkbox",
-      "id": "show_rating",
-      "default": true,
-      "label": "t:sections.main-collection-product-grid.settings.show_rating.label",
-      "info": "t:sections.main-collection-product-grid.settings.show_rating.info"
-    },
     {
       "type": "checkbox",
       "id": "enable_quick_add",

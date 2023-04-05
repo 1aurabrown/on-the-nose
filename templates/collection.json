@@ -5,13 +5,6 @@
       "settings": {
       }
     },
-    "c0fbdc80-156b-4fb3-8405-ff68b46cb61d": {
-      "type": "main-collection-navigation",
-      "settings": {
-        "dog_menu": "dog-collections-nav",
-        "cat_menu": "cat-collections-nav"
-      }
-    },
     "product-grid": {
       "type": "main-collection-product-grid",
       "settings": {
@@ -20,107 +13,10 @@
         "enable_sorting": true,
         "enable_filtering": true
       }
-    },
-    "split-screen": {
-      "type": "split-screen",
-      "blocks": {
-        "dc7a24bc-5b4e-473d-8cba-41c28c031c24": {
-          "type": "heading",
-          "settings": {
-            "heading": "{{ collection.metafields.custom.split_view_heading | metafield_tag }}"
-          }
-        },
-        "b8346dc3-afb1-414e-9a11-b7852fa1aa34": {
-          "type": "description",
-          "settings": {
-            "description": "{{ collection.metafields.custom.split_view_content | metafield_tag }}"
-          }
-        },
-        "0901d97b-2724-4cfc-ba78-52e7c15bfb23": {
-          "type": "cta",
-          "settings": {
-            "cta_text": "{{ collection.metafields.custom.split_view_cta_text.value }}",
-            "cta_link": "{{ collection.metafields.custom.split_view_cta_link.value }}"
-          }
-        }
-      },
-      "block_order": [
-        "dc7a24bc-5b4e-473d-8cba-41c28c031c24",
-        "b8346dc3-afb1-414e-9a11-b7852fa1aa34",
-        "0901d97b-2724-4cfc-ba78-52e7c15bfb23"
-      ],
-      "settings": {
-        "video": "{{ collection.metafields.custom.split_view_image_or_video.value }}",
-        "enable_video_looping": true,
-        "autoplay": true,
-        "controls": true,
-        "muted": true,
-        "bg_color": "bg-tan-light",
-        "image_bg_color": "",
-        "bold_color": "bold-green",
-        "cta_color": "button--joint-green",
-        "image_inset": false,
-        "image_on_right": true,
-        "text_before_image_mobile": false
-      }
-    },
-    "valueprops": {
-      "type": "valueprops",
-      "blocks": {
-        "template--16742673383659__71ee6ea3-2b46-4404-bf33-eda5e9112eaa-1674575181b13bca22-0": {
-          "type": "prop",
-          "settings": {
-            "text": "Vet-Created",
-            "image": "shopify://shop_images/vet.png"
-          }
-        },
-        "template--16742673383659__71ee6ea3-2b46-4404-bf33-eda5e9112eaa-1674575181b13bca22-1": {
-          "type": "prop",
-          "settings": {
-            "text": "Effective dosing",
-            "image": "shopify://shop_images/dog_head_bowl.png"
-          }
-        },
-        "template--16742673383659__71ee6ea3-2b46-4404-bf33-eda5e9112eaa-1674575181b13bca22-2": {
-          "type": "prop",
-          "settings": {
-            "text": "3rd-Party Tested",
-            "image": "shopify://shop_images/treat.png"
-          }
-        },
-        "template--16742673383659__71ee6ea3-2b46-4404-bf33-eda5e9112eaa-1674575181b13bca22-3": {
-          "type": "prop",
-          "settings": {
-            "text": "Clean Ingredients",
-            "image": "shopify://shop_images/cup_with_tree_a15bf273-fd5c-4791-be91-fef6ca9d32b3.png"
-          }
-        },
-        "template--16742673383659__71ee6ea3-2b46-4404-bf33-eda5e9112eaa-1674575181b13bca22-4": {
-          "type": "prop",
-          "settings": {
-            "text": "High % of Actives",
-            "image": "shopify://shop_images/dog_with_ball.png"
-          }
-        }
-      },
-      "block_order": [
-        "template--16742673383659__71ee6ea3-2b46-4404-bf33-eda5e9112eaa-1674575181b13bca22-0",
-        "template--16742673383659__71ee6ea3-2b46-4404-bf33-eda5e9112eaa-1674575181b13bca22-1",
-        "template--16742673383659__71ee6ea3-2b46-4404-bf33-eda5e9112eaa-1674575181b13bca22-2",
-        "template--16742673383659__71ee6ea3-2b46-4404-bf33-eda5e9112eaa-1674575181b13bca22-3",
-        "template--16742673383659__71ee6ea3-2b46-4404-bf33-eda5e9112eaa-1674575181b13bca22-4"
-      ],
-      "settings": {
-        "heading": "<p>A <em><strong>new standard</strong></em> of </p><p> pet supplements, </p><p>one ingredient at a time.</p>",
-        "bold_color": "bold-green"
-      }
     }
   },
   "order": [
     "e36c4859-20f4-4cf1-abde-353ba52a8c34",
-    "c0fbdc80-156b-4fb3-8405-ff68b46cb61d",
-    "product-grid",
-    "split-screen",
-    "valueprops"
+    "product-grid"
   ]
 }

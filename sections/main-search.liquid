@@ -7,7 +7,7 @@
   <script src="{{ 'facets.js' | asset_url }}" defer="defer"></script>
 {%- endif -%}
 
-  <div class="bg-joint-green-light padding-x py-8 z-20 sticky top-header">
+  <div class="padding-x py-8 z-20 sticky top-header">
     <main-search class="block mx-auto">
       <form action="{{ routes.search_url }}" method="get" role="search" class="w-full lg:max-w-4xl mx-auto relative">
         <div class="w-full">
@@ -15,7 +15,7 @@
             {% unless search.performed %}
             autofocus
             {% endunless %}
-            class="h-14 rounded-full bg-whiter px-8 label placeholder-joint-green w-full"
+            class="h-14 rounded-full px-8 label placeholder-joint-green w-full"
             id="Search-In-Template"
             name="q"
             placeholder="{{ 'general.search.search' | t }}"

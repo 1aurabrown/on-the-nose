@@ -7,7 +7,7 @@
   x-transition:leave="transition-transform ease-in duration-200"
   x-transition:leave-start="translate-x-0"
   x-transition:leave-end="translate-x-full"
-  class="absolute pt-header left-0 right-0 top-0 bottom-0 duration-200 transition-all bg-whiter overflow-y-auto motion-reduce">
+  class="absolute pt-header left-0 right-0 top-0 bottom-0 duration-200 transition-all overflow-y-auto motion-reduce">
 
     <div class="padding-x py-15">
       <button class="block" x-ref="menu-close" :disabled="!submenuIsOpen" @click="close">{% render 'icon-arrow', class: 'w-4 h-4 rotate-180' %}</button>

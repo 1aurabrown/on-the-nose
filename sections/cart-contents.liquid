@@ -19,7 +19,7 @@
 
 <div id="CartContents" class="cart-contents relative {% if cart == empty %} is-empty{% endif %}">
   <div class="cart-contents__inner w-full flex flex-col {% if template == 'cart' %} md:padding-x{% endif %}" role="dialog" aria-modal="true" aria-label="{{ 'sections.cart.title' | t }}" tabindex="-1">
-    <div class="{% if template != 'cart' %}sticky top-0 bg-whiter z-10{% endif %}">
+    <div class="{% if template != 'cart' %}sticky top-0 z-10{% endif %}">
       {% if template != 'cart' %}
         <button class="absolute z-10 top-4 right-5" @click.prevent.stop="$store.tab.close('cart')">{% render 'icon-close' %}</button>
       {% endif %}
@@ -59,7 +59,7 @@
                               {% if item.image %}
                                 {% comment %} Leave empty space due to a:empty CSS display: none rule {% endcomment %}
                                 <a title="{{ item.title }}" href="{{ item.url }}" class="cart-item__link z-10" tabindex="-1" aria-hidden="true"> </a>
-                                <img class="w-34 h-34 cart-item__image block bg-white rounded"
+                                <img class="w-34 h-34 cart-item__image block"
                                   src="{{ item.image | image_url: width: 136 }}"
                                   alt="{{ item.image.alt | escape }}"
                                   loading="lazy"
@@ -149,7 +149,7 @@
 
                                   {%- endif -%}
 
-                                  <p class="product-option text-joint-green-light">
+                                  <p class="product-option">
                                     {% if item.selling_plan_allocation != null %}
                                       {{ item.selling_plan_allocation.selling_plan.name | replace: 'Delivery ', '' | capitalize }}
                                     {% else %}
@@ -176,7 +176,7 @@
                                           <span class="visually-hidden">
                                             {{ 'products.product.price.regular_price' | t }}
                                           </span>
-                                          <s class="cart-item__old-price price price--end text-joint-green/[.4]">
+                                          <s class="cart-item__old-price price price--end">
                                             {{- item.original_line_price | money -}}
                                           </s>
                                           <span class="visually-hidden">
@@ -191,7 +191,7 @@
                                           <span class="visually-hidden">
                                             {{ 'products.product.price.regular_price' | t }}
                                           </span>
-                                          <s class="cart-item__old-price price price--end text-joint-green/[.4]">
+                                          <s class="cart-item__old-price price price--end">
                                             {{- item.selling_plan_allocation.compare_at_price | times: item.quantity | money -}}
                                           </s>
                                           <span class="visually-hidden">
@@ -244,7 +244,7 @@
                                 <!-- Quantity -->
                                 <div class="cart-item__quantity h6 relative lg:col-span-3" role="cell">
                                   <div class="cart-item__quantity-wrapper flex items-center justify-end">
-                                    <quantity-input class="quantity bg-true-white rounded-full border-2 border-tan-border w-32 text-blue px-5 py-2 space-x-3 h-13">
+                                    <quantity-input class="quantity border w-32 px-5 py-2 space-x-3 h-13">
                                       <button class="quantity__button no-js-hidden flex-0 p-0" name="minus" type="button">
                                         <span class="visually-hidden">{{ 'products.product.quantity.decrease' | t: product: item.product.title | escape }}</span>
                                         {% render 'icon-minus' %}
@@ -352,12 +352,12 @@
           <!-- CTAs -->
           <div class="cart__ctas mt-8">
             <noscript>
-              <button type="submit" class="cart__update-button button button--joint-green w-full" form="CartContents-Form">
+              <button type="submit" class="cart__update-button button" form="CartContents-Form">
                 {{ 'sections.cart.update' | t }}
               </button>
             </noscript>
 
-            <button type="submit" id="CartContents-Checkout" class="cart__checkout-button button button--joint-green w-full" name="checkout" form="CartContents-Form"{% if cart == empty %} disabled{% endif %}>
+            <button type="submit" id="CartContents-Checkout" class="cart__checkout-button button" name="checkout" form="CartContents-Form"{% if cart == empty %} disabled{% endif %}>
               {{ 'sections.cart.checkout' | t }}
             </button>
             <p class="body-sm text-center mt-3">{{ section.settings.text }}</p>
@@ -369,7 +369,7 @@
 
 
         <!-- Cart Page Footer -->
-        <div class="cart-contents__footer py-8 px-5 bg-white md:bg-whiter mt-10 md:mt-0 padding-x md:p-0 md:w-2/5 xl:w-1/2 md:ml-15 lg:ml-30 {% if template != 'cart' %}hidden{% endif %}">
+        <div class="cart-contents__footer py-8 px-5 bg-white mt-10 md:mt-0 padding-x md:p-0 md:w-2/5 xl:w-1/2 md:ml-15 lg:ml-30 {% if template != 'cart' %}hidden{% endif %}">
           <div class="lg:max-w-lg mx-auto">
             {%- if settings.show_cart_note -%}
               <div> {{ cart.note }} </div>
@@ -415,12 +415,12 @@
             <!-- CTAs -->
             <div class="cart__ctas mt-10">
               <noscript>
-                <button type="submit" class="cart__update-button button button--joint-green w-full" form="CartContents-Form">
+                <button type="submit" class="cart__update-button button" form="CartContents-Form">
                   {{ 'sections.cart.update' | t }}
                 </button>
               </noscript>
 
-              <button type="submit" id="CartContents-Checkout" class="cart__checkout-button button button--joint-green w-full" name="checkout" form="CartContents-Form"{% if cart == empty %} disabled{% endif %}>
+              <button type="submit" id="CartContents-Checkout" class="cart__checkout-button button" name="checkout" form="CartContents-Form"{% if cart == empty %} disabled{% endif %}>
                 {{ 'sections.cart.checkout' | t }}
               </button>
               <p class="body-sm text-center mt-3">{{ section.settings.text }}</p>

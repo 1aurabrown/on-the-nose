@@ -58,7 +58,7 @@
           {%- when 'cta' -%}
             {% if product != blank %}
               {% if block.settings.cta_text != blank %}
-                <button class="mt-10 lg:mt-15 button {{ block.settings.cta_color }} font-bold">
+                <button class="mt-10 lg:mt-15 button">
                   <a href="{{ product.url }}">
                     {{ block.settings.cta_text }}
                   </a>
@@ -157,38 +157,6 @@
       "type": "description",
       "name": "t:sections.main-product.blocks.description.name",
       "limit": 1
-    },
-    {
-      "type": "cta",
-      "name": "CTA Button",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "text",
-          "id": "cta_text",
-          "label": "CTA Text"
-        },
-        {
-          "type": "select",
-          "id": "cta_color",
-          "label": "CTA Color",
-          "default": "button--joint-green",
-          "options": [
-            {
-              "label": "Joint Green",
-              "value": "button--joint-green"
-            },
-            {
-              "label": "Yellow",
-              "value": "button--yellow"
-            },
-            {
-              "label": "White",
-              "value": "button--white"
-            }
-          ]
-        }
-      ]
     }
   ],
   "presets": [
