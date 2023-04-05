@@ -1,6 +1,6 @@
 {% comment %}theme-check-disable UndefinedObject{% endcomment %}
 
-<footer class="section-footer footer padding-x py-5">
+<footer class="section-footer footer page-width py-5">
   <div class="">
     <!-- Blocks -->
     <div class="">
@@ -26,6 +26,24 @@
       "footer"
     ]
   },
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "link_list",
+      "name": "t:sections.footer.blocks.link_list.name",
+      "settings": [
+        {
+          "type": "link_list",
+          "id": "menu",
+          "default": "footer",
+          "label": "t:sections.footer.blocks.link_list.settings.menu.label",
+          "info": "t:sections.footer.blocks.link_list.settings.menu.info"
+        }
+      ]
+    }
+  ],
   "settings": [
 
   ],

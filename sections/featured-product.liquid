@@ -6,7 +6,7 @@
     assign product = section.settings.product
   endif
 %}
-<div class="max-w-screen-2xl mx-auto padding-x" data-section="{{ section.id }}">
+<div class="max-w-screen-2xl mx-auto page-width" data-section="{{ section.id }}">
   {{ 'component-rating.css' | asset_url | stylesheet_tag }}
 
   <div class="md:grid md:grid-cols-2 ">

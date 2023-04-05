@@ -7,7 +7,7 @@
   <script src="{{ 'facets.js' | asset_url }}" defer="defer"></script>
 {%- endif -%}
 
-  <div class="padding-x py-8 z-20 sticky top-header">
+  <div class="page-width py-8 z-20 sticky top-header">
     <main-search class="block mx-auto">
       <form action="{{ routes.search_url }}" method="get" role="search" class="w-full lg:max-w-4xl mx-auto relative">
         <div class="w-full">
@@ -40,7 +40,7 @@
   </div>
 
   {%- if search.performed -%}
-    <div class="my-10 md:my-15 padding-x relative z-10 max-w-screen-2xl mx-auto">
+    <div class="my-10 md:my-15 page-width relative z-10 max-w-screen-2xl mx-auto">
 
       {%- if search.results.size == 0 -%}
         <h2 class="text-center h2 md:h1">

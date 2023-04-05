@@ -9,7 +9,7 @@
   loadDynamicScriptTag("{{ 'embla-carousel.js' | asset_url }}", function() { document.dispatchEvent(new Event('emblaLoaded')); })
 </script>
 
-<div id="MainProduct-{{ section.id }}" class="section-main-product section-{{ section.id }} max-w-screen-2xl mx-auto padding-x" data-section="{{ section.id }}">
+<div id="MainProduct-{{ section.id }}" class="section-main-product section-{{ section.id }} max-w-screen-2xl mx-auto page-width" data-section="{{ section.id }}">
   {{ 'component-quantity.css' | asset_url | stylesheet_tag }}
   {{ 'section-main-product.css' | asset_url | stylesheet_tag }}
   {{ 'component-price.css' | asset_url | stylesheet_tag }}
