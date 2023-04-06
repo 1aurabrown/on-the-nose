@@ -332,7 +332,6 @@ h6:empty {
   border: none;
   box-shadow: none;
   text-decoration: underline;
-  text-underline-offset: 0.3rem;
   background-color: transparent;
   font-family: inherit;
 }
@@ -420,9 +419,6 @@ details > * {
 .underlined-link,
 .customer a,
 .inline-richtext a {
-  text-underline-offset: 0.3rem;
-  text-decoration-thickness: 0.1rem;
-  transition: text-decoration-thickness ease 100ms;
 }
 
 .underlined-link,
@@ -437,7 +433,6 @@ details > * {
 .underlined-link:hover,
 .customer a:hover,
 .inline-richtext a:hover {
-  text-decoration-thickness: 0.2rem;
 }
 
 .icon-arrow {
@@ -1114,7 +1109,6 @@ details[open] > .share-button__fallback {
 
 .share-button__button:hover {
   text-decoration: underline;
-  text-underline-offset: 0.3rem;
 }
 
 .share-button__button,
@@ -1884,6 +1878,7 @@ product-info .loading-overlay:not(.hidden) ~ *,
 
   .header--middle-center a.header__heading-link {
     text-align: center;
+    display: block;
   }
 
   .header--top-center {
@@ -2261,7 +2256,6 @@ details[open] > .header__submenu {
 
 .header__menu-item:hover span {
   text-decoration: underline;
-  text-underline-offset: 0.3rem;
 }
 
 details[open] > .header__menu-item {
@@ -2269,7 +2263,6 @@ details[open] > .header__menu-item {
 }
 
 details[open]:hover > .header__menu-item {
-  text-decoration-thickness: 0.2rem;
 }
 
 details[open] > .header__menu-item .icon-caret {
@@ -2278,11 +2271,9 @@ details[open] > .header__menu-item .icon-caret {
 
 .header__active-menu-item {
   text-decoration: underline;
-  text-underline-offset: 0.3rem;
 }
 
 .header__menu-item:hover .header__active-menu-item {
-  text-decoration-thickness: 0.2rem;
 }
 
 .header__submenu {
@@ -2573,12 +2564,9 @@ details-disclosure > details {
 }
 
 .rte a {
-  text-underline-offset: 0.3rem;
-  text-decoration-thickness: 0.1rem;
 }
 
 .rte a:hover {
-  text-decoration-thickness: 0.2rem;
 }
 
 .rte blockquote {

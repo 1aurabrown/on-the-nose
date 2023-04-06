@@ -16,7 +16,7 @@
   }
 
   body {
-    @apply bg-white body-sm;
+    @apply bg-white text-body-sm md:text-body-lg font-serif;
   }
 
   /* Typography*/
@@ -24,40 +24,17 @@
   button, input, optgroup, select, textarea {
     letter-spacing: inherit;
   }
-  .body-lg {
-  }
 
-  .body-sm {
-  }
-
-  .body-sm-tight {
-  }
-
-  .label-lg {
+  .label-sm {
+    @apply text-label-sm uppercase;
   }
 
   .label-md {
+    @apply text-label-md uppercase;
   }
 
-  .label-sm {
-  }
-
-  .h1-lg {
-  }
-
-  .h1-sm {
-  }
-
-  .h2-lg {
-  }
-
-  .h2-sm {
-  }
-
-  .h3-lg {
-  }
-
-  .h3-sm {
+  .label-lg {
+    @apply text-label-lg uppercase;
   }
 
   /* Policy Pages */

@@ -21,7 +21,6 @@ function prepareOverlay(container, image) {
   container.setAttribute('class', 'image-magnify-full-size');
   container.setAttribute('aria-hidden', 'true');
   container.style.backgroundImage = `url('${image.src}')`;
-  container.style.backgroundColor = 'var(--gradient-background)';
 }
 
 function toggleLoadingSpinner(image) {
