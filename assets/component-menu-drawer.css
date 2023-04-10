@@ -8,9 +8,13 @@
   position: absolute;
   cursor: default;
   width: 100%;
-  height: calc(100vh - 100%);
+  max-height: calc(100vh - 100%);
+  max-height: calc(
+    var(--viewport-height, 100vh) - (var(--header-bottom-position, 100%))
+  );
   top: 100%;
   left: 0;
+  background: rgba(var(--color-foreground), 0.5);
   opacity: 0;
   visibility: hidden;
   z-index: 2;
@@ -20,35 +24,48 @@
 menu-drawer > details[open] > summary::before {
   visibility: visible;
   opacity: 1;
+  transition: opacity var(--duration-default) ease,
+    visibility var(--duration-default) ease;
 }
 
 .menu-drawer {
   position: absolute;
-  transform: translateX(-100%);
+  transform: translateY(-100%);
   visibility: hidden;
-  z-index: 3;
+  z-index: -1;
   left: 0;
-  top: 100%;
-  width: calc(100vw - 4rem);
+  top: 0;
+  padding-top: 6rem;
+  width: calc(100vw);
   padding: 0;
+  background-color: white;
   overflow-x: hidden;
   border-style: solid;
   filter: drop-shadow(
+    var(--drawer-shadow-horizontal-offset)
+    var(--drawer-shadow-vertical-offset)
+    var(--drawer-shadow-blur-radius)
+    rgba(var(--color-shadow), var(--drawer-shadow-opacity))
   );
 }
 
 .js .menu-drawer {
-  height: calc(100vh - 100%);
+  max-height: calc(100vh - 100%);
+  max-height: calc(
+    var(--viewport-height, 100vh) - (var(--header-bottom-position, 100%))
+  );
 }
 
 .js details[open] > .menu-drawer,
 .js details[open] > .menu-drawer__submenu {
+  transition: transform var(--duration-default) ease,
+    visibility var(--duration-default) ease;
 }
 
 .no-js details[open] > .menu-drawer,
 .js details[open].menu-opening > .menu-drawer,
 details[open].menu-opening > .menu-drawer__submenu {
-  transform: translateX(0);
+  transform: translateY(0);
   visibility: visible;
 }
 
@@ -56,11 +73,7 @@ details[open].menu-opening > .menu-drawer__submenu {
   visibility: hidden; /* hide menus from screen readers when hidden by submenu */
 }
 
-@media screen and (min-width: 750px) {
-  .menu-drawer {
-    width: 40rem;
-  }
-
+@media screen and (min-width: 768px) {
   .no-js .menu-drawer {
     height: auto;
   }
@@ -80,7 +93,6 @@ details[open].menu-opening > .menu-drawer__submenu {
 }
 
 .menu-drawer__navigation {
-  padding: 5.6rem 0;
 }
 
 .menu-drawer__inner-submenu {
@@ -94,9 +106,11 @@ details[open].menu-opening > .menu-drawer__submenu {
 }
 
 .no-js .menu-drawer__navigation > ul > li {
+  border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.04);
 }
 
 .no-js .menu-drawer__submenu ul > li {
+  border-top: 0.1rem solid rgba(var(--color-foreground), 0.04);
 }
 
 .js .menu-drawer__menu li {
@@ -104,13 +118,10 @@ details[open].menu-opening > .menu-drawer__submenu {
 }
 
 .menu-drawer__menu-item {
-  padding: 1.1rem 3.2rem;
   text-decoration: none;
-  font-size: 1.8rem;
 }
 
 .no-js .menu-drawer__menu-item {
-  font-size: 1.6rem;
 }
 
 .no-js .menu-drawer__submenu .menu-drawer__menu-item {
@@ -157,6 +168,8 @@ details[open].menu-opening > .menu-drawer__submenu {
   width: 100%;
   bottom: 0;
   left: 0;
+  background-color: white;
+  border-left: 0.1rem solid rgba(var(--color-foreground), 0.2);
   z-index: 1;
   transform: translateX(100%);
   visibility: hidden;
@@ -172,9 +185,10 @@ details[open].menu-opening > .menu-drawer__submenu {
   text-decoration: none;
   display: flex;
   align-items: center;
-  font-size: 1.4rem;
   width: 100%;
   background-color: transparent;
+  font-family: var(--font-body-family);
+  font-style: var(--font-body-style);
   text-align: left;
 }
 
@@ -188,24 +202,9 @@ details[open].menu-opening > .menu-drawer__submenu {
 }
 
 .menu-drawer__utility-links {
-  padding: 0;
-  position: relative;
-}
-
-.header--has-social .menu-drawer__utility-links {
   padding: 2rem;
-}
-
-@media screen and (max-width: 749px) {
-  .header--has-account:where(:not(.header--has-social):not(.header--has-localizations)) .menu-drawer__utility-links {
-    padding: 2rem;
-  }
-}
-
-@media screen and (max-width: 989px) {
-  .header--has-localizations:where(:not(.header--has-social)) .menu-drawer__utility-links {
-    padding: 2rem;
-  }
+  background-color: rgba(var(--color-foreground), 0.03);
+  position: relative;
 }
 
 .menu-drawer__account {
@@ -213,13 +212,19 @@ details[open].menu-opening > .menu-drawer__submenu {
   align-items: center;
   text-decoration: none;
   padding: 1.2rem;
-  font-size: 1.4rem;
+  color: rgb(var(--color-foreground));
   margin-bottom: 2rem;
 }
 
 .menu-drawer__utility-links:has(ul:empty) .menu-drawer__account,
 .menu-drawer__utility-links:has(.menu-drawer__localization) .menu-drawer__account {
   margin-bottom: 0;
+}
+
+@media screen and (min-width: 750px) {
+  .menu-drawer__utility-links:has(ul:nth-child(2):empty) {
+    display: none;
+  }
 }
 
 .menu-drawer__account .icon-account {

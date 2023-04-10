@@ -4,7 +4,29 @@
   "sections": {
     "header": {
       "type": "header",
+      "blocks": {
+        "722f7b21-05c1-4f24-a808-cd6522b544c1": {
+          "type": "link_list",
+          "settings": {
+            "menu": "main-menu"
+          }
+        },
+        "99f49c30-dcda-4e24-928f-4ecf1ef73813": {
+          "type": "link_list",
+          "settings": {
+            "menu": "main-menu"
+          }
+        }
+      },
+      "block_order": [
+        "722f7b21-05c1-4f24-a808-cd6522b544c1",
+        "99f49c30-dcda-4e24-928f-4ecf1ef73813"
+      ],
       "settings": {
+        "logo_position": "middle-left",
+        "sticky_header_type": "on-scroll-up",
+        "enable_country_selector": true,
+        "enable_language_selector": true
       }
     }
   },

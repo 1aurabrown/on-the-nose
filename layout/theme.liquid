@@ -24,6 +24,7 @@
 
     {{ 'tailwind-output.css' | asset_url | stylesheet_tag }}
     {{ 'base.css' | asset_url | stylesheet_tag }}
+    {{ 'custom.css' | asset_url | stylesheet_tag }}
 
     {% render 'load-dynamic-script-tag' %}
 
