@@ -1,0 +1,44 @@
+<div class="section-text padding-x text-h2-sm md:text-h2-lg {% if section.settings.border %} border-b{% endif %}">
+	<div class="section-text__text mt-[1.125rem] mb-15 md:mb-13">
+		<h2 class="indent">{{ section.settings.heading }}</h2>
+		<div class="rte">{{ section.settings.text }}</div>
+	</div>
+</div>
+
+{% style %}
+	section:first-child .section-text__text {
+		margin-top: 0;
+	}
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "Text",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Lorem ipsum—",
+      "label": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "default": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nunc lectus, finibus sit amet felis at, mattis imperdiet odio.</p>",
+      "label": "Text"
+    },
+    {
+      "type": "checkbox",
+      "id": "border",
+      "default": false,
+      "label": "Bottom Border"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Text"
+    }
+  ]
+}
+{% endschema %}

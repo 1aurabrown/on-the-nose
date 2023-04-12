@@ -129,7 +129,7 @@
                 -%}
               </a>
             {%- endif -%}
-            {%- if section.settings.enable_country_selector or section.settings.enable_language_selector -%}
+            {%- if localization_forms -%}
               <div class="menu-drawer__localization header__localization">
                 {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 -%}
                   <localization-form>

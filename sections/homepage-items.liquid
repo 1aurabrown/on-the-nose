@@ -1,0 +1,120 @@
+<homepage-items class="homepage-items md:padding-x block">
+	<div class="homepage-items__text">
+
+  </div>
+  <div class="homepage-items__images pb-6 pt-15 space-y-50 md:space-y-38">
+    {% for block in section.blocks %}
+
+      {% if block.settings.url.type == 'product_link' %}
+        {% assign product =  block.settings.url.object %}
+        {% capture product_text %}
+          <p>Artist Name</p><p><em>{{ product.title }}</em></p><p>Clay</p><p>6x9x4 in</p><p><strong>{{ product.price | money_without_trailing_zeros }}</strong></p>
+        {% endcapture %}
+      {% endif %}
+
+      {% capture sizes %}(min-width: 768px) {{ block.settings.desktop_width }}vw, {{ block.settings.mobile_width }}vw{% endcapture %}
+      {% capture fig_count %}({% if forloop.index < 10 %}00{% elsif forloop.index < 100 %}0{% endif%}{{ forloop.index }}){% endcapture %}
+      {% liquid
+        if block.settings.image
+          assign image = block.settings.image
+        else
+          assign image = block.settings.url.object.featured_image
+        endif
+        assign text = block.settings.text | default: product_text
+        assign max_margin = 100 | minus: block.settings.desktop_width
+      %}
+
+      <div class="homepage-items__block" data-index={{ forloop.index }} data-text="{{ text }}" data-fig-count="{{ fig_count }}">
+        <style>
+          .homepage-items__block[data-index="{{ forloop.index }}"] {
+            width: {{ block.settings.mobile_width }}%;
+            margin-left: {{ 100 | minus: block.settings.mobile_width | divided_by: 2 }}%;
+          }
+          @media screen and (min-width: 768px) {
+            .homepage-items__block[data-index="{{ forloop.index }}"] {
+              width: {{ block.settings.desktop_width }}%;
+              margin-left: {{ block.settings.desktop_position | at_most: max_margin }}%;
+            }
+          }
+        </style>
+        <figure class="w-full">
+          {% render 'image', image: image, wrapper_class: "w-full", class: "w-full", padding_bottom: true, sizes: sizes %}
+          <figcaption class="mt-6 hidden md:block">{{ fig_count }}</figcaption>
+        </figure>
+      </div>
+
+    {% endfor %}
+  </div>
+</homepage-items>
+
+{% schema %}
+{
+  "name": "Homepage Items",
+  "tag": "section",
+  "enabled_on": {
+    "templates": [
+      "index"
+    ]
+  },
+  "blocks": [
+    {
+      "name": "Item",
+      "type": "item",
+      "settings": [
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Item"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "default": "<p>Artist Name</p><p><em>Name of Work</em></p><p>Clay</p><p>6x9x4 in</p><p><strong>$700—</strong></p>",
+          "label": "Text",
+          "info": "Defaults to linked product's information, if a proudct is linked above."
+        },
+        {
+          "type": "range",
+          "id": "desktop_width",
+          "label": "Desktop width, as a percentage of available width",
+          "min": 10,
+          "max": 100,
+          "step": 5,
+          "unit": "%",
+          "default": 50
+        },
+        {
+          "type": "range",
+          "id": "desktop_position",
+          "label": "Desktop left offset, as a percentage of available width",
+          "min": 0,
+          "max": 90,
+          "step": 2.5,
+          "unit": "%",
+          "default": 25
+        },
+        {
+          "type": "range",
+          "id": "mobile_width",
+          "label": "Mobile width, as a percentage of available width",
+          "min": 10,
+          "max": 100,
+          "step": 5,
+          "unit": "%",
+          "default": 100
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Homepage Items"
+    }
+  ]
+}
+{% endschema %}

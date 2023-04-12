@@ -8,7 +8,6 @@
     "product-grid": {
       "type": "main-collection-product-grid",
       "settings": {
-        "show_rating": true,
         "enable_quick_add": true,
         "enable_sorting": true,
         "enable_filtering": true

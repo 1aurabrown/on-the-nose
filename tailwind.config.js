@@ -2,7 +2,6 @@ const spacing = {
   // Theme-specific spacing
   // Add here
 
-  'announcement': 'var(--announcement-bar-height)',
   'header': 'var(--header-height)',
   'screen-less-header': 'var(--screen-less-header)',
   // General spacing
@@ -68,7 +67,8 @@ module.exports = {
     colors: {
       "transparent": "transparent",
       "black": "#000",
-      "white": '#fff'
+      "white": '#fff',
+      "grey": "#EFEEEC"
     },
     letterSpacing: {
     },

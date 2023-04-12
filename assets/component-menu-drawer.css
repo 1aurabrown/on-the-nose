@@ -85,9 +85,6 @@ details[open].menu-opening > .menu-drawer__submenu {
 }
 
 .menu-drawer__navigation-container {
-  display: grid;
-  grid-template-rows: 1fr auto;
-  align-content: space-between;
   overflow-y: auto;
   height: 100%;
 }
@@ -202,8 +199,6 @@ details[open].menu-opening > .menu-drawer__submenu {
 }
 
 .menu-drawer__utility-links {
-  padding: 2rem;
-  background-color: rgba(var(--color-foreground), 0.03);
   position: relative;
 }
 

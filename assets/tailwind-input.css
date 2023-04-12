@@ -12,11 +12,11 @@
 
   html {
     scroll-behavior: smooth;
-    @apply bg-white
+    @apply bg-grey
   }
 
   body {
-    @apply bg-white text-body-sm md:text-body-lg font-serif;
+    @apply bg-grey text-body-sm md:text-body-lg font-serif;
   }
 
   /* Typography*/
@@ -25,6 +25,15 @@
     letter-spacing: inherit;
   }
 
+  .indent {
+    padding-left: 72px;
+  }
+
+  @screen md {
+    .indent {
+      padding-left: 115px;
+    }
+  }
   .label-sm {
     @apply text-label-sm uppercase;
   }

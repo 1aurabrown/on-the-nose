@@ -127,10 +127,10 @@
       assign localization_forms = true
     endif
   -%}
-  <header class="header {% if has_menu %} header--has-menu{% endif %}{% if has_app_block %} header--has-app{% endif %}{% if social_links %} header--has-social{% endif %}{% if shop.customer_accounts_enabled %} header--has-account{% endif %}{% if localization_forms %} header--has-localizations{% endif %} flex items-center justify-between padding-x py-3 md:py-5">
+  <header class="header {% if has_menu %} header--has-menu{% endif %}{% if has_app_block %} header--has-app{% endif %}{% if social_links %} header--has-social{% endif %}{% if shop.customer_accounts_enabled %} header--has-account{% endif %}{% if localization_forms %} header--has-localizations{% endif %} flex items-center justify-between padding-x h-16">
     {%- liquid
       if has_menu
-        render 'header-drawer'
+        render 'header-drawer', localization_forms: localization_forms
       endif
 
       unless has_menu

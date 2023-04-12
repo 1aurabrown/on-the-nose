@@ -429,12 +429,12 @@ video {
 html {
   scroll-behavior: smooth;
   --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity))
+  background-color: rgb(239 238 236 / var(--tw-bg-opacity))
 }
 
 body {
   --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+  background-color: rgb(239 238 236 / var(--tw-bg-opacity));
   font-family: serif;
   font-size: 0.875rem;
   line-height: 1.4;
@@ -453,6 +453,16 @@ body {
 
 button, input, optgroup, select, textarea {
   letter-spacing: inherit;
+}
+
+.indent {
+  padding-left: 72px;
+}
+
+@media (min-width: 768px) {
+  .indent {
+    padding-left: 115px;
+  }
 }
 
 .label-sm {
@@ -854,17 +864,14 @@ button, input, optgroup, select, textarea {
   z-index: 20;
 }
 
-.z-\[-1\] {
-  z-index: -1;
-}
-
-.-m-3 {
-  margin: -0.75rem;
-}
-
 .mx-4 {
   margin-left: 1rem;
   margin-right: 1rem;
+}
+
+.mx-8 {
+  margin-left: 2rem;
+  margin-right: 2rem;
 }
 
 .mx-\[0\.625rem\] {
@@ -912,18 +919,12 @@ button, input, optgroup, select, textarea {
   margin-bottom: 1.75rem;
 }
 
-.-mx-3 {
-  margin-left: -0.75rem;
-  margin-right: -0.75rem;
-}
-
-.mx-8 {
-  margin-left: 2rem;
-  margin-right: 2rem;
-}
-
 .mb-10 {
   margin-bottom: 2.5rem;
+}
+
+.mb-15 {
+  margin-bottom: 3.75rem;
 }
 
 .mb-2 {
@@ -1006,6 +1007,14 @@ button, input, optgroup, select, textarea {
   margin-top: 0.625rem;
 }
 
+.mt-\[1\.125rem\] {
+  margin-top: 1.125rem;
+}
+
+.mt-6 {
+  margin-top: 1.5rem;
+}
+
 .block {
   display: block;
 }
@@ -1078,10 +1087,6 @@ button, input, optgroup, select, textarea {
   height: 100%;
 }
 
-.h-screen {
-  height: 100vh;
-}
-
 .w-0 {
   width: 0rem;
 }
@@ -1132,6 +1137,10 @@ button, input, optgroup, select, textarea {
   width: max-content;
 }
 
+.w-1\/4 {
+  width: 25%;
+}
+
 .min-w-0 {
   min-width: 0rem;
 }
@@ -1170,11 +1179,6 @@ button, input, optgroup, select, textarea {
 
 .shrink-0 {
   flex-shrink: 0;
-}
-
-.-translate-x-full {
-  --tw-translate-x: -100%;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
 .-translate-y-1\/2 {
@@ -1239,10 +1243,6 @@ button, input, optgroup, select, textarea {
   align-items: center;
 }
 
-.items-stretch {
-  align-items: stretch;
-}
-
 .justify-start {
   justify-content: flex-start;
 }
@@ -1272,12 +1272,6 @@ button, input, optgroup, select, textarea {
   row-gap: 1.5rem;
 }
 
-.space-x-1 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-x-reverse: 0;
-  margin-right: calc(0.25rem * var(--tw-space-x-reverse));
-  margin-left: calc(0.25rem * calc(1 - var(--tw-space-x-reverse)));
-}
-
 .space-x-3 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
   margin-right: calc(0.75rem * var(--tw-space-x-reverse));
@@ -1288,6 +1282,12 @@ button, input, optgroup, select, textarea {
   --tw-space-x-reverse: 0;
   margin-right: calc(1rem * var(--tw-space-x-reverse));
   margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
+.space-x-8 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(2rem * var(--tw-space-x-reverse));
+  margin-left: calc(2rem * calc(1 - var(--tw-space-x-reverse)));
 }
 
 .space-y-1 > :not([hidden]) ~ :not([hidden]) {
@@ -1332,10 +1332,16 @@ button, input, optgroup, select, textarea {
   margin-bottom: calc(2rem * var(--tw-space-y-reverse));
 }
 
-.space-x-8 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-x-reverse: 0;
-  margin-right: calc(2rem * var(--tw-space-x-reverse));
-  margin-left: calc(2rem * calc(1 - var(--tw-space-x-reverse)));
+.space-y-15 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(3.75rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(3.75rem * var(--tw-space-y-reverse));
+}
+
+.space-y-50 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(12.5rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(12.5rem * var(--tw-space-y-reverse));
 }
 
 .overflow-hidden {
@@ -1344,14 +1350,6 @@ button, input, optgroup, select, textarea {
 
 .overflow-y-auto {
   overflow-y: auto;
-}
-
-.overflow-x-hidden {
-  overflow-x: hidden;
-}
-
-.overflow-y-scroll {
-  overflow-y: scroll;
 }
 
 .truncate {
@@ -1386,6 +1384,10 @@ button, input, optgroup, select, textarea {
 
 .border-2 {
   border-width: 2px;
+}
+
+.border-b {
+  border-bottom-width: 1px;
 }
 
 .border-b-2 {
@@ -1479,21 +1481,6 @@ button, input, optgroup, select, textarea {
   padding-bottom: 2rem;
 }
 
-.py-3 {
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
-}
-
-.px-3 {
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
-}
-
-.py-6 {
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
-}
-
 .pb-0 {
   padding-bottom: 0rem;
 }
@@ -1530,6 +1517,10 @@ button, input, optgroup, select, textarea {
   padding-left: 0.25rem;
 }
 
+.pl-25 {
+  padding-left: 6.25rem;
+}
+
 .pr-1 {
   padding-right: 0.25rem;
 }
@@ -1550,10 +1541,6 @@ button, input, optgroup, select, textarea {
   padding-top: 3.75rem;
 }
 
-.pt-19 {
-  padding-top: 4.75rem;
-}
-
 .pt-20 {
   padding-top: 5rem;
 }
@@ -1566,16 +1553,8 @@ button, input, optgroup, select, textarea {
   padding-top: var(--header-height);
 }
 
-.pt-6 {
-  padding-top: 1.5rem;
-}
-
-.pl-10 {
-  padding-left: 2.5rem;
-}
-
-.pl-25 {
-  padding-left: 6.25rem;
+.pb-6 {
+  padding-bottom: 1.5rem;
 }
 
 .text-left {
@@ -1596,12 +1575,14 @@ button, input, optgroup, select, textarea {
   letter-spacing: 0.03em;
 }
 
-.font-bold {
-  font-weight: 700;
+.text-h2-sm {
+  font-size: 1.25rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
 }
 
-.uppercase {
-  text-transform: uppercase;
+.font-bold {
+  font-weight: 700;
 }
 
 .capitalize {
@@ -1877,10 +1858,6 @@ button, input, optgroup, select, textarea {
     width: fit-content;
   }
 
-  .md\:w-full {
-    width: 100%;
-  }
-
   .md\:max-w-2xl {
     max-width: 42rem;
   }
@@ -1913,22 +1890,10 @@ button, input, optgroup, select, textarea {
     justify-content: space-between;
   }
 
-  .md\:space-x-3 > :not([hidden]) ~ :not([hidden]) {
-    --tw-space-x-reverse: 0;
-    margin-right: calc(0.75rem * var(--tw-space-x-reverse));
-    margin-left: calc(0.75rem * calc(1 - var(--tw-space-x-reverse)));
-  }
-
-  .md\:space-x-25 > :not([hidden]) ~ :not([hidden]) {
-    --tw-space-x-reverse: 0;
-    margin-right: calc(6.25rem * var(--tw-space-x-reverse));
-    margin-left: calc(6.25rem * calc(1 - var(--tw-space-x-reverse)));
-  }
-
-  .md\:space-x-15 > :not([hidden]) ~ :not([hidden]) {
-    --tw-space-x-reverse: 0;
-    margin-right: calc(3.75rem * var(--tw-space-x-reverse));
-    margin-left: calc(3.75rem * calc(1 - var(--tw-space-x-reverse)));
+  .md\:space-y-38 > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-y-reverse: 0;
+    margin-top: calc(9.5rem * calc(1 - var(--tw-space-y-reverse)));
+    margin-bottom: calc(9.5rem * var(--tw-space-y-reverse));
   }
 
   .md\:p-0 {
@@ -1943,11 +1908,6 @@ button, input, optgroup, select, textarea {
   .md\:py-30 {
     padding-top: 7.5rem;
     padding-bottom: 7.5rem;
-  }
-
-  .md\:py-5 {
-    padding-top: 1.25rem;
-    padding-bottom: 1.25rem;
   }
 
   .md\:pb-0 {
@@ -1989,6 +1949,24 @@ button, input, optgroup, select, textarea {
   .md\:pt-30 {
     padding-top: 7.5rem;
   }
+
+  .md\:text-h2-lg {
+    font-size: 2rem;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  .md\:padding-x {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  @media (min-width: 768px) {
+    .md\:padding-x {
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
+    }
+  }
 }
 
 @media (min-width: 1024px) {
@@ -2017,20 +1995,12 @@ button, input, optgroup, select, textarea {
     display: flex;
   }
 
-  .lg\:hidden {
-    display: none;
-  }
-
   .lg\:w-1\/2 {
     width: 50%;
   }
 
   .lg\:w-\[calc\(\(100\%\/3\)-\(2\*20px\/3\)\)\] {
     width: calc((100% / 3) - (2 * 20px / 3));
-  }
-
-  .lg\:w-full {
-    width: 100%;
   }
 
   .lg\:max-w-4xl {
@@ -2045,18 +2015,8 @@ button, input, optgroup, select, textarea {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
-  .lg\:justify-between {
-    justify-content: space-between;
-  }
-
   .lg\:gap-y-15 {
     row-gap: 3.75rem;
-  }
-
-  .lg\:space-x-25 > :not([hidden]) ~ :not([hidden]) {
-    --tw-space-x-reverse: 0;
-    margin-right: calc(6.25rem * var(--tw-space-x-reverse));
-    margin-left: calc(6.25rem * calc(1 - var(--tw-space-x-reverse)));
   }
 
   .lg\:space-x-15 > :not([hidden]) ~ :not([hidden]) {
