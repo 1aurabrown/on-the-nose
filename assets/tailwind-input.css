@@ -16,7 +16,7 @@
   }
 
   body {
-    @apply bg-grey text-body-sm md:text-body-lg font-serif;
+    @apply bg-grey text-sm md:text-lg font-serif;
   }
 
   /* Typography*/
@@ -38,31 +38,6 @@
     @apply text-label-sm uppercase;
   }
 
-
-  .h1-lg {
-    @apply text-h1-lg
-  }
-
-  .h1-sm {
-    @apply text-h1-sm
-  }
-
-  .h2-lg {
-    @apply text-h2-lg
-  }
-
-  .h2-sm {
-    @apply text-h2-sm
-  }
-
-  .h3-lg {
-    @apply text-h3-lg
-  }
-
-  .h3-sm {
-    @apply text-h3-sm
-  }
-
   .label-sm {
     @apply text-label-sm uppercase;
   }
@@ -76,49 +51,42 @@
   }
 
   /* Policy Pages */
-  .page__container,
   .shopify-policy__container {
+
   }
 
-  .shopify-policy__title,
-  .page__title {
+  .shopify-policy__title {
   }
 
-  .shopify-policy__title h1,
-  .page__title h1 {
+  .shopify-policy__title h1 {
   }
 
-  .shopify-policy__body,
-  .page__body {
+  .shopify-policy__body {
   }
 
-  .shopify-policy__body a,
-  .page__body a {
+  .shopify-policy__body a {
   }
 
-  .shopify-policy__bod, .page__body {
+  .shopify-policy__body {
   }
 
-  .rte a {
-    @apply underline hover:no-underline;
-  }
-
-  .rte h1 {
-    @apply h1-sm md:h1-lg;
-  }
-
+  .rte h1,
   .rte h2 {
-    @apply h1-sm md:h1-lg;
+    @apply indent mt-14;
   }
 
-  .rte h3 {
-    @apply h2-sm md:h2-lg;
-  }
 
+  .rte h3,
   .rte h4 {
-    @apply h3-sm md:h3-lg;
+    @apply indent mt-8;
   }
 
+  .rte h1:after,
+  .rte h2:after,
+  .rte h3:after,
+  .rte h4:after {
+    content: '—';
+  }
 
   .rte h5 {
     @apply label-md md:label-lg;
@@ -128,16 +96,8 @@
     @apply label-sm md:label-md;
   }
 
-  .rte blockquote{
-    margin: .5em 2rem;
-  }
-
-  .rte th:not(:first-child), .rte td:not(:first-child) {
-    padding-left: 1em;
-  }
-
   .shopify-policy__title, .shopify-policy__body,
-  .page__title, .page__body {
+  {
     max-width: 500px;
     @apply mx-auto;
   }

@@ -1291,15 +1291,11 @@ details[open] > .share-button__fallback {
 .select__select,
 .customer .field input,
 .customer select {
+  margin-top: 0.875rem;
   -webkit-appearance: none;
   appearance: none;
   width: 100%;
   box-sizing: border-box;
-  transition: box-shadow var(--duration-short) ease;
-  border-radius: var(--inputs-radius);
-  height: 4.5rem;
-  min-height: calc(var(--inputs-border-width) * 2);
-  min-width: calc(7rem + (var(--inputs-border-width) * 2));
   position: relative;
   border: 0;
 }
@@ -1379,8 +1375,8 @@ details[open] > .share-button__fallback {
 
 .text-area,
 .select {
-  display: flex;
-  position: relative;
+/*  display: flex;*/
+/*  position: relative;*/
   width: 100%;
 }
 
@@ -1422,10 +1418,10 @@ details[open] > .share-button__fallback {
 
 .field__input,
 .customer .field input {
+  background-color: transparent;
   flex-grow: 1;
   text-align: left;
-  padding: 1.5rem;
-  margin: var(--inputs-border-width);
+  padding: .25rem 0;
   transition: box-shadow var(--duration-short) ease;
 }
 
@@ -1449,24 +1445,9 @@ details[open] > .share-button__fallback {
   left: calc(var(--inputs-border-width) + 2rem);
 }
 
-.field__input:focus,
-.field__input:not(:placeholder-shown),
-.field__input:-webkit-autofill,
-.customer .field input:focus,
-.customer .field input:not(:placeholder-shown),
-.customer .field input:-webkit-autofill {
-  padding: 2.2rem 1.5rem 0.8rem 2rem;
-  margin: var(--inputs-border-width);
-}
-
 .field__input::-webkit-search-cancel-button,
 .customer .field input::-webkit-search-cancel-button {
   display: none;
-}
-
-.field__input::placeholder,
-.customer .field input::placeholder {
-  opacity: 0;
 }
 
 .field__button {
@@ -1497,10 +1478,7 @@ details[open] > .share-button__fallback {
 /* Text area */
 
 .text-area {
-  font-family: var(--font-body-family);
-  font-style: var(--font-body-style);
-  font-weight: var(--font-body-weight);
-  min-height: 10rem;
+/*  min-height: 10rem;*/
   resize: none;
 }
 
@@ -2327,13 +2305,13 @@ details-disclosure > details {
 }
 
 .rte > p {
-  margin: .75em 0;
+  margin-bottom: .75em;
 }
-.rte > p:first-child {
+.rte > :first-child {
   margin-top: 0;
 }
 
-.rte > p:last-child {
+.rte > :last-child {
   margin-bottom: 0;
 }
 
