@@ -19,9 +19,9 @@
 
 <div id="CartContents" class="cart-contents relative {% if cart == empty %} is-empty{% endif %}">
   <div class="cart-contents__inner w-full flex flex-col {% if template == 'cart' %} md:page-width{% endif %}" role="dialog" aria-modal="true" aria-label="{{ 'sections.cart.title' | t }}" tabindex="-1">
-    <div class="{% if template != 'cart' %}sticky top-0 z-10{% endif %}">
+    <div class="{% if template != 'cart' %}sticky top-0 z-1{% endif %}">
       {% if template != 'cart' %}
-        <button class="absolute z-10 top-4 right-5" @click.prevent.stop="$store.tab.close('cart')">{% render 'icon-close' %}</button>
+        <button class="absolute z-1 top-4 right-5" @click.prevent.stop="$store.tab.close('cart')">{% render 'icon-close' %}</button>
       {% endif %}
       <div class="mt-8 page-width{% if template == 'cart' %} md:px-0 {% endif %}">
         {%- if cart == empty -%}
@@ -58,7 +58,7 @@
                             <div class="relative z-0">
                               {% if item.image %}
                                 {% comment %} Leave empty space due to a:empty CSS display: none rule {% endcomment %}
-                                <a title="{{ item.title }}" href="{{ item.url }}" class="cart-item__link z-10" tabindex="-1" aria-hidden="true"> </a>
+                                <a title="{{ item.title }}" href="{{ item.url }}" class="cart-item__link z-1" tabindex="-1" aria-hidden="true"> </a>
                                 <img class="w-34 h-34 cart-item__image block"
                                   src="{{ item.image | image_url: width: 136 }}"
                                   alt="{{ item.image.alt | escape }}"
@@ -75,16 +75,6 @@
                             <!-- Details -->
                             <div class="cart-item__details flex justify-between">
                               <div class="">
-                                <div class="label-sm">
-                                  {%- assign tags =  item.product.tags | join: "," | downcase | split: "," %}
-                                  {% if tags contains 'cat' and tags contains 'dog' %}
-                                    For Cats + Dogs
-                                  {% elsif tags contains 'cat' %}
-                                    For Cats
-                                  {% elsif tags contains 'dog' %}
-                                    For Dogs
-                                  {% endif %}
-                                </div>
                                 <div class="cart-item__name text-left mt-1 h5 {% if template == 'cart' %}md:h4 lg:h2{% endif %}">
                                   <h2><a title="{{ item.title }}" href="{{ item.url }}" class="">
                                     {{ item.product.title }}

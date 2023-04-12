@@ -16,8 +16,8 @@
           "settings": {
             "url": "shopify:\/\/collections\/frontpage",
             "text": "<p>Artist Name<\/p><p><em>Name of Work<\/em><\/p><p>Clay<\/p><p>6x9x4 in<\/p><p><strong>$700—<\/strong><\/p>",
-            "desktop_width": 80,
-            "desktop_position": 25,
+            "desktop_width": 70,
+            "desktop_position": 10,
             "mobile_width": 100
           }
         },
@@ -26,9 +26,8 @@
           "settings": {
             "url": "shopify:\/\/products\/name-of-work-1",
             "image": "shopify:\/\/shop_images\/Screen_Shot_2022-06-09_at_11.18-2.png",
-            "text": "<p>Artist Name<\/p><p><em>Name of Work<\/em><\/p><p>Clay<\/p><p>6x9x4 in<\/p><p><strong>$700—<\/strong><\/p>",
-            "desktop_width": 50,
-            "desktop_position": 25,
+            "desktop_width": 30,
+            "desktop_position": 50,
             "mobile_width": 50
           }
         },
@@ -37,9 +36,8 @@
           "settings": {
             "url": "",
             "image": "shopify:\/\/shop_images\/Screen_Shot_2022-06-09_at_11.18-5.png",
-            "text": "<p>Artist Name<\/p><p><em>Name of Work<\/em><\/p><p>Clay<\/p><p>6x9x4 in<\/p><p><strong>$700—<\/strong><\/p>",
-            "desktop_width": 50,
-            "desktop_position": 25,
+            "desktop_width": 30,
+            "desktop_position": 40,
             "mobile_width": 40
           }
         },
@@ -49,8 +47,8 @@
             "url": "",
             "image": "shopify:\/\/shop_images\/Screen_Shot_2022-07-07_at_10.26_1.png",
             "text": "<p>Artist Name<\/p><p><em>Name of Work<\/em><\/p><p>Clay<\/p><p>6x9x4 in<\/p><p><strong>$700—<\/strong><\/p>",
-            "desktop_width": 50,
-            "desktop_position": 25,
+            "desktop_width": 30,
+            "desktop_position": 20,
             "mobile_width": 100
           }
         }

@@ -22,17 +22,6 @@
           {%- case block.type -%}
           {%- when 'title' -%}
             <div class="product__title my-3 md:my-5" {{ block.shopify_attributes }}>
-              <p class="label-sm md:label">
-                {%- assign tags = product.tags | join: "," | downcase | split: "," %}
-                {% if tags contains 'cat' and tags contains 'dog' %}
-                  For Cats + Dogs
-                {% elsif tags contains 'cat' %}
-                  For Cats
-                {% elsif tags contains 'dog' %}
-                  For Dogs
-                {% endif %}
-              </p>
-
               <h1 class="mt-3 h2 md:h1">
                 {{ product.title | escape }}
               </h1>

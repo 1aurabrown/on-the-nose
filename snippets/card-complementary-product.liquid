@@ -16,14 +16,6 @@
 
 
 {%- if card_product and card_product != empty -%}
-  {% liquid
-    for tag in card_product.tags
-      if tag contains 'label:'
-        assign label = tag | split: 'label:' | last
-        break
-      endif
-    endfor
-  %}
 
   <div class="card-product p-5 rounded-xl bg-true-white drop-shadow">
     <div class="flex items-start justify-start">
@@ -44,17 +36,11 @@
         {%- endif -%}
         {% comment %}theme-check-enable ImgLazyLoading{% endcomment %}
 
-        <a title="{{ title | default: card_product.title }}" tabindex="-1" aria-hidden="true" class="z-10 absolute inset-0"  href="{{ card_product.url | within: collection }}"></a>
+        <a title="{{ title | default: card_product.title }}" tabindex="-1" aria-hidden="true" class="z-1 absolute inset-0"  href="{{ card_product.url | within: collection }}"></a>
 
       </div>
 
       <div class="ml-5">
-
-
-        {% if label %}
-          <div class="z-10 flag flag--reverse flag--sm mr-auto">{{ label }}</div>
-        {% endif %}
-
         {%- if show_rating and card_product.metafields.reviews.rating.value != blank -%}
           {% liquid
             assign rating_value = card_product.metafields.reviews.rating.value

@@ -1,8 +1,11 @@
-<homepage-items class="homepage-items md:padding-x block">
-	<div class="homepage-items__text">
-
+<homepage-items class="homepage-items block relative mb-6 md:mb-9">
+	<div class="sticky top-header md:absolute md:h-full md:left-0 md:top-0 md:bottom-0 padding-x">
+    <div class="md:sticky md:top-header h2-sm md:h2-lg mt-[6px] md:mt-0 md:pt-5">
+      <div class="indent homepage-items__fig-count"></div>
+      <div class="homepage-items__text"></div>
+    </div>
   </div>
-  <div class="homepage-items__images pb-6 pt-15 space-y-50 md:space-y-38">
+  <div class="homepage-items__images md:padding-x pt-13 md:pt-15">
     {% for block in section.blocks %}
 
       {% if block.settings.url.type == 'product_link' %}
@@ -24,7 +27,7 @@
         assign max_margin = 100 | minus: block.settings.desktop_width
       %}
 
-      <div class="homepage-items__block" data-index={{ forloop.index }} data-text="{{ text }}" data-fig-count="{{ fig_count }}">
+      <div class="homepage-items__block {% unless forloop.first %}pt-25 md:pt-19{% endunless %} {% unless forloop.last %}pb-25 md:pb-19{% endunless %}" data-index={{ forloop.index }} data-text="{{ text | escape }}" data-fig-count="{{ fig_count }}">
         <style>
           .homepage-items__block[data-index="{{ forloop.index }}"] {
             width: {{ block.settings.mobile_width }}%;
@@ -46,6 +49,54 @@
     {% endfor %}
   </div>
 </homepage-items>
+
+{% javascript %}
+
+if (!customElements.get('homepage-items')) {
+  class HomepageItems extends HTMLElement {
+    constructor() {
+      super();
+
+      this.elements = {
+        text: this.querySelector('.homepage-items__text'),
+        figCount: this.querySelector('.homepage-items__fig-count'),
+        blocks: this.querySelectorAll('.homepage-items__block')
+      }
+    }
+
+    connectedCallback() {
+      const handleIntersection = (entries, observer) => {
+        entries.forEach((entry) => {
+          // Each entry describes an intersection change for one observed
+          // target element:
+          //   entry.boundingClientRect
+          //   entry.intersectionRatio
+          //   entry.intersectionRect
+          //   entry.isIntersecting
+          //   entry.rootBounds
+          //   entry.target
+          //   entry.time
+
+          if (!entry.isIntersecting) return;
+          this.elements.text.innerHTML = entry.target.dataset.text;
+          this.elements.figCount.innerHTML = entry.target.dataset.figCount;
+        });
+
+      }
+
+      const observer = new IntersectionObserver(handleIntersection.bind(this), { rootMargin: '-50% 0% -50% 0%' })
+
+      this.elements.blocks.forEach(function(block) {
+        observer.observe(block);
+      })
+    }
+  }
+
+  customElements.define('homepage-items', HomepageItems);
+
+}
+
+{% endjavascript %}
 
 {% schema %}
 {
@@ -74,7 +125,7 @@
         {
           "type": "richtext",
           "id": "text",
-          "default": "<p>Artist Name</p><p><em>Name of Work</em></p><p>Clay</p><p>6x9x4 in</p><p><strong>$700—</strong></p>",
+          "default": "<p>Artist Name</p><p><em>Name of Work</em></p><p>Medium</p><p>Dimensions</p><p><strong>$price—</strong></p>",
           "label": "Text",
           "info": "Defaults to linked product's information, if a proudct is linked above."
         },

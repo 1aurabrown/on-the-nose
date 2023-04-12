@@ -1791,6 +1791,20 @@ product-info .loading-overlay:not(.hidden) ~ *,
 }
 
 /* section-header */
+:root {
+  --announcement-bar-height: 0px; /* Default to prevent empty value before being set with JS */
+  --header-height: 64px;
+  --screen-less-header: calc(100vh - var(--announcement-bar-height) - var(--header-height))
+}
+
+
+@media screen and (min-width: 768px) {
+  :root {
+    --header-height: 68px;
+    --announcement-bar-height: 0px; /* Default to prevent empty value before being set with JS */
+  }
+}
+
 .section-header.shopify-section-group-header-group {
   z-index: 3;
 }

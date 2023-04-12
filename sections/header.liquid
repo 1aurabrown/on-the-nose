@@ -1,3 +1,26 @@
+{% comment %}
+  If header has an active link, this link and the Home button should be sticky while the rest of the header scrolls out of view.
+  If the header has NO active link, the whole header should be sticky.
+
+  The following header types come from Dawn's settings for the header. We will use 'always' or 'none' depending on the whether or not the menu contains an active link.
+  sticky_header_type: always | on-scroll-up | none | reduce-logo-size
+{% endcomment %}
+
+{% liquid
+  assign menus = section.blocks | where: 'type', 'link_list' | map: 'settings' | map: 'menu'
+
+  assign has_active = false
+  for menu in menus
+    for link in menu.links
+      if link.active or link.child_active
+        assign has_active = true
+        break
+      endif
+    endfor
+  endfor
+  assign sticky_header_type = 'always'
+%}
+
 <link rel="stylesheet" href="{{ 'component-list-menu.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-search.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-menu-drawer.css' | asset_url }}" media="print" onload="this.media='all'">
@@ -114,7 +137,7 @@
   endfor
 -%}
 
-<{% if section.settings.sticky_header_type != 'none' %}sticky-header data-sticky-type="{{ section.settings.sticky_header_type }}"{% else %}div{% endif %} class="header-wrapper gradient">
+<sticky-header data-has-active="{{ has_active }}" data-sticky-type="{{ sticky_header_type }}" class="header-wrapper">
   {%- liquid
     assign social_links = false
     assign localization_forms = false
@@ -138,19 +161,23 @@
       endunless
     -%}
 
-    {%- if request.page_type == 'index' -%}
-      <h1 class="header__heading hidden md:block">
-    {%- endif -%}
-        <a href="{{ routes.root_url }}" class="header__heading-link link link--text focus-inset hidden md:block">
-            <div class="header__heading-logo-wrapper">
-              <div class="header__heading-logo motion-reduce" >
-                {% render 'icon-circle' %}
+    <div class="hidden md:block">
+
+      {%- if request.page_type == 'index' -%}
+        <h1 class="header__heading">
+      {%- endif -%}
+          <a href="{{ routes.root_url }}" class="header__heading-link link link--text focus-inset">
+              <div class="header__heading-logo-wrapper">
+                <div class="header__heading-logo motion-reduce" >
+                  {% render 'icon-circle' %}
+                </div>
               </div>
-            </div>
-        </a>
-    {%- if request.page_type == 'index' -%}
-      </h1>
-    {%- endif -%}
+          </a>
+      {%- if request.page_type == 'index' -%}
+        </h1>
+      {%- endif -%}
+    </div>
+
 
     {%- liquid
       if has_menu
@@ -215,7 +242,7 @@
       </a>
     </div>
   </header>
-</{% if section.settings.sticky_header_type != 'none' %}sticky-header{% else %}div{% endif %}>
+</sticky-header>
 
 {% javascript %}
   class StickyHeader extends HTMLElement {
