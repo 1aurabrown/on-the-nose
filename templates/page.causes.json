@@ -1,12 +1,29 @@
 {
   "sections": {
+    "text": {
+      "type": "richtext",
+      "settings": {
+        "heading": "Lorem ipsum",
+        "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nunc lectus, finibus sit amet felis at, mattis imperdiet odio.<\/p>",
+        "border": true
+      }
+    },
     "main": {
       "type": "main-page",
       "settings": {
+        "show_title": false
+      }
+    },
+    "f037772b-0fe1-413b-845e-4b8d3cd56d60": {
+      "type": "contact-form",
+      "settings": {
+        "heading": "We are always looking for worthwhile causes, and welcome your suggestions"
       }
     }
   },
   "order": [
-    "main"
+    "text",
+    "main",
+    "f037772b-0fe1-413b-845e-4b8d3cd56d60"
   ]
 }

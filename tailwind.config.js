@@ -68,34 +68,19 @@ module.exports = {
       "transparent": "transparent",
       "black": "#000",
       "white": '#fff',
-      "grey": "#EFEEEC"
+      "grey": "#EFEEEC",
+      "off-black": "#5C5C5C"
     },
     letterSpacing: {
     },
     fontSize: {
-      'h1-lg': ['2.875rem', { // 46px
-        lineHeight: '1.4',
-        letterSpacing: '-0.01em',
-      }],
-      'h1-sm': ['2rem', { // 32px
-        lineHeight: '1.3',
-        letterSpacing: '-0.01em',
-      }],
-      'h2-lg': ['2rem', { // 32px
+      'lg': ['2rem', { // 32px
         lineHeight: '1.2',
         letterSpacing: '-0.01em',
       }],
-      'h2-sm': ['1.25rem', { // 20px
+      'sm': ['1.25rem', { // 20px
         lineHeight: '1.2',
         letterSpacing: '-0.01em',
-      }],
-      'h3-lg': ['1.125rem', { // 18px
-        lineHeight: '1.3',
-        letterSpacing: '-0.01em',
-      }],
-      'h3-sm': ['1rem', { // 16px
-        lineHeight: '1.3',
-        letterSpacing: '0.03em',
       }],
       'label-lg': ['0.875rem', { // 14px
         lineHeight: '1.3',

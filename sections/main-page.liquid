@@ -1,14 +1,8 @@
-<div class="page">
-  <div class="page__container">
-    <div class="page__title">
-      <h1 class="main-page-title">
-        {{ page.title | escape }}
-      </h1>
-    </div>
-    <div class="rte page__body">
-      {{ page.content }}
-    </div>
-  </div>
+<div class="padding-x pt-[1.125rem] pb-15 pb-30 md:pb-20 {% if section.settings.border %} border-b{% endif %} rte">
+  {% if section.settings.show_title %}
+    <h2>{{ page.title }}</h2>
+  {% endif %}
+  {{ page.content }}
 </div>
 
 {% schema %}
@@ -19,6 +13,14 @@
       "page"
     ]
   },
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_title",
+      "label": "Show page title as indented heading",
+      "default": false
+    }
+  ],
   "tag": "section",
   "class": "section"
 }

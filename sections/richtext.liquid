@@ -1,15 +1,9 @@
-<div class="section-text padding-x h2-sm md:h2-lg {% if section.settings.border %} border-b{% endif %}">
-	<div class="section-text__text mt-[1.125rem] mb-15 md:mb-13">
-		<h2 class="indent">{{ section.settings.heading }}</h2>
-		<div class="rte">{{ section.settings.text }}</div>
-	</div>
+<div class="padding-x pt-[1.125rem] pb-15 md:pb-13 {% if section.settings.border %} border-b{% endif %} rte">
+  {% if section.settings.heading != blank %}
+    <h2>{{ section.settings.heading }}</h2>
+  {% endif %}
+  {{ section.settings.text }}
 </div>
-
-{% style %}
-	section:first-child .section-text__text {
-		margin-top: 0;
-	}
-{% endstyle %}
 
 {% schema %}
 {
