@@ -3,7 +3,10 @@
   "name": "Footer",
   "sections": {
     "footer": {
-      "type": "footer"
+      "type": "footer",
+      "settings": {
+        "heading": "Heading"
+      }
     }
   },
   "order": [

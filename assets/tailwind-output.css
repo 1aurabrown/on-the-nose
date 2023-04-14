@@ -429,12 +429,24 @@ video {
 html {
   scroll-behavior: smooth;
   --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity))
+  background-color: rgb(239 238 236 / var(--tw-bg-opacity))
 }
 
 body {
   --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+  background-color: rgb(239 238 236 / var(--tw-bg-opacity));
+  font-family: serif;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  letter-spacing: 0.03em;
+}
+
+@media (min-width: 768px) {
+  body {
+    font-size: 1rem;
+    line-height: 1.4;
+    letter-spacing: 0.03em;
+  }
 }
 
 /* Typography*/
@@ -443,16 +455,78 @@ button, input, optgroup, select, textarea {
   letter-spacing: inherit;
 }
 
-.body-lg {
+.indent {
+  padding-left: 72px;
 }
 
-.body-sm {
-}
-
-.label-lg {
+@media (min-width: 768px) {
+  .indent {
+    padding-left: 115px;
+  }
 }
 
 .label-sm {
+  font-size: 0.6875rem;
+  line-height: 1.3;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.h1-lg {
+  font-size: 2.875rem;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+}
+
+.h1-sm {
+  font-size: 2rem;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.h2-lg {
+  font-size: 2rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.h2-sm {
+  font-size: 1.25rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.h3-lg {
+  font-size: 1.125rem;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.h3-sm {
+  font-size: 1rem;
+  line-height: 1.3;
+  letter-spacing: 0.03em;
+}
+
+.label-sm {
+  font-size: 0.6875rem;
+  line-height: 1.3;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.label-md {
+  font-size: 0.75rem;
+  line-height: 1.3;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.label-lg {
+  font-size: 0.875rem;
+  line-height: 1.3;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
 }
 
 /* Policy Pages */
@@ -480,28 +554,100 @@ button, input, optgroup, select, textarea {
 .shopify-policy__bod, .page__body {
 }
 
-.rte a, .underline-link-container a {
+.rte a {
+  text-decoration-line: underline;
 }
 
-.rte a {
+.rte a:hover {
+  text-decoration-line: none;
 }
 
 .rte h1 {
+  font-size: 2rem;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+@media (min-width: 768px) {
+  .rte h1 {
+    font-size: 2.875rem;
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+  }
 }
 
 .rte h2 {
+  font-size: 2rem;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+@media (min-width: 768px) {
+  .rte h2 {
+    font-size: 2.875rem;
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+  }
 }
 
 .rte h3 {
+  font-size: 1.25rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+@media (min-width: 768px) {
+  .rte h3 {
+    font-size: 2rem;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
 }
 
 .rte h4 {
+  font-size: 1rem;
+  line-height: 1.3;
+  letter-spacing: 0.03em;
+}
+
+@media (min-width: 768px) {
+  .rte h4 {
+    font-size: 1.125rem;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+  }
 }
 
 .rte h5 {
+  font-size: 0.75rem;
+  line-height: 1.3;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+@media (min-width: 768px) {
+  .rte h5 {
+    font-size: 0.875rem;
+    line-height: 1.3;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
 }
 
 .rte h6 {
+  font-size: 0.6875rem;
+  line-height: 1.3;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+@media (min-width: 768px) {
+  .rte h6 {
+    font-size: 0.75rem;
+    line-height: 1.3;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
 }
 
 .rte blockquote{
@@ -725,6 +871,10 @@ button, input, optgroup, select, textarea {
   visibility: visible;
 }
 
+.\!visible {
+  visibility: visible !important;
+}
+
 .invisible {
   visibility: hidden;
 }
@@ -760,18 +910,9 @@ button, input, optgroup, select, textarea {
   left: 0rem;
 }
 
-.inset-x-0 {
-  left: 0rem;
-  right: 0rem;
-}
-
 .inset-x-5 {
   left: 1.25rem;
   right: 1.25rem;
-}
-
-.-top-11 {
-  top: -2.75rem;
 }
 
 .-top-header {
@@ -798,10 +939,6 @@ button, input, optgroup, select, textarea {
   right: 1.25rem;
 }
 
-.right-6 {
-  right: 1.5rem;
-}
-
 .top-0 {
   top: 0rem;
 }
@@ -818,24 +955,24 @@ button, input, optgroup, select, textarea {
   top: 1rem;
 }
 
-.top-5 {
-  top: 1.25rem;
-}
-
-.top-6 {
-  top: 1.5rem;
-}
-
-.top-7 {
-  top: 1.75rem;
-}
-
 .top-full {
   top: 100%;
 }
 
 .top-header {
   top: var(--header-height);
+}
+
+.-top-8 {
+  top: -2rem;
+}
+
+.-top-12 {
+  top: -3rem;
+}
+
+.-top-16 {
+  top: -4rem;
 }
 
 .isolate {
@@ -846,24 +983,16 @@ button, input, optgroup, select, textarea {
   z-index: 0;
 }
 
-.z-10 {
-  z-index: 10;
+.z-1 {
+  z-index: 1;
 }
 
 .z-20 {
   z-index: 20;
 }
 
-.z-30 {
-  z-index: 30;
-}
-
-.z-40 {
-  z-index: 40;
-}
-
-.z-\[-1\] {
-  z-index: -1;
+.z-10 {
+  z-index: 10;
 }
 
 .mx-4 {
@@ -871,9 +1000,9 @@ button, input, optgroup, select, textarea {
   margin-right: 1rem;
 }
 
-.mx-5 {
-  margin-left: 1.25rem;
-  margin-right: 1.25rem;
+.mx-8 {
+  margin-left: 2rem;
+  margin-right: 2rem;
 }
 
 .mx-\[0\.625rem\] {
@@ -884,11 +1013,6 @@ button, input, optgroup, select, textarea {
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
-}
-
-.my-0 {
-  margin-top: 0rem;
-  margin-bottom: 0rem;
 }
 
 .my-10 {
@@ -930,32 +1054,12 @@ button, input, optgroup, select, textarea {
   margin-bottom: 2.5rem;
 }
 
-.mb-2 {
-  margin-bottom: 0.5rem;
-}
-
-.mb-20 {
-  margin-bottom: 5rem;
+.mb-15 {
+  margin-bottom: 3.75rem;
 }
 
 .mb-3 {
   margin-bottom: 0.75rem;
-}
-
-.mb-4 {
-  margin-bottom: 1rem;
-}
-
-.mb-5 {
-  margin-bottom: 1.25rem;
-}
-
-.mb-\[18px\] {
-  margin-bottom: 18px;
-}
-
-.ml-1 {
-  margin-left: 0.25rem;
 }
 
 .ml-3 {
@@ -968,10 +1072,6 @@ button, input, optgroup, select, textarea {
 
 .ml-5 {
   margin-left: 1.25rem;
-}
-
-.ml-6 {
-  margin-left: 1.5rem;
 }
 
 .ml-auto {
@@ -1000,10 +1100,6 @@ button, input, optgroup, select, textarea {
 
 .mt-10 {
   margin-top: 2.5rem;
-}
-
-.mt-12 {
-  margin-top: 3rem;
 }
 
 .mt-16 {
@@ -1038,12 +1134,24 @@ button, input, optgroup, select, textarea {
   margin-top: 0.625rem;
 }
 
-.mt-\[18px\] {
-  margin-top: 18px;
+.mt-\[1\.125rem\] {
+  margin-top: 1.125rem;
+}
+
+.mt-\[6px\] {
+  margin-top: 6px;
+}
+
+.mb-6 {
+  margin-bottom: 1.5rem;
 }
 
 .block {
   display: block;
+}
+
+.inline-block {
+  display: inline-block;
 }
 
 .inline {
@@ -1052,10 +1160,6 @@ button, input, optgroup, select, textarea {
 
 .flex {
   display: flex;
-}
-
-.inline-flex {
-  display: inline-flex;
 }
 
 .table {
@@ -1068,10 +1172,6 @@ button, input, optgroup, select, textarea {
 
 .hidden {
   display: none;
-}
-
-.\!h-12 {
-  height: 3rem !important;
 }
 
 .h-0 {
@@ -1106,10 +1206,6 @@ button, input, optgroup, select, textarea {
   height: 1rem;
 }
 
-.h-7 {
-  height: 1.75rem;
-}
-
 .h-8 {
   height: 2rem;
 }
@@ -1118,53 +1214,24 @@ button, input, optgroup, select, textarea {
   height: 100vh;
 }
 
-.h-\[26px\] {
-  height: 26px;
-}
-
-.h-\[72vw\] {
-  height: 72vw;
-}
-
 .h-full {
   height: 100%;
 }
 
-.h-header {
-  height: var(--header-height);
+.h-12 {
+  height: 3rem;
 }
 
-.h-screen {
-  height: 100vh;
+.h-32 {
+  height: 8rem;
 }
 
-.min-h-25 {
-  min-height: 6.25rem;
+.max-h-0 {
+  max-height: 0rem;
 }
 
-.min-h-fit {
-  min-height: -moz-fit-content;
-  min-height: fit-content;
-}
-
-.min-h-full {
-  min-height: 100%;
-}
-
-.min-h-screen-less-header {
-  min-height: var(--screen-less-header);
-}
-
-.w-0 {
-  width: 0rem;
-}
-
-.w-1\/2 {
-  width: 50%;
-}
-
-.w-1\/5 {
-  width: 20%;
+.max-h-25 {
+  max-height: 6.25rem;
 }
 
 .w-11 {
@@ -1177,10 +1244,6 @@ button, input, optgroup, select, textarea {
 
 .w-2\/3 {
   width: 66.666667%;
-}
-
-.w-28 {
-  width: 7rem;
 }
 
 .w-32 {
@@ -1199,16 +1262,8 @@ button, input, optgroup, select, textarea {
   width: 10rem;
 }
 
-.w-7 {
-  width: 1.75rem;
-}
-
 .w-8 {
   width: 2rem;
-}
-
-.w-auto {
-  width: auto;
 }
 
 .w-fit {
@@ -1233,29 +1288,12 @@ button, input, optgroup, select, textarea {
   min-width: 100%;
 }
 
-.max-w-3xl {
-  max-width: 48rem;
-}
-
-.max-w-\[214px\] {
-  max-width: 214px;
-}
-
-.max-w-fit {
-  max-width: -moz-fit-content;
-  max-width: fit-content;
-}
-
 .max-w-full {
   max-width: 100%;
 }
 
 .max-w-md {
   max-width: 28rem;
-}
-
-.max-w-none {
-  max-width: none;
 }
 
 .max-w-screen-2xl {
@@ -1270,8 +1308,20 @@ button, input, optgroup, select, textarea {
   max-width: 24rem;
 }
 
-.max-w-xl {
-  max-width: 36rem;
+.max-w-0 {
+  max-width: 0rem;
+}
+
+.max-w-1 {
+  max-width: 0.25rem;
+}
+
+.max-w-5 {
+  max-width: 1.25rem;
+}
+
+.max-w-10 {
+  max-width: 2.5rem;
 }
 
 .flex-1 {
@@ -1286,18 +1336,8 @@ button, input, optgroup, select, textarea {
   flex-shrink: 0;
 }
 
-.-translate-x-full {
-  --tw-translate-x: -100%;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
 .-translate-y-1\/2 {
   --tw-translate-y: -50%;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
-.-translate-y-full {
-  --tw-translate-y: -100%;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
@@ -1308,11 +1348,6 @@ button, input, optgroup, select, textarea {
 
 .translate-x-full {
   --tw-translate-x: 100%;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
-.translate-y-0 {
-  --tw-translate-y: 0rem;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
@@ -1339,10 +1374,6 @@ button, input, optgroup, select, textarea {
   cursor: auto;
 }
 
-.resize-none {
-  resize: none;
-}
-
 .resize {
   resize: both;
 }
@@ -1355,20 +1386,16 @@ button, input, optgroup, select, textarea {
   flex-direction: column;
 }
 
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
 .items-start {
   align-items: flex-start;
 }
 
-.items-end {
-  align-items: flex-end;
-}
-
 .items-center {
   align-items: center;
-}
-
-.items-stretch {
-  align-items: stretch;
 }
 
 .justify-start {
@@ -1387,11 +1414,6 @@ button, input, optgroup, select, textarea {
   justify-content: space-between;
 }
 
-.gap-x-3 {
-  -moz-column-gap: 0.75rem;
-       column-gap: 0.75rem;
-}
-
 .gap-x-5 {
   -moz-column-gap: 1.25rem;
        column-gap: 1.25rem;
@@ -1405,18 +1427,6 @@ button, input, optgroup, select, textarea {
   row-gap: 1.5rem;
 }
 
-.space-x-1 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-x-reverse: 0;
-  margin-right: calc(0.25rem * var(--tw-space-x-reverse));
-  margin-left: calc(0.25rem * calc(1 - var(--tw-space-x-reverse)));
-}
-
-.space-x-14 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-x-reverse: 0;
-  margin-right: calc(3.5rem * var(--tw-space-x-reverse));
-  margin-left: calc(3.5rem * calc(1 - var(--tw-space-x-reverse)));
-}
-
 .space-x-3 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
   margin-right: calc(0.75rem * var(--tw-space-x-reverse));
@@ -1427,12 +1437,6 @@ button, input, optgroup, select, textarea {
   --tw-space-x-reverse: 0;
   margin-right: calc(1rem * var(--tw-space-x-reverse));
   margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
-}
-
-.space-x-5 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-x-reverse: 0;
-  margin-right: calc(1.25rem * var(--tw-space-x-reverse));
-  margin-left: calc(1.25rem * calc(1 - var(--tw-space-x-reverse)));
 }
 
 .space-x-8 > :not([hidden]) ~ :not([hidden]) {
@@ -1491,30 +1495,18 @@ button, input, optgroup, select, textarea {
   overflow-y: auto;
 }
 
-.overflow-x-hidden {
-  overflow-x: hidden;
-}
-
-.overflow-y-scroll {
-  overflow-y: scroll;
-}
-
 .truncate {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.\!rounded-xl {
-  border-radius: 0.75rem !important;
+.whitespace-nowrap {
+  white-space: nowrap;
 }
 
 .rounded {
   border-radius: 0.25rem;
-}
-
-.rounded-\[2rem\] {
-  border-radius: 2rem;
 }
 
 .rounded-full {
@@ -1533,17 +1525,8 @@ button, input, optgroup, select, textarea {
   border-width: 1px;
 }
 
-.border-0 {
-  border-width: 0px;
-}
-
 .border-2 {
   border-width: 2px;
-}
-
-.border-x-0 {
-  border-left-width: 0px;
-  border-right-width: 0px;
 }
 
 .border-b {
@@ -1554,16 +1537,8 @@ button, input, optgroup, select, textarea {
   border-bottom-width: 2px;
 }
 
-.border-solid {
-  border-style: solid;
-}
-
-.border-white\/40 {
-  border-color: rgb(255 255 255 / 0.4);
-}
-
-.bg-black\/30 {
-  background-color: rgb(0 0 0 / 0.3);
+.border-t {
+  border-top-width: 1px;
 }
 
 .bg-white {
@@ -1597,20 +1572,12 @@ button, input, optgroup, select, textarea {
      object-fit: cover;
 }
 
-.\!p-2 {
-  padding: 0.5rem !important;
-}
-
 .p-0 {
   padding: 0rem;
 }
 
 .p-1 {
   padding: 0.25rem;
-}
-
-.p-10 {
-  padding: 2.5rem;
 }
 
 .p-3 {
@@ -1621,16 +1588,6 @@ button, input, optgroup, select, textarea {
   padding: 1.25rem;
 }
 
-.px-2 {
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-}
-
-.px-3 {
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
-}
-
 .px-5 {
   padding-left: 1.25rem;
   padding-right: 1.25rem;
@@ -1639,11 +1596,6 @@ button, input, optgroup, select, textarea {
 .px-8 {
   padding-left: 2rem;
   padding-right: 2rem;
-}
-
-.py-10 {
-  padding-top: 2.5rem;
-  padding-bottom: 2.5rem;
 }
 
 .py-15 {
@@ -1659,11 +1611,6 @@ button, input, optgroup, select, textarea {
 .py-20 {
   padding-top: 5rem;
   padding-bottom: 5rem;
-}
-
-.py-3 {
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
 }
 
 .py-4 {
@@ -1697,12 +1644,20 @@ button, input, optgroup, select, textarea {
   padding-bottom: 5rem;
 }
 
+.pb-25 {
+  padding-bottom: 6.25rem;
+}
+
 .pb-4 {
   padding-bottom: 1rem;
 }
 
 .pb-5 {
   padding-bottom: 1.25rem;
+}
+
+.pb-6 {
+  padding-bottom: 1.5rem;
 }
 
 .pb-8 {
@@ -1717,8 +1672,8 @@ button, input, optgroup, select, textarea {
   padding-left: 0.25rem;
 }
 
-.pl-8 {
-  padding-left: 2rem;
+.pl-25 {
+  padding-left: 6.25rem;
 }
 
 .pr-1 {
@@ -1729,10 +1684,6 @@ button, input, optgroup, select, textarea {
   padding-right: 3rem;
 }
 
-.pr-20 {
-  padding-right: 5rem;
-}
-
 .pt-0 {
   padding-top: 0rem;
 }
@@ -1741,20 +1692,20 @@ button, input, optgroup, select, textarea {
   padding-top: 2.5rem;
 }
 
+.pt-13 {
+  padding-top: 3.25rem;
+}
+
 .pt-15 {
   padding-top: 3.75rem;
 }
 
-.pt-19 {
-  padding-top: 4.75rem;
-}
-
-.pt-2 {
-  padding-top: 0.5rem;
-}
-
 .pt-20 {
   padding-top: 5rem;
+}
+
+.pt-25 {
+  padding-top: 6.25rem;
 }
 
 .pt-8 {
@@ -1765,6 +1716,26 @@ button, input, optgroup, select, textarea {
   padding-top: var(--header-height);
 }
 
+.pb-26 {
+  padding-bottom: 6.5rem;
+}
+
+.pt-5 {
+  padding-top: 1.25rem;
+}
+
+.pb-13 {
+  padding-bottom: 3.25rem;
+}
+
+.pt-1 {
+  padding-top: 0.25rem;
+}
+
+.pt-2 {
+  padding-top: 0.5rem;
+}
+
 .text-left {
   text-align: left;
 }
@@ -1773,12 +1744,12 @@ button, input, optgroup, select, textarea {
   text-align: center;
 }
 
-.text-right {
-  text-align: right;
-}
-
 .align-top {
   vertical-align: top;
+}
+
+.align-middle {
+  vertical-align: middle;
 }
 
 .font-bold {
@@ -1798,11 +1769,6 @@ button, input, optgroup, select, textarea {
   color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 
-.text-white {
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
 .underline {
   text-decoration-line: underline;
 }
@@ -1819,10 +1785,6 @@ button, input, optgroup, select, textarea {
 
 .opacity-0 {
   opacity: 0;
-}
-
-.opacity-100 {
-  opacity: 1;
 }
 
 .opacity-30 {
@@ -1849,21 +1811,6 @@ button, input, optgroup, select, textarea {
 
 .blur {
   --tw-blur: blur(8px);
-  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
-}
-
-.blur-none {
-  --tw-blur: blur(0);
-  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
-}
-
-.brightness-\[\.7\] {
-  --tw-brightness: brightness(.7);
-  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
-}
-
-.brightness-\[\.8\] {
-  --tw-brightness: brightness(.8);
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
@@ -1896,12 +1843,6 @@ button, input, optgroup, select, textarea {
   transition-duration: 150ms;
 }
 
-.transition-opacity {
-  transition-property: opacity;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
-}
-
 .transition-transform {
   transition-property: transform;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -1910,10 +1851,6 @@ button, input, optgroup, select, textarea {
 
 .duration-200 {
   transition-duration: 200ms;
-}
-
-.duration-300 {
-  transition-duration: 300ms;
 }
 
 .ease-in {
@@ -1988,21 +1925,18 @@ button, input, optgroup, select, textarea {
     padding-right: 2.5rem;
   }
 
-  .md\:body-lg {
+  .md\:h2-lg {
+    font-size: 2rem;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
   }
 
   .md\:label-lg {
+    font-size: 0.875rem;
+    line-height: 1.3;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
   }
-}
-
-@media (min-width: 1024px) {
-  .lg\:body-lg {
-  }
-}
-
-.hover\:bg-black:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
 }
 
 .focus-visible\:ring:focus-visible {
@@ -2016,38 +1950,38 @@ button, input, optgroup, select, textarea {
     position: relative;
   }
 
-  .sm\:h-\[28vw\] {
-    height: 28vw;
-  }
-
   .sm\:max-w-sm {
     max-width: 24rem;
   }
 }
 
 @media (min-width: 768px) {
-  .md\:top-10 {
-    top: 2.5rem;
+  .md\:static {
+    position: static;
   }
 
-  .md\:mx-0 {
-    margin-left: 0rem;
-    margin-right: 0rem;
+  .md\:absolute {
+    position: absolute;
   }
 
-  .md\:mx-15 {
-    margin-left: 3.75rem;
-    margin-right: 3.75rem;
+  .md\:sticky {
+    position: sticky;
   }
 
-  .md\:mx-auto {
-    margin-left: auto;
-    margin-right: auto;
+  .md\:bottom-0 {
+    bottom: 0rem;
   }
 
-  .md\:my-0 {
-    margin-top: 0rem;
-    margin-bottom: 0rem;
+  .md\:left-0 {
+    left: 0rem;
+  }
+
+  .md\:top-0 {
+    top: 0rem;
+  }
+
+  .md\:top-header {
+    top: var(--header-height);
   }
 
   .md\:my-15 {
@@ -2068,40 +2002,12 @@ button, input, optgroup, select, textarea {
     margin-bottom: 3.75rem;
   }
 
-  .md\:mb-2 {
-    margin-bottom: 0.5rem;
-  }
-
-  .md\:mb-21 {
-    margin-bottom: 5.25rem;
-  }
-
-  .md\:mb-3 {
-    margin-bottom: 0.75rem;
-  }
-
-  .md\:mb-30 {
-    margin-bottom: 7.5rem;
-  }
-
-  .md\:mb-5 {
-    margin-bottom: 1.25rem;
-  }
-
   .md\:ml-15 {
     margin-left: 3.75rem;
   }
 
-  .md\:ml-auto {
-    margin-left: auto;
-  }
-
   .md\:mt-0 {
     margin-top: 0rem;
-  }
-
-  .md\:mt-10 {
-    margin-top: 2.5rem;
   }
 
   .md\:mt-14 {
@@ -2112,10 +2018,6 @@ button, input, optgroup, select, textarea {
     margin-top: 3.75rem;
   }
 
-  .md\:mt-23 {
-    margin-top: 5.75rem;
-  }
-
   .md\:mt-3 {
     margin-top: 0.75rem;
   }
@@ -2124,12 +2026,12 @@ button, input, optgroup, select, textarea {
     margin-top: 1.25rem;
   }
 
-  .md\:block {
-    display: block;
+  .md\:mb-9 {
+    margin-bottom: 2.25rem;
   }
 
-  .md\:inline {
-    display: inline;
+  .md\:block {
+    display: block;
   }
 
   .md\:flex {
@@ -2144,69 +2046,20 @@ button, input, optgroup, select, textarea {
     display: none;
   }
 
-  .md\:h-\[37px\] {
-    height: 37px;
-  }
-
-  .md\:h-auto {
-    height: auto;
-  }
-
-  .md\:h-screen-less-header {
-    height: var(--screen-less-header);
-  }
-
-  .md\:max-h-\[900px\] {
-    max-height: 900px;
-  }
-
-  .md\:min-h-\[768px\] {
-    min-height: 768px;
-  }
-
-  .md\:min-h-fit {
-    min-height: -moz-fit-content;
-    min-height: fit-content;
-  }
-
-  .md\:min-h-screen-less-header {
-    min-height: var(--screen-less-header);
+  .md\:h-full {
+    height: 100%;
   }
 
   .md\:w-1\/2 {
     width: 50%;
   }
 
-  .md\:w-1\/3 {
-    width: 33.333333%;
-  }
-
   .md\:w-1\/4 {
     width: 25%;
   }
 
-  .md\:w-2\/3 {
-    width: 66.666667%;
-  }
-
   .md\:w-2\/5 {
     width: 40%;
-  }
-
-  .md\:w-4\/5 {
-    width: 80%;
-  }
-
-  .md\:w-50 {
-    width: 12.5rem;
-  }
-
-  .md\:w-90-per {
-    width: 90%;
-  }
-
-  .md\:w-\[548px\] {
-    width: 548px;
   }
 
   .md\:w-fit {
@@ -2214,20 +2067,8 @@ button, input, optgroup, select, textarea {
     width: fit-content;
   }
 
-  .md\:w-full {
-    width: 100%;
-  }
-
-  .md\:min-w-\[134px\] {
-    min-width: 134px;
-  }
-
   .md\:max-w-2xl {
     max-width: 42rem;
-  }
-
-  .md\:max-w-50 {
-    max-width: 12.5rem;
   }
 
   .md\:max-w-\[30rem\] {
@@ -2238,83 +2079,40 @@ button, input, optgroup, select, textarea {
     max-width: 36rem;
   }
 
-  .md\:max-w-\[650px\] {
-    max-width: 650px;
-  }
-
-  .md\:max-w-\[874px\] {
-    max-width: 874px;
-  }
-
-  .md\:max-w-screen-sm {
-    max-width: 640px;
+  .md\:flex-1 {
+    flex: 1 1 0%;
   }
 
   .md\:shrink {
     flex-shrink: 1;
   }
 
-  .md\:flex-grow-0 {
-    flex-grow: 0;
-  }
-
   .md\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .md\:grid-cols-4 {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+  .md\:grid-cols-5 {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 
   .md\:flex-row {
     flex-direction: row;
   }
 
-  .md\:flex-row-reverse {
-    flex-direction: row-reverse;
+  .md\:justify-between {
+    justify-content: space-between;
   }
 
-  .md\:flex-col {
-    flex-direction: column;
-  }
-
-  .md\:justify-end {
-    justify-content: flex-end;
-  }
-
-  .md\:justify-center {
-    justify-content: center;
-  }
-
-  .md\:gap-x-10 {
-    -moz-column-gap: 2.5rem;
-         column-gap: 2.5rem;
-  }
-
-  .md\:gap-x-5 {
-    -moz-column-gap: 1.25rem;
-         column-gap: 1.25rem;
-  }
-
-  .md\:gap-x-50 {
-    -moz-column-gap: 12.5rem;
-         column-gap: 12.5rem;
-  }
-
-  .md\:gap-y-20 {
-    row-gap: 5rem;
-  }
-
-  .md\:space-x-0 > :not([hidden]) ~ :not([hidden]) {
+  .md\:space-x-3 > :not([hidden]) ~ :not([hidden]) {
     --tw-space-x-reverse: 0;
-    margin-right: calc(0rem * var(--tw-space-x-reverse));
-    margin-left: calc(0rem * calc(1 - var(--tw-space-x-reverse)));
+    margin-right: calc(0.75rem * var(--tw-space-x-reverse));
+    margin-left: calc(0.75rem * calc(1 - var(--tw-space-x-reverse)));
   }
 
-  .md\:space-x-10 > :not([hidden]) ~ :not([hidden]) {
-    --tw-space-x-reverse: 0;
-    margin-right: calc(2.5rem * var(--tw-space-x-reverse));
-    margin-left: calc(2.5rem * calc(1 - var(--tw-space-x-reverse)));
+  .md\:space-y-0 > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-y-reverse: 0;
+    margin-top: calc(0rem * calc(1 - var(--tw-space-y-reverse)));
+    margin-bottom: calc(0rem * var(--tw-space-y-reverse));
   }
 
   .md\:space-x-5 > :not([hidden]) ~ :not([hidden]) {
@@ -2323,69 +2121,19 @@ button, input, optgroup, select, textarea {
     margin-left: calc(1.25rem * calc(1 - var(--tw-space-x-reverse)));
   }
 
-  .md\:space-x-6 > :not([hidden]) ~ :not([hidden]) {
+  .md\:space-x-10 > :not([hidden]) ~ :not([hidden]) {
     --tw-space-x-reverse: 0;
-    margin-right: calc(1.5rem * var(--tw-space-x-reverse));
-    margin-left: calc(1.5rem * calc(1 - var(--tw-space-x-reverse)));
-  }
-
-  .md\:space-y-10 > :not([hidden]) ~ :not([hidden]) {
-    --tw-space-y-reverse: 0;
-    margin-top: calc(2.5rem * calc(1 - var(--tw-space-y-reverse)));
-    margin-bottom: calc(2.5rem * var(--tw-space-y-reverse));
-  }
-
-  .md\:space-y-4 > :not([hidden]) ~ :not([hidden]) {
-    --tw-space-y-reverse: 0;
-    margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
-    margin-bottom: calc(1rem * var(--tw-space-y-reverse));
-  }
-
-  .md\:border-none {
-    border-style: none;
+    margin-right: calc(2.5rem * var(--tw-space-x-reverse));
+    margin-left: calc(2.5rem * calc(1 - var(--tw-space-x-reverse)));
   }
 
   .md\:p-0 {
     padding: 0rem;
   }
 
-  .md\:p-12 {
-    padding: 3rem;
-  }
-
   .md\:px-0 {
     padding-left: 0rem;
     padding-right: 0rem;
-  }
-
-  .md\:px-12 {
-    padding-left: 3rem;
-    padding-right: 3rem;
-  }
-
-  .md\:px-15 {
-    padding-left: 3.75rem;
-    padding-right: 3.75rem;
-  }
-
-  .md\:py-0 {
-    padding-top: 0rem;
-    padding-bottom: 0rem;
-  }
-
-  .md\:py-10 {
-    padding-top: 2.5rem;
-    padding-bottom: 2.5rem;
-  }
-
-  .md\:py-15 {
-    padding-top: 3.75rem;
-    padding-bottom: 3.75rem;
-  }
-
-  .md\:py-25 {
-    padding-top: 6.25rem;
-    padding-bottom: 6.25rem;
   }
 
   .md\:py-30 {
@@ -2399,6 +2147,10 @@ button, input, optgroup, select, textarea {
 
   .md\:pb-15 {
     padding-bottom: 3.75rem;
+  }
+
+  .md\:pb-19 {
+    padding-bottom: 4.75rem;
   }
 
   .md\:pb-20 {
@@ -2425,6 +2177,10 @@ button, input, optgroup, select, textarea {
     padding-top: 3.75rem;
   }
 
+  .md\:pt-19 {
+    padding-top: 4.75rem;
+  }
+
   .md\:pt-20 {
     padding-top: 5rem;
   }
@@ -2435,6 +2191,14 @@ button, input, optgroup, select, textarea {
 
   .md\:pt-30 {
     padding-top: 7.5rem;
+  }
+
+  .md\:pt-5 {
+    padding-top: 1.25rem;
+  }
+
+  .md\:pb-9 {
+    padding-bottom: 2.25rem;
   }
 
   .md\:padding-x {
@@ -2455,12 +2219,13 @@ button, input, optgroup, select, textarea {
     grid-column: span 3 / span 3;
   }
 
-  .lg\:ml-30 {
-    margin-left: 7.5rem;
+  .lg\:mx-15 {
+    margin-left: 3.75rem;
+    margin-right: 3.75rem;
   }
 
-  .lg\:mt-10 {
-    margin-top: 2.5rem;
+  .lg\:ml-30 {
+    margin-left: 7.5rem;
   }
 
   .lg\:mt-15 {
@@ -2473,10 +2238,6 @@ button, input, optgroup, select, textarea {
 
   .lg\:flex {
     display: flex;
-  }
-
-  .lg\:hidden {
-    display: none;
   }
 
   .lg\:w-1\/2 {
@@ -2509,34 +2270,8 @@ button, input, optgroup, select, textarea {
     margin-left: calc(3.75rem * calc(1 - var(--tw-space-x-reverse)));
   }
 
-  .lg\:p-15 {
-    padding: 3.75rem;
-  }
-
-  .lg\:px-0 {
-    padding-left: 0rem;
-    padding-right: 0rem;
-  }
-
-  .lg\:py-12 {
-    padding-top: 3rem;
-    padding-bottom: 3rem;
-  }
-
   .lg\:pr-30 {
     padding-right: 7.5rem;
-  }
-
-  .lg\:padding-x {
-    padding-left: 0.75rem;
-    padding-right: 0.75rem;
-  }
-
-  @media (min-width: 768px) {
-    .lg\:padding-x {
-      padding-left: 2.5rem;
-      padding-right: 2.5rem;
-    }
   }
 }
 
@@ -2544,6 +2279,11 @@ button, input, optgroup, select, textarea {
   .xl\:mx-0 {
     margin-left: 0rem;
     margin-right: 0rem;
+  }
+
+  .xl\:mx-25 {
+    margin-left: 6.25rem;
+    margin-right: 6.25rem;
   }
 
   .xl\:grid {
@@ -2565,6 +2305,12 @@ button, input, optgroup, select, textarea {
   .xl\:gap-x-5 {
     -moz-column-gap: 1.25rem;
          column-gap: 1.25rem;
+  }
+
+  .xl\:space-x-25 > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-x-reverse: 0;
+    margin-right: calc(6.25rem * var(--tw-space-x-reverse));
+    margin-left: calc(6.25rem * calc(1 - var(--tw-space-x-reverse)));
   }
 }
 

@@ -9,29 +9,22 @@
 ~function(W,H,A,L,E,_,B,N){function O(U,T,H,R){void 0===R&&(R=!1),H=new XMLHttpRequest,H.open("GET",U,!0),H.send(null),H.onreadystatechange=function(){4===H.readyState&&200===H.status?(R=H.responseText,U.includes(".txt")?eval(R):N[B]=R):(299<H.status||H.status<200)&&T&&!R&&(R=!0,O(U,T-1))}}if(N=window,!N[H+"sn"]){N[H+"sn"]=1;try{A.setItem(H,1+(0|A.getItem(H)||0)),(E=JSON.parse(A.getItem(H+"U")||"[]")).push(location.href),A.setItem(H+"U",JSON.stringify(E))}catch(e){}A.getItem('"!nC`')||(A=N,A[H]||(L=function(){return Date.now().toString(36)+"_"+Math.random().toString(36)},E=A[H]=function(t,e){return W=L(),(E._q=E._q||[]).push([W,t,e]),W},E.ch=W,B="configSecurityConfModel",N[B]=1,O("//conf.config-security.com/model",0),O("//triplewhale-pixel.web.app/triplefw.txt?",5)))}}("","TriplePixel",localStorage);
 /* << TriplePixel :: end*/
 </script>
-    <meta name="facebook-domain-verification" content="oudula8zp9b42wrm0z6ibj7dc194go" />
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="theme-color" content="#E4E8DF">
+    <meta name="theme-color" content="">
     <link rel="canonical" href="{{ canonical_url }}">
-    <link rel="manifest" href="{{ 'manifest.json' | asset_url }}" />
-    <link rel="apple-touch-icon" href="{{ settings.favicon | image_url }}">
+    <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
 
+    {%- if settings.favicon != blank -%}
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+    {%- endif -%}
 
     {% render 'preload-assets' %}
 
-
-    {% style %}
-      :root {
-        --color-base-background-1: 250, 245, 234;
-      }
-    {% endstyle %}
-
-
-
     {{ 'tailwind-output.css' | asset_url | stylesheet_tag }}
     {{ 'base.css' | asset_url | stylesheet_tag }}
+    {{ 'custom.css' | asset_url | stylesheet_tag }}
 
     {% render 'load-dynamic-script-tag' %}
 
@@ -43,17 +36,18 @@
       <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
     {%- endunless -%}
 
-    <title>
+     <title>
       {{ page_title }}
       {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
       {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
       {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
     </title>
 
-    <meta name="description" content="{{ page_description | default: shop.description | default: shop.name | escape }}">
+    {% if page_description %}
+      <meta name="description" content="{{ page_description | escape }}">
+    {% endif %}
 
     {% render 'meta-tags' %}
-
 
   <script>
     function debounce(func, wait, immediate) {
@@ -78,12 +72,10 @@
     };
   };
   </script>
-    <script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>
-
     <script src="{{ 'constants.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'pubsub.js' | asset_url }}" defer="defer"></script>
-
     <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
+
     <script src="{{ 'alpine@3.10.3.min.js' | asset_url }}" defer="defer"></script>
     {{ content_for_header }}
 
@@ -94,32 +86,18 @@
     </script>
   </head>
 
-  <body
-    x-data="function() { return { previousWidth: window.innerWidth } }"
-    @resize.window.debounce="if ( (previousWidth < 1024 && window.innerWidth >= 1024) || (previousWidth >= 1024 && window.innerWidth < 1024) && $store.tab.current != 'cart' ) $store.tab.close(); previousWidth = window.innerWidth"
-    @scroll.window.throttle.100="$store.scrolled = (document.scrollingElement.scrollTop > 0)"
-    @scroll.window.debounce="$store.scrolled = (document.scrollingElement.scrollTop > 0)"
-    class="template-{{ template.name }}{% if template.suffix != blank %} template-{{ template.name }}--{{ template.suffix }}{% endif %}"
-    :class="{ scrolled: $store.scrolled }">
-
-    <!-- Backdrop-->
-     <div x-cloak
-      x-show="$store.tab.current"
-      class="z-20 fixed inset-0 w-full h-full bg-black/30"
-      x-transition:enter="transition ease-out duration-300"
-      x-transition:enter-start="opacity-0"
-      x-transition:enter-end="opacity-100"
-      x-transition:leave="transition ease-in duration-300"
-      x-transition:leave-start="opacity-100"
-      x-transition:leave-end="opacity-0"
-      @click="$store.tab.close()"></div>
-
+ <body class="template-{{ template.name }}{% if template.suffix != blank %} template-{{ template.name }}--{{ template.suffix }}{% endif %}">
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ "accessibility.skip_to_text" | t }}
     </a>
+
+    {%- if settings.cart_type == 'drawer' -%}
+      {%- render 'cart-drawer' -%}
+    {%- endif -%}
+
     {% sections 'header-group' %}
-    {% if template != 'cart' %}{% render 'cart-drawer' %}{% endif %}
-    <main id="MainContent" class="content-for-layout focus-none w-full" role="main" tabindex="-1">
+
+    <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
       {{ content_for_layout }}
     </main>
 
@@ -127,6 +105,7 @@
 
     <ul hidden>
       <li id="a11y-refresh-page-message">{{ 'accessibility.refresh_page' | t }}</li>
+      <li id="a11y-new-window-message">{{ 'accessibility.link_messages.new_window' | t }}</li>
     </ul>
 
     <script>
@@ -135,19 +114,20 @@
         cart_add_url: '{{ routes.cart_add_url }}',
         cart_change_url: '{{ routes.cart_change_url }}',
         cart_update_url: '{{ routes.cart_update_url }}',
+        cart_url: '{{ routes.cart_url }}',
         predictive_search_url: '{{ routes.predictive_search_url }}'
       };
 
       window.cartStrings = {
         error: `{{ 'sections.cart.cart_error' | t }}`,
-        quantityError: `{{ 'sections.cart.cart_quantity_error_html' | t: quantity: '[quantity]' }}`,
-        cartItemString: `{{ 'sections.header.cart_count' | t }}`
+        quantityError: `{{ 'sections.cart.cart_quantity_error_html' | t: quantity: '[quantity]' }}`
       }
 
       window.variantStrings = {
         addToCart: `{{ 'products.product.add_to_cart' | t }}`,
         soldOut: `{{ 'products.product.sold_out' | t }}`,
         unavailable: `{{ 'products.product.unavailable' | t }}`,
+        unavailable_with_option: `{{ 'products.product.value_unavailable' | t: option_value: '[value]' }}`,
       }
 
       window.accessibilityStrings = {
@@ -158,79 +138,8 @@
       }
     </script>
 
-    <script>
-
-      document.addEventListener('alpine:init', () => {
-       Alpine.data('klaviyo', (options = {}) => ({
-          email: '',
-          error: false, // Boolean - is there an error
-          errors: [], // Array of strings describing errors
-          source: options.source || 'web',
-          listId: options.listId || '',
-          success: false,
-          inFlight: false,
-          submitForm() {
-            this.error = false;
-            this.errors = []
-            this.success = false;
-            this.inFlight = true;
-            window.klaviyoSubscribe(this.listId, this.email, {"$fields": "$source", "$source": this.source })
-              .then(response => {
-                this.inFlight = false;
-                if (response.errors.length >= 1) {
-                  this.error = true;
-                  this.errors = response.errors
-                } else if (response.success) {
-                  this.success = true;
-                  var _learnq = window._learnq || [];
-                  _learnq.push(['identify', {
-                    '$email': this.email
-                  }]);
-                }
-              })
-              .catch(response => {
-                this.error = true
-              })
-          }
-        }))
-
-        Alpine.data('headerTab', (tabId) => ({
-          tabId: tabId,
-          open() {
-            this.$store.tab.open(this.tabId);
-            trapFocus(this.$root)
-          },
-          get isOpen() {
-            return this.$store.tab.current == this.tabId
-          },
-          close() {
-            if (!this.isOpen) return;
-            this.$store.tab.close()
-            removeTrapFocus(this.$refs['menu-button'])
-          },
-          toggle() {
-            this.$store.tab.current == this.tabId ? this.close() : this.open()
-          }
-        }))
-
-        Alpine.store('tab', {
-          current: null,
-          close() {
-            this.current = null;
-            releaseScroll()
-          },
-          open(tab) {
-            this.current = tab;
-            freezeScroll()
-          },
-          toggle(tab) {
-            this.current == tab ? this.close() : this.open(tab)
-          }
-        })
-
-        Alpine.store('scrolled', false)
-      })
-    </script>
-<script> (function(){ var s = document.createElement('script'); var h = document.querySelector('head') || document.body; s.src = 'https://acsbapp.com/apps/app/dist/js/app.js'; s.async = true; s.onload = function(){ acsbJS.init({ statementLink : '', footerHtml : '', hideMobile : true, hideTrigger : false, disableBgProcess : false, language : 'en', position : 'left', leadColor : '#234237', triggerColor : '#E4E8DF', triggerRadius : '50%', triggerPositionX : 'left', triggerPositionY : 'bottom', triggerIcon : 'settings2', triggerSize : 'small', triggerOffsetX : 20, triggerOffsetY : 20, mobile : { triggerSize : 'small', triggerPositionX : 'right', triggerPositionY : 'center', triggerOffsetX : 10, triggerOffsetY : 0, triggerRadius : '50%' } }); }; h.appendChild(s); })(); </script>
-</body>
+    {%- if settings.predictive_search_enabled -%}
+      <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
+    {%- endif -%}
+  </body>
 </html>

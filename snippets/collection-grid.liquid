@@ -9,7 +9,7 @@
 %}
 
 {%- if collection.products.size == 0 -%}
-  <div class="collection collection--empty padding-x max-w-screen-2xl mx-auto" id="product-grid" data-id="{{ section.id }}">
+  <div class="collection collection--empty page-width max-w-screen-2xl mx-auto" id="product-grid" data-id="{{ section.id }}">
     <div class="loading-overlay gradient"></div>
     <div class="title-wrapper center">
       <h2 class="title title--primary">
@@ -23,7 +23,7 @@
     </div>
   </div>
 {%- else -%}
-  <div class="collection padding-x max-w-screen-2xl mx-auto">
+  <div class="collection page-width max-w-screen-2xl mx-auto">
     <div class="loading-overlay gradient"></div>
 
       <ul

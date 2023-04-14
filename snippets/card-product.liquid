@@ -17,14 +17,6 @@
 
 
 {%- if card_product and card_product != empty -%}
-  {% liquid
-    for tag in card_product.tags
-      if tag contains 'label:'
-        assign label = tag | split: 'label:' | last
-        break
-      endif
-    endfor
-  %}
 
   <div class="card-product">
     <div class="relative card-product__image-wrapper animate-spring-up rounded overflow-hidden">
@@ -34,7 +26,7 @@
           {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
           <div class="card-product__image">
             {% render 'image', image: card_product.featured_image,
-              class: 'z-10 w-full',
+              class: 'z-1 w-full',
               sizes: '(min-width: 768px) 33vw, 100vw',
               width: 300,
               fit: 'contain',
@@ -56,15 +48,10 @@
         {% comment %}theme-check-enable ImgLazyLoading{% endcomment %}
       </div>
 
-
-      {% if label %}
-        <div class="z-10 flag absolute top-5 right-0">{{ label }}</div>
-      {% endif %}
-
-      <a title="{{ title | default: card_product.title }}" tabindex="-1" aria-hidden="true" class="z-10 absolute inset-0"  href="{{ card_product.url | within: collection }}"></a>
+      <a title="{{ title | default: card_product.title }}" tabindex="-1" aria-hidden="true" class="z-1 absolute inset-0"  href="{{ card_product.url | within: collection }}"></a>
 
       {%- if show_quick_add -%}
-        <div class="spring-up card-product__quick-add--hoverable z-10 quick-add no-js-hidden hidden md:hoverable:block absolute bottom-0 inset-x-5 py-5">
+        <div class="spring-up card-product__quick-add--hoverable z-1 quick-add no-js-hidden hidden md:hoverable:block absolute bottom-0 inset-x-5 py-5">
           {%- assign product_form_id = 'quick-add-hoverable-' | append: section_id | append: card_product.id -%}
             <product-form>
               {%- form 'product', card_product, id: product_form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}

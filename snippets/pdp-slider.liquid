@@ -13,15 +13,6 @@
   }
 </style>
 
-{% liquid
-  for tag in product.tags
-    if tag contains 'label:'
-      assign label = tag | split: 'label:' | last
-      break
-    endif
-  endfor
-%}
-
 <pdp-slider id="MediaGallery-{{ section.id }}" role="region" aria-label="{{ 'products.product.media.gallery_viewer' | t }}" class="pdp-slider block overflow-hidden">
   <div id="GalleryStatus-{{ section.id }}" class="visually-hidden" role="status"></div>
   <a class="skip-to-content-link button visually-hidden" href="#ProductInfo-{{ section.id }}">
@@ -36,11 +27,6 @@
               data-media-position="{{ forloop.index0 }}"
               class="mr-5 min-w-full embla__slide">
               <div class="pdp-image relative pdp-image--{{ forloop.index }}">
-                {% if forloop.index == 1 %}
-                  {% if label %}
-                    <div class="z-10 flag absolute top-7 md:top-10 right-0">{{ label }}</div>
-                  {% endif %}
-                {% endif %}
                 {% render 'pdp-slider-media', media: media, section: section %}
               </div>
             </li>

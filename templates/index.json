@@ -1,7 +1,70 @@
 {
   "sections": {
+    "text": {
+      "type": "text",
+      "settings": {
+        "heading": "Lorem ipsum—",
+        "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nunc lectus, finibus sit amet felis at, mattis imperdiet odio.<\/p>",
+        "border": true
+      }
+    },
+    "homepage-items": {
+      "type": "homepage-items",
+      "blocks": {
+        "2d9c7c70-a620-40e0-b5c0-72833690dee0": {
+          "type": "item",
+          "settings": {
+            "url": "shopify:\/\/collections\/frontpage",
+            "text": "<p>Artist Name<\/p><p><em>Name of Work<\/em><\/p><p>Clay<\/p><p>6x9x4 in<\/p><p><strong>$700—<\/strong><\/p>",
+            "desktop_width": 70,
+            "desktop_position": 10,
+            "mobile_width": 100
+          }
+        },
+        "d95512ee-9a67-4fa5-82fe-659ae8b15a72": {
+          "type": "item",
+          "settings": {
+            "url": "shopify:\/\/products\/name-of-work-1",
+            "image": "shopify:\/\/shop_images\/Screen_Shot_2022-06-09_at_11.18-2.png",
+            "desktop_width": 30,
+            "desktop_position": 50,
+            "mobile_width": 50
+          }
+        },
+        "b2548c99-fb95-4871-915f-d977c731f577": {
+          "type": "item",
+          "settings": {
+            "url": "",
+            "image": "shopify:\/\/shop_images\/Screen_Shot_2022-06-09_at_11.18-5.png",
+            "desktop_width": 30,
+            "desktop_position": 40,
+            "mobile_width": 40
+          }
+        },
+        "4acfb993-eb18-4006-8b7d-dd061b9832a5": {
+          "type": "item",
+          "settings": {
+            "url": "",
+            "image": "shopify:\/\/shop_images\/Screen_Shot_2022-07-07_at_10.26_1.png",
+            "text": "<p>Artist Name<\/p><p><em>Name of Work<\/em><\/p><p>Clay<\/p><p>6x9x4 in<\/p><p><strong>$700—<\/strong><\/p>",
+            "desktop_width": 30,
+            "desktop_position": 20,
+            "mobile_width": 100
+          }
+        }
+      },
+      "block_order": [
+        "2d9c7c70-a620-40e0-b5c0-72833690dee0",
+        "d95512ee-9a67-4fa5-82fe-659ae8b15a72",
+        "b2548c99-fb95-4871-915f-d977c731f577",
+        "4acfb993-eb18-4006-8b7d-dd061b9832a5"
+      ],
+      "settings": {
+      }
+    }
   },
   "order": [
-
+    "text",
+    "homepage-items"
   ]
 }

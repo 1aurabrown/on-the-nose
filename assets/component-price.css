@@ -1,4 +1,6 @@
 .price {
+  font-size: 1.6rem;
+  letter-spacing: 0.1rem;
 }
 
 .price > * {
@@ -10,8 +12,37 @@
   visibility: hidden;
 }
 
+.price--end {
+  text-align: right;
+}
+
+.price .price-item {
+  display: inline-block;
+  margin: 0 1rem 0 0;
+}
+
+.price__regular .price-item--regular {
+  margin-right: 0;
+}
+
+.price:not(.price--show-badge) .price-item--last:last-of-type {
+  margin: 0;
+}
+
+@media screen and (min-width: 750px) {
+  .price {
+    margin-bottom: 0;
+  }
+}
+
+.price--large {
+  font-size: 1.6rem;
+  letter-spacing: 0.13rem;
+}
+
 @media screen and (min-width: 750px) {
   .price--large {
+    font-size: 1.8rem;
   }
 }
 
@@ -35,10 +66,9 @@
 }
 
 .price--on-sale .price__sale {
-  display: inline-flex;
+  display: initial;
   flex-direction: row;
   flex-wrap: wrap;
-  align-items: center;
 }
 
 .price--center {
@@ -48,4 +78,13 @@
 
 .price--on-sale .price-item--regular {
   text-decoration: line-through;
+  font-size: 1.3rem;
+}
+
+.unit-price {
+  display: block;
+  font-size: 1.1rem;
+  letter-spacing: 0.04rem;
+  margin-top: 0.2rem;
+  text-transform: uppercase;
 }

@@ -18,12 +18,12 @@
 {% endstyle %}
 
 <div id="CartContents" class="cart-contents relative {% if cart == empty %} is-empty{% endif %}">
-  <div class="cart-contents__inner w-full flex flex-col {% if template == 'cart' %} md:padding-x{% endif %}" role="dialog" aria-modal="true" aria-label="{{ 'sections.cart.title' | t }}" tabindex="-1">
-    <div class="{% if template != 'cart' %}sticky top-0 z-10{% endif %}">
+  <div class="cart-contents__inner w-full flex flex-col {% if template == 'cart' %} md:page-width{% endif %}" role="dialog" aria-modal="true" aria-label="{{ 'sections.cart.title' | t }}" tabindex="-1">
+    <div class="{% if template != 'cart' %}sticky top-0 z-1{% endif %}">
       {% if template != 'cart' %}
-        <button class="absolute z-10 top-4 right-5" @click.prevent.stop="$store.tab.close('cart')">{% render 'icon-close' %}</button>
+        <button class="absolute z-1 top-4 right-5" @click.prevent.stop="$store.tab.close('cart')">{% render 'icon-close' %}</button>
       {% endif %}
-      <div class="mt-8 padding-x{% if template == 'cart' %} md:px-0 {% endif %}">
+      <div class="mt-8 page-width{% if template == 'cart' %} md:px-0 {% endif %}">
         {%- if cart == empty -%}
           <h2 class="h4">{{ 'sections.cart.empty' | t }}</h2>
 
@@ -39,7 +39,7 @@
     {%- if cart != empty -%}
       <div class="flex flex-col flex-1 {% if template == 'cart' %} md:flex-row{% endif %}">
         <!-- Cart Items -->
-        <cart-items class="flex-1 block mt-10 padding-x {% if template == 'cart' %}md:px-0 md:mt-0 md:w-1/2 flex-1{% endif %} {% if cart == empty %}is-empty{% endif %}">
+        <cart-items class="flex-1 block mt-10 page-width {% if template == 'cart' %}md:px-0 md:mt-0 md:w-1/2 flex-1{% endif %} {% if cart == empty %}is-empty{% endif %}">
 
           <!-- Form -->
           <form action="{{ routes.cart_url }}" id="CartContents-Form" class="cart__contents cart-cart-contents__form" method="post">
@@ -58,7 +58,7 @@
                             <div class="relative z-0">
                               {% if item.image %}
                                 {% comment %} Leave empty space due to a:empty CSS display: none rule {% endcomment %}
-                                <a title="{{ item.title }}" href="{{ item.url }}" class="cart-item__link z-10" tabindex="-1" aria-hidden="true"> </a>
+                                <a title="{{ item.title }}" href="{{ item.url }}" class="cart-item__link z-1" tabindex="-1" aria-hidden="true"> </a>
                                 <img class="w-34 h-34 cart-item__image block"
                                   src="{{ item.image | image_url: width: 136 }}"
                                   alt="{{ item.image.alt | escape }}"
@@ -75,16 +75,6 @@
                             <!-- Details -->
                             <div class="cart-item__details flex justify-between">
                               <div class="">
-                                <div class="label-sm">
-                                  {%- assign tags =  item.product.tags | join: "," | downcase | split: "," %}
-                                  {% if tags contains 'cat' and tags contains 'dog' %}
-                                    For Cats + Dogs
-                                  {% elsif tags contains 'cat' %}
-                                    For Cats
-                                  {% elsif tags contains 'dog' %}
-                                    For Dogs
-                                  {% endif %}
-                                </div>
                                 <div class="cart-item__name text-left mt-1 h5 {% if template == 'cart' %}md:h4 lg:h2{% endif %}">
                                   <h2><a title="{{ item.title }}" href="{{ item.url }}" class="">
                                     {{ item.product.title }}
@@ -336,7 +326,7 @@
           </div>
 
           <h3 class="totals__subtotal mt-1">
-            <span class="tax-note body-sm">
+            <span class="tax-note">
               {%- if cart.taxes_included and shop.shipping_policy.body != blank -%}
                 {{ 'sections.cart.taxes_included_and_shipping_policy_html' | t: link: shop.shipping_policy.url }}
               {%- elsif cart.taxes_included -%}
@@ -360,7 +350,7 @@
             <button type="submit" id="CartContents-Checkout" class="cart__checkout-button button" name="checkout" form="CartContents-Form"{% if cart == empty %} disabled{% endif %}>
               {{ 'sections.cart.checkout' | t }}
             </button>
-            <p class="body-sm text-center mt-3">{{ section.settings.text }}</p>
+            <p class="text-center mt-3">{{ section.settings.text }}</p>
           </div>
         <!-- End CTAs -->
 
@@ -369,7 +359,7 @@
 
 
         <!-- Cart Page Footer -->
-        <div class="cart-contents__footer py-8 px-5 bg-white mt-10 md:mt-0 padding-x md:p-0 md:w-2/5 xl:w-1/2 md:ml-15 lg:ml-30 {% if template != 'cart' %}hidden{% endif %}">
+        <div class="cart-contents__footer py-8 px-5 bg-white mt-10 md:mt-0 page-width md:p-0 md:w-2/5 xl:w-1/2 md:ml-15 lg:ml-30 {% if template != 'cart' %}hidden{% endif %}">
           <div class="lg:max-w-lg mx-auto">
             {%- if settings.show_cart_note -%}
               <div> {{ cart.note }} </div>
@@ -397,7 +387,7 @@
                 <span class="totals__subtotal-value">{{ cart.total_price | money }}</span>
               </div>
               <h3 class="totals__subtotal mt-1">
-                <span class="tax-note body-sm">
+                <span class="tax-note">
                   {%- if cart.taxes_included and shop.shipping_policy.body != blank -%}
                     {{ 'sections.cart.taxes_included_and_shipping_policy_html' | t: link: shop.shipping_policy.url }}
                   {%- elsif cart.taxes_included -%}
@@ -423,7 +413,7 @@
               <button type="submit" id="CartContents-Checkout" class="cart__checkout-button button" name="checkout" form="CartContents-Form"{% if cart == empty %} disabled{% endif %}>
                 {{ 'sections.cart.checkout' | t }}
               </button>
-              <p class="body-sm text-center mt-3">{{ section.settings.text }}</p>
+              <p class="text-center mt-3">{{ section.settings.text }}</p>
             </div>
 
           </div>

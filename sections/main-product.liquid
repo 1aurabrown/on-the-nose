@@ -1,15 +1,10 @@
 {% comment %}css-purge shopify-payment-button__button{% endcomment %}
-{{ 'okendo-custom.css' | asset_url | stylesheet_tag }}
-
-
-{%- assign tags =  product.tags | join: "," | downcase | split: "," %}
-
 
 <script>
   loadDynamicScriptTag("{{ 'embla-carousel.js' | asset_url }}", function() { document.dispatchEvent(new Event('emblaLoaded')); })
 </script>
 
-<div id="MainProduct-{{ section.id }}" class="section-main-product section-{{ section.id }} max-w-screen-2xl mx-auto padding-x" data-section="{{ section.id }}">
+<div id="MainProduct-{{ section.id }}" class="section-main-product section-{{ section.id }} max-w-screen-2xl mx-auto page-width" data-section="{{ section.id }}">
   {{ 'component-quantity.css' | asset_url | stylesheet_tag }}
   {{ 'section-main-product.css' | asset_url | stylesheet_tag }}
   {{ 'component-price.css' | asset_url | stylesheet_tag }}
@@ -28,32 +23,6 @@
   <div class="section-main-product__inner md:grid md:grid-cols-2 ">
     <div class="product__media-wrapper md:pr-15 lg:pr-30" style="background-color: {{ product.metafields.colors.primary }};">
       <div class="sticky top-header mt-10 md:pb-15">
-
-        {% liquid
-          if tags contains 'cat'
-            unless tags contains 'dog'
-              assign animal = 'cat'
-            endunless
-          endif
-
-          if tags contains 'dog'
-            unless tags contains 'cat'
-              assign animal = 'dog'
-            endunless
-          endif
-
-          if collection
-            assign tag = animal
-          elsif animal
-            assign collection = collections[animal]
-          else
-            assign collection = collections['all']
-          endif
-        %}
-
-        {% if collection %}
-          <div class="mb-2 md:mb-3 body-sm"><a href="{{ collection.url }}{% if tag %}/{{ tag }}{% endif %}" class="text-link" title="{{ collection.title }}">{{ collection.title }}</a> / {{ product.title }}</div>
-        {% endif %}
         {% render 'pdp-slider' %}
       </div>
     </div>
@@ -71,15 +40,6 @@
             {% render block %}
           {%- when 'title' -%}
             <div class="product__title my-3 md:my-5" {{ block.shopify_attributes }}>
-              <p class="label-sm md:label">
-                {% if tags contains 'cat' and tags contains 'dog' %}
-                  For Cats + Dogs
-                {% elsif tags contains 'cat' %}
-                  For Cats
-                {% elsif tags contains 'dog' %}
-                  For Dogs
-                {% endif %}
-              </p>
 
               <h1 class="mt-3 h2 md:h1">
                 {{ product.title | escape }}
@@ -203,55 +163,6 @@
       </div>
     </div>
   </div>
-
-  {% javascript %}
-    const okendoWidget = document.querySelector('[data-oke-widget]')
-    if (okendoWidget) {
-      const newNode = document.createElement("span");
-      const parentNode = okendoWidget.parentNode;;
-      newNode.className="h-0 w-0 block invisible relative -top-header";
-      newNode.id = 'reviews';
-      parentNode.prepend(newNode)
-    }
-
-    (function checkRecharge() {
-      if (window.Recharge && document.querySelector('.rc-widget')) {
-        const rechargeWidget = document.querySelector('.rc-widget')
-
-        // Move Tooltip Content
-        const tooltip = rechargeWidget.querySelector('.rc-subscription-details')
-
-        const howItWorks = tooltip.querySelector('.how-it-works')
-        const learnMore = tooltip.querySelector('.learn-more')
-        const newNode = document.createElement("div");
-        newNode.className = 'text-body-sm'
-        const newLearnMore = learnMore.cloneNode(true)
-        newLearnMore.classList.add('text-link')
-        newLearnMore.setAttribute('href', '/policies/subscription-policy')
-        newNode.innerHTML = howItWorks.innerHTML + ' '
-        newNode.append(newLearnMore)
-        tooltip.innerHTML = ''
-        tooltip.append(newNode)
-
-        // Percentage
-        const subscription = rechargeWidget.querySelector('.rc-radio__subscription')
-        const subscriptionText = subscription.textContent
-        const percentString = subscriptionText.match(/[0-9]*\%/)[0]
-        newSubscriptionText = subscriptionText.replace(percentString, '')
-        subscription.textContent = newSubscriptionText
-
-        const discount = document.createElement('span')
-        discount.className = "flag flag--reverse flag--sm inline-flex ml-3"
-        discount.textContent = percentString + ' Savings'
-
-        subscription.parentNode.append(discount)
-
-      } else {
-        setTimeout(checkRecharge, 200)
-      }
-    })()
-  {% endjavascript %}
-
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {

@@ -16,7 +16,7 @@
 
 
 {%- if paginate.parts.size > 0 -%}
-  <div class="pagination-wrapper padding-x max-w-screen-2xl mx-auto {{ class }}">
+  <div class="pagination-wrapper page-width max-w-screen-2xl mx-auto {{ class }}">
     <nav class="pagination" role="navigation" aria-label="{{ 'general.pagination.label' | t }}">
       <div class="w-ful flex items-center justify-between " role="list">
         <button class="w-11 h-11 button button--yellow cursor-auto p-0 pr-1{% unless paginate.previous %} opacity-50{% endunless %}">

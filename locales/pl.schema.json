@@ -425,6 +425,18 @@
         "options__4": {
           "label": "Bardzo duży"
         }
+      },
+      "animation": {
+        "content": "Animacje",
+        "image_behavior": {
+          "options__1": {
+            "label": "Brak"
+          },
+          "options__2": {
+            "label": "Ruch otoczenia"
+          },
+          "label": "Zachowanie obrazu"
+        }
       }
     },
     "announcement-bar": {
@@ -890,6 +902,9 @@
           },
           "options__2": {
             "label": "Mega menu"
+          },
+          "options__3": {
+            "label": "Szuflada"
           }
         },
         "mobile_layout": {
@@ -921,6 +936,24 @@
           "options__4": {
             "label": "Zawsze, zmniejsz rozmiar logo"
           }
+        },
+        "header__3": {
+          "content": "Selektor kraju/regionu"
+        },
+        "header__4": {
+          "info": "Aby dodać kraj/region, przejdź do swoich [ustawień rynku.](/admin/settings/markets)"
+        },
+        "enable_country_selector": {
+          "label": "Włącz selektor kraju/regionu"
+        },
+        "header__5": {
+          "content": "Selektor języka"
+        },
+        "header__6": {
+          "info": "Aby dodać język, przejdź do swoich [ustawień języka.](/admin/settings/languages)"
+        },
+        "enable_language_selector": {
+          "label": "Włącz selektor języka"
         }
       }
     },
@@ -948,9 +981,6 @@
         },
         "image_overlay_opacity": {
           "label": "Nieprzezroczystość nakładki obrazu"
-        },
-        "header": {
-          "content": "Układ na urządzeniu mobilnym"
         },
         "show_text_below": {
           "label": "Pokaż kontener na urządzeniu mobilnym"
@@ -1024,6 +1054,9 @@
             "label": "Prawa strona"
           },
           "label": "Wyrównanie treści na urządzeniu mobilnym"
+        },
+        "mobile": {
+          "content": "Układ na urządzeniu mobilnym"
         }
       },
       "blocks": {
@@ -1581,6 +1614,10 @@
             "show_dynamic_checkout": {
               "label": "Pokaż dynamiczne przyciski realizacji zakupu",
               "info": "Korzystając z metod płatności dostępnych w Twoim sklepie, klienci widzą swoją preferowaną opcję, np. PayPal lub Apple Pay. [Dowiedz się więcej](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)"
+            },
+            "show_gift_card_recipient": {
+              "label": "Pokaż formularz danych odbiorcy dla produktów typu karta prezentowa",
+              "info": "Produkty w postaci kart prezentowych mogą być wysyłane bezpośrednio do odbiorcy wraz z osobistą wiadomością."
             }
           }
         },
@@ -2428,6 +2465,10 @@
             "show_dynamic_checkout": {
               "label": "Pokaż dynamiczne przyciski realizacji zakupu",
               "info": "Korzystając z metod płatności dostępnych w Twoim sklepie, klienci widzą swoją preferowaną opcję, np. PayPal lub Apple Pay. [Dowiedz się więcej](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)"
+            },
+            "show_gift_card_recipient": {
+              "label": "Pokaż formularz odbiorcy dla produktów typu karta prezentowa",
+              "info": "Po włączeniu, produkty w postaci kart prezentowych mogą być opcjonalnie wysyłane do odbiorcy z osobistą wiadomością."
             }
           }
         },

@@ -190,10 +190,7 @@
   }
 
   .banner:not(.banner--mobile-bottom):not(.email-signup-banner) .banner__box {
-    background-color: transparent;
-    --color-foreground: 255, 255, 255;
-    --color-button: 255, 255, 255;
-    --color-button-text: 0, 0, 0;
+    background: transparent;
   }
 
   .banner:not(.banner--mobile-bottom) .banner__box {
@@ -203,13 +200,9 @@
   }
 
   .banner:not(.banner--mobile-bottom) .button--secondary {
-    --color-button: 255, 255, 255;
-    --color-button-text: 255, 255, 255;
-    --alpha-button-background: 0;
   }
 
-  .banner--stacked:not(.banner--mobile-bottom):not(.banner--adapt)
-    .banner__content {
+  .banner--stacked:not(.banner--mobile-bottom):not(.banner--adapt) .banner__content {
     position: absolute;
     height: auto;
   }
@@ -317,10 +310,7 @@
 
 @media screen and (min-width: 750px) {
   .banner--desktop-transparent .banner__box {
-    background-color: transparent;
-    --color-foreground: 255, 255, 255;
-    --color-button: 255, 255, 255;
-    --color-button-text: 0, 0, 0;
+    background: transparent;
     max-width: 89rem;
     border: none;
     border-radius: 0;
@@ -328,9 +318,6 @@
   }
 
   .banner--desktop-transparent .button--secondary {
-    --color-button: 255, 255, 255;
-    --color-button-text: 255, 255, 255;
-    --alpha-button-background: 0;
   }
 
   .banner--desktop-transparent .content-container:after {
@@ -435,4 +422,20 @@
 
 .banner__box > * + .banner__buttons {
   margin-top: 2rem;
+}
+
+@media screen and (max-width: 749px) {
+  .banner:not(.slideshow) .rte a,
+  .banner:not(.slideshow) .inline-richtext a:hover,
+  .banner:not(.slideshow) .rte a:hover {
+    color: currentColor;
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .banner--desktop-transparent .rte a,
+  .banner--desktop-transparent .inline-richtext a:hover,
+  .banner--desktop-transparent .rte a:hover {
+    color: currentColor;
+  }
 }

@@ -34,7 +34,7 @@
           "type": "buy_buttons",
           "settings": {
             "show_dynamic_checkout": true,
-            "text": "<p>Lorem ipsum dolor sit amet, consectetur elit.</p>"
+            "text": "<p>Lorem ipsum dolor sit amet, consectetur elit.<\/p>"
           }
         }
       },
@@ -44,9 +44,7 @@
         "10c1cdf9-1d39-48da-80bc-34cf3b6b0c05",
         "variant_picker",
         "c5566abf-e4b7-4618-9882-774d7d181197",
-        "73a16b70-96c3-4681-9585-77eff1cf892d",
-        "c01552e3-e0b5-4d98-b7ce-19e60dceead9",
-        "5909b846-d43a-4191-8277-2c389e3fd105"
+        "c01552e3-e0b5-4d98-b7ce-19e60dceead9"
       ],
       "settings": {
         "enable_video_looping": true
