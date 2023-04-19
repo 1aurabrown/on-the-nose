@@ -14,9 +14,9 @@
     scroll-behavior: smooth;
     @apply bg-grey
   }
-
   body {
     @apply bg-grey text-sm md:text-lg font-serif;
+    text-decoration-thickness: .09rem;
   }
 
   /* Typography*/
@@ -26,12 +26,12 @@
   }
 
   .indent {
-    padding-left: 72px;
+    text-indent: 72px;
   }
 
   @screen md {
     .indent {
-      padding-left: 115px;
+      text-indent: 115px;
     }
   }
   .label-sm {
@@ -68,6 +68,10 @@
   }
 
   .shopify-policy__body {
+  }
+
+  .shopify-challenge__container {
+    @apply pb-20;
   }
 
   .rte h1,
@@ -143,6 +147,10 @@
 
   .padding-x {
     @apply px-3 md:px-10;
+  }
+
+  .padding-top {
+    @apply pt-1 md:pt-5;
   }
 
   .text-link-container a {
