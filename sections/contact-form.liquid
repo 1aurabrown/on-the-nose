@@ -1,23 +1,14 @@
-<div class="padding-x md:pt-5 md:pb-20">
+<div class="padding-x padding-top pb-20 border-t">
   <div>
-    {%- if section.settings.heading != blank -%}
-      <h2 class="indent inline-richtext">
-        {{ section.settings.heading }}—
-      </h2>
-    {%- else -%}
-      <h2 class="visually-hidden">{{ 'templates.contact.form.title' | t }}</h2>
-    {%- endif -%}
-    {%- form 'contact', id: 'ContactForm', class: 'isolate md:mt-14' -%}
+    {%- form 'contact', id: 'ContactForm', class: 'isolate' -%}
       {%- if form.posted_successfully? -%}
         <h2 tabindex="-1" autofocus>
           {{ 'templates.contact.form.post_success' | t }}
         </h2>
       {%- elsif form.errors -%}
-        <div>
-          <h2 role="alert" tabindex="-1" autofocus>
-            {{ 'templates.contact.form.error_heading' | t }}
-          </h2>
-        </div>
+        <h2 role="alert" tabindex="-1" autofocus>
+          {{ 'templates.contact.form.error_heading' | t }}
+        </h2>
         <ul role="list">
           <li>
             <a href="#ContactForm-email" class="link">
@@ -26,8 +17,14 @@
             </a>
           </li>
         </ul>
+      {%- elsif section.settings.heading != blank -%}
+        <h2 class="indent inline-richtext">
+          {{ section.settings.heading }}—
+        </h2>
+      {%- else -%}
+        <h2 class="visually-hidden">{{ 'templates.contact.form.title' | t }}</h2>
       {%- endif -%}
-      <div class="md:flex">
+      <div class="md:flex mt-5 md:mt-14">
         <div class="md:w-1/2 md:flex-grow-0">
           <div class="field border-b">
             <input
@@ -112,7 +109,7 @@
         </div>
 
 
-        <div class="md:w-1/2 md:grow-0 contact__button md:ml-5">
+        <div class="md:w-1/2 md:grow-0 contact__button md:ml-5 mt-5 md:mt-0">
           <button type="submit" class="underline">
             {{ 'templates.contact.form.send' | t }}
           </button>

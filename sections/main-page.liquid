@@ -1,9 +1,18 @@
-<div class="padding-x pt-[1.125rem] pb-15 pb-30 md:pb-20 {% if section.settings.border %} border-b{% endif %} rte">
+<div class="text-link-container padding-x padding-top pb-15 pb-30 md:pb-20 {% if section.settings.border %} border-b{% endif %} rte">
+
   {% if section.settings.show_title %}
     <h2>{{ page.title }}</h2>
   {% endif %}
   {{ page.content }}
 </div>
+
+{% stylesheet %}
+  #shopify-section-template--18557877977373__main a:after {
+    content: ' ↗';
+    line-height: 1;
+    vertical-align: top;
+  }
+{% endstylesheet %}
 
 {% schema %}
 {
@@ -19,9 +28,15 @@
       "id": "show_title",
       "label": "Show page title as indented heading",
       "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "arrows",
+      "default": true,
+      "label": "Show arrows next to links"
     }
   ],
   "tag": "section",
-  "class": "section"
+  "class": "section-main-page"
 }
 {% endschema %}

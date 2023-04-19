@@ -108,7 +108,7 @@ module.exports = {
       }],
     },
     fontFamily: {
-      serif: 'serif'
+      serif: ['"Jannon 10 Pro"', 'serif']
     },
     extend: {
       zIndex: {

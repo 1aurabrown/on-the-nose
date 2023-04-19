@@ -169,9 +169,6 @@ body,
 }
 
 .text-body {
-  font-family: var(--font-body-family);
-  font-style: var(--font-body-style);
-  font-weight: var(--font-body-weight);
 }
 
 h1,
@@ -185,9 +182,6 @@ h5,
 .h3,
 .h4,
 .h5 {
-  font-family: var(--font-heading-family);
-  font-style: var(--font-heading-style);
-  font-weight: var(--font-heading-weight);
   word-break: break-word;
 }
 
@@ -239,8 +233,6 @@ h3,
 
 h4,
 .h4 {
-  font-family: var(--font-heading-family);
-  font-style: var(--font-heading-style);
 }
 
 h5,
@@ -470,7 +462,6 @@ details > * {
 
 h3 .icon-arrow,
 .h3 .icon-arrow {
-  width: calc(var(--font-heading-scale) * 1.5rem);
 }
 
 /* arrow animation */
@@ -702,179 +693,6 @@ summary::-webkit-details-marker {
 }
 
 .subtitle--medium {
-}
-
-/* component-grid */
-.grid {
-  display: flex;
-  flex-wrap: wrap;
-  margin-bottom: 2rem;
-  padding: 0;
-  list-style: none;
-}
-
-@media screen and (min-width: 768px) {
-  .grid {
-  }
-}
-
-.grid:last-child {
-  margin-bottom: 0;
-}
-
-.grid__item {
-  flex-grow: 1;
-  flex-shrink: 0;
-}
-
-@media screen and (min-width: 768px) {
-  .grid__item {
-  }
-}
-
-.grid--gapless.grid {
-  column-gap: 0;
-  row-gap: 0;
-}
-
-@media screen and (max-width: 767px) {
-  .grid__item.slider__slide--full-width {
-    width: 100%;
-    max-width: none;
-  }
-}
-
-.grid--1-col .grid__item {
-  max-width: 100%;
-  width: 100%;
-}
-
-.grid--3-col .grid__item {
-}
-
-@media screen and (min-width: 768px) {
-  .grid--3-col .grid__item {
-  }
-}
-
-.grid--2-col .grid__item {
-}
-
-@media screen and (min-width: 768px) {
-  .grid--2-col .grid__item {
-  }
-
-  .grid--4-col-tablet .grid__item {
-  }
-
-  .grid--3-col-tablet .grid__item {
-  }
-
-  .grid--2-col-tablet .grid__item {
-  }
-}
-
-@media screen and (max-width: 989px) {
-  .grid--1-col-tablet-down .grid__item {
-    width: 100%;
-    max-width: 100%;
-  }
-
-  .slider--tablet.grid--peek {
-    margin: 0;
-    width: 100%;
-  }
-
-  .slider--tablet.grid--peek .grid__item {
-    box-sizing: content-box;
-    margin: 0;
-  }
-}
-
-@media screen and (min-width: 1024px) {
-  .grid--6-col-desktop .grid__item {
-  }
-
-  .grid--5-col-desktop .grid__item {
-  }
-
-  .grid--4-col-desktop .grid__item {
-  }
-
-  .grid--3-col-desktop .grid__item {
-  }
-
-  .grid--2-col-desktop .grid__item {
-  }
-}
-
-@media screen and (min-width: 1024px) {
-  .grid--1-col-desktop {
-    flex: 0 0 100%;
-    max-width: 100%;
-  }
-
-  .grid--1-col-desktop .grid__item {
-    width: 100%;
-    max-width: 100%;
-  }
-}
-
-@media screen and (max-width: 767px) {
-  .grid--peek.slider--mobile {
-    margin: 0;
-    width: 100%;
-  }
-
-  .grid--peek.slider--mobile .grid__item {
-    box-sizing: content-box;
-    margin: 0;
-  }
-
-  .grid--peek .grid__item {
-    min-width: 35%;
-  }
-
-  .grid--peek.slider .grid__item:first-of-type {
-    margin-left: 1.5rem;
-  }
-
-  /* Fix to show some space at the end of our sliders in all browsers */
-  .grid--peek.slider:after {
-  }
-
-  .grid--2-col-tablet-down .grid__item {
-  }
-
-  .slider--tablet.grid--peek.grid--2-col-tablet-down .grid__item,
-  .grid--peek .grid__item {
-  }
-
-  .slider--tablet.grid--peek.grid--1-col-tablet-down .grid__item,
-  .slider--mobile.grid--peek.grid--1-col-tablet-down .grid__item  {
-  }
-}
-
-@media screen and (min-width: 768px) and (max-width: 989px) {
-  .slider--tablet.grid--peek .grid__item {
-  }
-
-  .slider--tablet.grid--peek.grid--3-col-tablet .grid__item {
-  }
-
-  .slider--tablet.grid--peek.grid--2-col-tablet .grid__item,
-  .slider--tablet.grid--peek.grid--2-col-tablet-down .grid__item {
-  }
-
-  .slider--tablet.grid--peek .grid__item:first-of-type {
-    margin-left: 1.5rem;
-  }
-
-  .grid--2-col-tablet-down .grid__item {
-  }
-
-  .grid--1-col-tablet-down.grid--peek .grid__item {
-  }
 }
 
 /* component-media */
@@ -1335,9 +1153,6 @@ details[open] > .share-button__fallback {
 }
 
 .select__select {
-  font-family: var(--font-body-family);
-  font-style: var(--font-body-style);
-  font-weight: var(--font-body-weight);
 }
 
 .field:hover.field:after,
@@ -2265,7 +2080,6 @@ details-disclosure > details {
 }
 
 .font-body-bold {
-  font-weight: var(--font-body-weight-bold);
 }
 
 /* outline and border styling for Windows High Contrast Mode */
