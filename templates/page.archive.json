@@ -1,0 +1,36 @@
+{
+  "sections": {
+    "main": {
+      "type": "archive",
+      "blocks": {
+        "5bf64e72-5c92-44c2-87eb-e2da7bfd2d7c": {
+          "type": "item",
+          "settings": {
+            "product": "name-of-work-1",
+            "text": "",
+            "cause": "ACLU",
+            "year": 2021
+          }
+        },
+        "d5e09578-1a28-412d-aa03-0476129dc80f": {
+          "type": "item",
+          "settings": {
+            "product": "",
+            "text": "Artist Name, <em>Mirror Soul<\/em>, Acrylic on porcelain, 11x15 in",
+            "cause": "The Okra Project",
+            "year": 2021
+          }
+        }
+      },
+      "block_order": [
+        "5bf64e72-5c92-44c2-87eb-e2da7bfd2d7c",
+        "d5e09578-1a28-412d-aa03-0476129dc80f"
+      ],
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

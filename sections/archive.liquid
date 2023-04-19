@@ -1,0 +1,121 @@
+<div class="text-link-container padding-x padding-top pb-20">
+  <table class="block md:table w-full">
+    <thead class="hidden md:table-header-group">
+      <tr>
+        <td class="md:pb-7">Item—</td>
+        <td class="md:pl-10 md:pb-7">Profits to—</td>
+        <td class="md:pl-10 xl:pl-55 md:pb-7">Sold in—</td>
+      </tr>
+    </thead>
+    <tbody class="block md:table-row-group space-y-20 md:space-y-0">
+      {% for block in section.blocks %}
+        {% liquid
+          assign product = block.settings.product
+          assign has_images = product.images.size
+        %}
+        <tr class="grid grid-cols-2 gap-5 md:table-row" x-data="{ imagesVisible: false }" >
+          <td class="md:pt-8 col-span-2">
+            <div class="mb-2 md:hidden">Item—</div>
+            <h2>
+              {% if has_images %}<button class="inline text-left" @click="imagesVisible=!imagesVisible">{% endif %}
+                {{ block.settings.text | default: product.title }}
+              {% if has_images %}</button>{% endif %}
+            </h2>
+
+            {% if has_images %}
+              <div class="hidden md:block w-full transition-all duration-200 max-h-0 overflow-hidden" :class="imagesVisible ? 'max-h-40 xl:max-h-57' : 'max-h-0'">
+                <div class="pt-5 pb-10">
+                  <div class="flex flex-wrap overflow-hidden space-x-8 h-30 xl:h-42">
+                    {% for image in product.images %}
+                      {% render 'image', image: image, sizes: '160px', class: 'w-auto h-full' %}
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+            {% endif %}
+          </td>
+          <td class="block md:table-cell md:pt-8 md:pl-10">
+            <div class="mb-2 md:hidden">Profits to—</div>
+            <div class="whitespace-nowrap">{{ block.settings.cause }}</div>
+          </td>
+          <td class="block md:table-cell md:pt-8 md:pl-10 xl:pl-55">
+            <div class="mb-2 md:hidden">Sold in—</div>
+            <div>{{ block.settings.year }}</div>
+          </td>
+
+          {% if has_images %}
+            <td class="block col-span-2 md:hidden" class="md:pt-8">
+
+              <button class="inline text-left underline" @click="imagesVisible=!imagesVisible"><span x-text="imagesVisible ? 'Hide' : 'Show'">Show</span> Item</button>
+
+              <div class="transition-all duration-200 max-h-0 overflow-hidden " :class="imagesVisible ? 'max-h-30 sm:max-h-40' : 'max-h-0'">
+                <div class="pt-5 space-x-8 flex flex-wrap">
+                    {% for image in product.images %}
+                      {% render 'image', image: image, sizes: '160px', class: 'w-auto h-25 sm:h-35' %}
+                    {% endfor %}
+                </div>
+              </div>
+            </td>
+          {% endif %}
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% stylesheet %}
+.section-archive thead td {
+  white-space: nowrap;
+}
+
+.section-archive td {
+  text-align: left;
+  vertical-align: top;
+}
+
+
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Archive",
+  "enabled_on": {
+    "templates": [
+      "page"
+    ]
+  },
+  "settings": [],
+  "blocks": [
+    {
+      "name": "Item",
+      "type": "item",
+      "settings": [
+        {
+          "type": "product",
+          "label": "Item (product)",
+          "id": "product",
+          "info": "Populates item text and images."
+        },
+        {
+          "type": "inline_richtext",
+          "label": "Item (text)",
+          "id": "text",
+          "info": "Override item text."
+        },
+        {
+          "type": "text",
+          "label": "Cause",
+          "id": "cause"
+        },
+        {
+          "type": "number",
+          "label": "Year",
+          "id": "year"
+        }
+      ]
+    }
+  ],
+  "tag": "section",
+  "class": "section-archive"
+}
+{% endschema %}
