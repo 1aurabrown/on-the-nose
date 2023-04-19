@@ -1,60 +1,42 @@
 <link rel="preconnect" href="https://pay.shopify.com">
 <link rel="preconnect" href="https://cdn.shopify.com">
-<link rel="dns-prefetch" href="https://klaviyo.com"> 
 
 <style>
 
-/* Sans-Serif	*/
-
+/* Normal */
 @font-face {
-  font-family: "Messina Sans";
-  src: url("{{ 'MessinaSansWeb-Regular.woff' | asset_url }}") format("woff"),
-		  url("{{ 'MessinaSansWeb-Regular.woff2' | asset_url }}") format("woff2");
-	font-weight: normal;
 	font-style: normal;
+	font-weight: 400;
+  font-family: "Jannon 10 Pro";
+  src: url({{ 'Jannon10Pro.eot' | asset_url }}); /* IE9 Compat Modes */
+  src: url({{ 'Jannon10Pro.eot?#iefix' | asset_url }}) format('embedded-opentype'), /* IE6-IE8 */
+     url({{ 'Jannon10Pro.woff' | asset_url }}) format('woff'), /* Modern Browsers */
+     url({{ 'Jannon10Pro.ttf' | asset_url }})  format('truetype'), /* Safari, Android, iOS */
+     url({{ 'Jannon10Pro.svg#Jannon10Pro' | asset_url }}) format('svg'); /* Legacy iOS */
 }
 
+/* Italic */
 @font-face {
-  font-family: "Messina Sans";
-  src: url("{{ 'MessinaSansWeb-RegularItalic.woff' | asset_url }}") format("woff"),
-		  url("{{ 'MessinaSansWeb-RegularItalic.woff2' | asset_url }}") format("woff2");
-	font-weight: normal;
 	font-style: italic;
+	font-weight: 400;
+  font-family: "Jannon 10 Pro";
+  src: url({{ 'Jannon10Pro-Italic.eot' | asset_url }}); /* IE9 Compat Modes */
+  src: url({{ 'Jannon10Pro-Italic.eot?#iefix' | asset_url }}) format('embedded-opentype'), /* IE6-IE8 */
+     url({{ 'Jannon10Pro-Italic.woff' | asset_url }}) format('woff'), /* Modern Browsers */
+     url({{ 'Jannon10Pro-Italic.ttf' | asset_url }})  format('truetype'), /* Safari, Android, iOS */
+     url({{ 'Jannon10Pro-Italic.svg#Jannon10Pro-Italic' | asset_url }}) format('svg'); /* Legacy iOS */
 }
 
+/* Bold */
 @font-face {
-  font-family: "Messina Sans";
-  src: url("{{ 'MessinaSansWeb-Bold.woff' | asset_url }}") format("woff"),
-		  url("{{ 'MessinaSansWeb-Bold.woff2' | asset_url }}") format("woff2");
+	font-style: normal;
 	font-weight: 700;
-	font-style: normal;
+  font-family: "Jannon 10 Pro";
+  src: url({{ 'Jannon10Pro-Bold.eot' | asset_url }}); /* IE9 Compat Modes */
+  src: url({{ 'Jannon10Pro-Bold.eot?#iefix' | asset_url }}) format('embedded-opentype'), /* IE6-IE8 */
+     url({{ 'Jannon10Pro-Bold.woff' | asset_url }}) format('woff'), /* Modern Browsers */
+     url({{ 'Jannon10Pro-Bold.ttf' | asset_url }})  format('truetype'), /* Safari, Android, iOS */
+     url({{ 'Jannon10Pro-Bold.svg#Jannon10Pro-Bold' | asset_url }}) format('svg'); /* Legacy iOS */
 }
-
-@font-face {
-  font-family: "Messina Sans";
-  src: url("{{ 'MessinaSansWeb-BoldItalic.woff' | asset_url }}") format("woff"),
-		  url("{{ 'MessinaSansWeb-BoldItalic.woff2' | asset_url }}") format("woff2");
-	font-weight: 700;
-	font-style: italic;
-}
-
-/* Serif  */
-
-@font-face {
-  font-family: "Messina Serif";
-  src: url("{{ 'MessinaSerifWeb-Regular.woff' | asset_url }}") format("woff"),
-		  url("{{ 'MessinaSerifWeb-Regular.woff2' | asset_url }}") format("woff2");
-	font-weight: normal;
-	font-style: normal;
-}
-
-@font-face {
-  font-family: "Messina Serif";
-  src: url("{{ 'MessinaSerifWeb-RegularItalic.woff' | asset_url }}") format("woff"),
-		  url("{{ 'MessinaSerifWeb-RegularItalic.woff2' | asset_url }}") format("woff2");
-	font-weight: normal;
-	font-style: italic;
-}
-
 
 </style>

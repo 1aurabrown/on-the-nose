@@ -169,9 +169,6 @@ body,
 }
 
 .text-body {
-  font-family: var(--font-body-family);
-  font-style: var(--font-body-style);
-  font-weight: var(--font-body-weight);
 }
 
 h1,
@@ -185,9 +182,6 @@ h5,
 .h3,
 .h4,
 .h5 {
-  font-family: var(--font-heading-family);
-  font-style: var(--font-heading-style);
-  font-weight: var(--font-heading-weight);
   word-break: break-word;
 }
 
@@ -239,8 +233,6 @@ h3,
 
 h4,
 .h4 {
-  font-family: var(--font-heading-family);
-  font-style: var(--font-heading-style);
 }
 
 h5,
@@ -470,7 +462,6 @@ details > * {
 
 h3 .icon-arrow,
 .h3 .icon-arrow {
-  width: calc(var(--font-heading-scale) * 1.5rem);
 }
 
 /* arrow animation */
@@ -1335,9 +1326,6 @@ details[open] > .share-button__fallback {
 }
 
 .select__select {
-  font-family: var(--font-body-family);
-  font-style: var(--font-body-style);
-  font-weight: var(--font-body-weight);
 }
 
 .field:hover.field:after,
@@ -2265,7 +2253,6 @@ details-disclosure > details {
 }
 
 .font-body-bold {
-  font-weight: var(--font-body-weight-bold);
 }
 
 /* outline and border styling for Windows High Contrast Mode */

@@ -435,7 +435,7 @@ html {
 body {
   --tw-bg-opacity: 1;
   background-color: rgb(239 238 236 / var(--tw-bg-opacity));
-  font-family: serif;
+  font-family: "Jannon 10 Pro", serif;
   font-size: 1.25rem;
   line-height: 1.2;
   letter-spacing: -0.01em;
@@ -1119,34 +1119,6 @@ button, input, optgroup, select, textarea {
   max-height: 6.25rem;
 }
 
-.min-h-20 {
-  min-height: 5rem;
-}
-
-.min-h-10 {
-  min-height: 2.5rem;
-}
-
-.min-h-15 {
-  min-height: 3.75rem;
-}
-
-.min-h-22 {
-  min-height: 5.5rem;
-}
-
-.min-h-18 {
-  min-height: 4.5rem;
-}
-
-.min-h-19 {
-  min-height: 4.75rem;
-}
-
-.min-h-\[78px\] {
-  min-height: 78px;
-}
-
 .min-h-\[77px\] {
   min-height: 77px;
 }
@@ -1445,11 +1417,6 @@ button, input, optgroup, select, textarea {
   border-top-width: 1px;
 }
 
-.border-black {
-  --tw-border-opacity: 1;
-  border-color: rgb(0 0 0 / var(--tw-border-opacity));
-}
-
 .bg-transparent {
   background-color: transparent;
 }
@@ -1654,7 +1621,7 @@ button, input, optgroup, select, textarea {
 }
 
 .font-serif {
-  font-family: serif;
+  font-family: "Jannon 10 Pro", serif;
 }
 
 .font-bold {
@@ -1920,6 +1887,10 @@ button, input, optgroup, select, textarea {
     margin-left: 3.75rem;
   }
 
+  .md\:ml-5 {
+    margin-left: 1.25rem;
+  }
+
   .md\:mt-0 {
     margin-top: 0rem;
   }
@@ -1938,10 +1909,6 @@ button, input, optgroup, select, textarea {
 
   .md\:mt-5 {
     margin-top: 1.25rem;
-  }
-
-  .md\:ml-5 {
-    margin-left: 1.25rem;
   }
 
   .md\:block {
