@@ -10,7 +10,7 @@
   Usage:
   {% render 'buy-buttons', block: block, product: product, product_form_id: product_form_id, show_pickup_availability: true %}
 {% endcomment %}
-<div class="max-w-sm my-10 md:my-15" {{ block.shopify_attributes }}>
+<div {{ block.shopify_attributes }}>
   {%- if product != blank -%}
     <product-form class="product-form">
       <div class="product-form__error-message-wrapper" role="alert" hidden>
@@ -56,7 +56,7 @@
             id = "ProductSubmitButton-{{ section_id }}"
             type="submit"
             name="add"
-            class="product-form__submit button w-full button--joint-green"
+            class="product-form__submit button"
             {% if product.selected_or_first_available_variant.available == false or quantity_rule_soldout %}
               disabled
             {% endif %}
@@ -81,7 +81,7 @@
         <button
           type="submit"
           name="add"
-          class="product-form__submit button w-full button--joint-green"
+          class="product-form__submit"
           disabled
         >
           {{ 'products.product.sold_out' | t }}

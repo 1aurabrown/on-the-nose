@@ -1,5 +1,5 @@
 /*
-! tailwindcss v3.2.7 | MIT License | https://tailwindcss.com
+! tailwindcss v3.3.3 | MIT License | https://tailwindcss.com
 */
 
 /*
@@ -31,6 +31,7 @@
 3. Use a more readable tab size.
 4. Use the user's configured `sans` font-family by default.
 5. Use the user's configured `sans` font-feature-settings by default.
+6. Use the user's configured `sans` font-variation-settings by default.
 */
 
 html {
@@ -47,6 +48,8 @@ html {
   /* 4 */
   font-feature-settings: normal;
   /* 5 */
+  font-variation-settings: normal;
+  /* 6 */
 }
 
 /*
@@ -187,6 +190,10 @@ optgroup,
 select,
 textarea {
   font-family: inherit;
+  /* 1 */
+  font-feature-settings: inherit;
+  /* 1 */
+  font-variation-settings: inherit;
   /* 1 */
   font-size: 100%;
   /* 1 */
@@ -339,6 +346,14 @@ menu {
 }
 
 /*
+Reset default styling for dialogs.
+*/
+
+dialog {
+  padding: 0;
+}
+
+/*
 Prevent resizing textareas horizontally by default.
 */
 
@@ -451,6 +466,11 @@ body {
 
 body {
   text-decoration-thickness: .09rem;
+}
+
+body.template-cart {
+  --tw-bg-opacity: 1;
+  background-color: rgb(214 214 214 / var(--tw-bg-opacity));
 }
 
 /* Typography*/
@@ -625,6 +645,9 @@ button, input, optgroup, select, textarea {
   --tw-pan-y:  ;
   --tw-pinch-zoom:  ;
   --tw-scroll-snap-strictness: proximity;
+  --tw-gradient-from-position:  ;
+  --tw-gradient-via-position:  ;
+  --tw-gradient-to-position:  ;
   --tw-ordinal:  ;
   --tw-slashed-zero:  ;
   --tw-numeric-figure:  ;
@@ -672,6 +695,9 @@ button, input, optgroup, select, textarea {
   --tw-pan-y:  ;
   --tw-pinch-zoom:  ;
   --tw-scroll-snap-strictness: proximity;
+  --tw-gradient-from-position:  ;
+  --tw-gradient-via-position:  ;
+  --tw-gradient-to-position:  ;
   --tw-ordinal:  ;
   --tw-slashed-zero:  ;
   --tw-numeric-figure:  ;
@@ -784,18 +810,6 @@ button, input, optgroup, select, textarea {
   box-shadow: inset 2px 2px 10px rgba(0, 0, 0, 0.15);
 }
 
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
-}
-
 .\!visible {
   visibility: visible !important;
 }
@@ -829,15 +843,7 @@ button, input, optgroup, select, textarea {
 }
 
 .inset-0 {
-  top: 0rem;
-  right: 0rem;
-  bottom: 0rem;
-  left: 0rem;
-}
-
-.inset-x-5 {
-  left: 1.25rem;
-  right: 1.25rem;
+  inset: 0rem;
 }
 
 .-top-header {
@@ -880,10 +886,6 @@ button, input, optgroup, select, textarea {
   top: 1rem;
 }
 
-.top-full {
-  top: 100%;
-}
-
 .top-header {
   top: var(--header-height);
 }
@@ -900,12 +902,28 @@ button, input, optgroup, select, textarea {
   z-index: 1;
 }
 
+.z-10 {
+  z-index: 10;
+}
+
 .z-20 {
   z-index: 20;
 }
 
 .col-span-2 {
   grid-column: span 2 / span 2;
+}
+
+.col-span-3 {
+  grid-column: span 3 / span 3;
+}
+
+.col-span-4 {
+  grid-column: span 4 / span 4;
+}
+
+.col-start-3 {
+  grid-column-start: 3;
 }
 
 .mx-4 {
@@ -943,11 +961,6 @@ button, input, optgroup, select, textarea {
   margin-bottom: 0.5rem;
 }
 
-.my-3 {
-  margin-top: 0.75rem;
-  margin-bottom: 0.75rem;
-}
-
 .my-4 {
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -963,13 +976,16 @@ button, input, optgroup, select, textarea {
   margin-bottom: 1.75rem;
 }
 
-.-mx-3 {
-  margin-left: -0.75rem;
-  margin-right: -0.75rem;
+.-mr-10 {
+  margin-right: -2.5rem;
 }
 
 .mb-10 {
   margin-bottom: 2.5rem;
+}
+
+.mb-2 {
+  margin-bottom: 0.5rem;
 }
 
 .mb-3 {
@@ -980,8 +996,8 @@ button, input, optgroup, select, textarea {
   margin-bottom: 1.5rem;
 }
 
-.ml-3 {
-  margin-left: 0.75rem;
+.ml-2 {
+  margin-left: 0.5rem;
 }
 
 .ml-4 {
@@ -992,24 +1008,12 @@ button, input, optgroup, select, textarea {
   margin-left: 1.25rem;
 }
 
-.ml-auto {
-  margin-left: auto;
-}
-
-.mr-1 {
-  margin-right: 0.25rem;
-}
-
 .mr-3 {
   margin-right: 0.75rem;
 }
 
 .mr-5 {
   margin-right: 1.25rem;
-}
-
-.mr-auto {
-  margin-right: auto;
 }
 
 .mt-1 {
@@ -1026,6 +1030,10 @@ button, input, optgroup, select, textarea {
 
 .mt-2 {
   margin-top: 0.5rem;
+}
+
+.mt-25 {
+  margin-top: 6.25rem;
 }
 
 .mt-3 {
@@ -1048,24 +1056,16 @@ button, input, optgroup, select, textarea {
   margin-top: 2rem;
 }
 
+.mt-\[\.75em\] {
+  margin-top: .75em;
+}
+
 .mt-\[0\.625rem\] {
   margin-top: 0.625rem;
 }
 
 .mt-\[6px\] {
   margin-top: 6px;
-}
-
-.-ml-8 {
-  margin-left: -2rem;
-}
-
-.ml-8 {
-  margin-left: 2rem;
-}
-
-.mb-2 {
-  margin-bottom: 0.5rem;
 }
 
 .block {
@@ -1120,6 +1120,14 @@ button, input, optgroup, select, textarea {
   height: 4rem;
 }
 
+.h-25 {
+  height: 6.25rem;
+}
+
+.h-30 {
+  height: 7.5rem;
+}
+
 .h-34 {
   height: 8.5rem;
 }
@@ -1140,22 +1148,6 @@ button, input, optgroup, select, textarea {
   height: 100%;
 }
 
-.h-35 {
-  height: 8.75rem;
-}
-
-.h-30 {
-  height: 7.5rem;
-}
-
-.h-20 {
-  height: 5rem;
-}
-
-.h-25 {
-  height: 6.25rem;
-}
-
 .max-h-0 {
   max-height: 0rem;
 }
@@ -1164,56 +1156,24 @@ button, input, optgroup, select, textarea {
   max-height: 6.25rem;
 }
 
-.max-h-52 {
-  max-height: 13rem;
-}
-
-.max-h-42 {
-  max-height: 10.5rem;
-}
-
-.max-h-full {
-  max-height: 100%;
-}
-
-.max-h-57 {
-  max-height: 14.25rem;
-}
-
-.max-h-35 {
-  max-height: 8.75rem;
+.max-h-30 {
+  max-height: 7.5rem;
 }
 
 .max-h-40 {
   max-height: 10rem;
 }
 
-.max-h-30 {
-  max-height: 7.5rem;
-}
-
-.max-h-50 {
-  max-height: 12.5rem;
-}
-
-.max-h-45 {
-  max-height: 11.25rem;
-}
-
 .min-h-\[77px\] {
   min-height: 77px;
-}
-
-.min-h-25 {
-  min-height: 6.25rem;
 }
 
 .w-11 {
   width: 2.75rem;
 }
 
-.w-16 {
-  width: 4rem;
+.w-18 {
+  width: 4.5rem;
 }
 
 .w-2\/3 {
@@ -1240,6 +1200,10 @@ button, input, optgroup, select, textarea {
   width: 2rem;
 }
 
+.w-auto {
+  width: auto;
+}
+
 .w-fit {
   width: -moz-fit-content;
   width: fit-content;
@@ -1249,21 +1213,8 @@ button, input, optgroup, select, textarea {
   width: 100%;
 }
 
-.w-max-content {
-  width: -moz-max-content;
-  width: max-content;
-}
-
-.w-auto {
-  width: auto;
-}
-
 .min-w-0 {
   min-width: 0rem;
-}
-
-.min-w-full {
-  min-width: 100%;
 }
 
 .max-w-0 {
@@ -1272,10 +1223,6 @@ button, input, optgroup, select, textarea {
 
 .max-w-10 {
   max-width: 2.5rem;
-}
-
-.max-w-full {
-  max-width: 100%;
 }
 
 .max-w-md {
@@ -1288,14 +1235,6 @@ button, input, optgroup, select, textarea {
 
 .max-w-screen-md {
   max-width: 768px;
-}
-
-.max-w-sm {
-  max-width: 24rem;
-}
-
-.max-w-2xl {
-  max-width: 42rem;
 }
 
 .flex-1 {
@@ -1343,24 +1282,24 @@ button, input, optgroup, select, textarea {
   cursor: auto;
 }
 
+.cursor-default {
+  cursor: default;
+}
+
 .resize {
   resize: both;
 }
 
-.snap-x {
-  scroll-snap-type: x var(--tw-scroll-snap-strictness);
-}
-
-.snap-mandatory {
-  --tw-scroll-snap-strictness: mandatory;
-}
-
-.snap-start {
-  scroll-snap-align: start;
-}
-
 .grid-cols-2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.grid-cols-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .flex-col {
@@ -1395,10 +1334,6 @@ button, input, optgroup, select, textarea {
   justify-content: space-between;
 }
 
-.gap-20 {
-  gap: 5rem;
-}
-
 .gap-5 {
   gap: 1.25rem;
 }
@@ -1412,20 +1347,14 @@ button, input, optgroup, select, textarea {
   row-gap: 2.5rem;
 }
 
-.gap-y-6 {
-  row-gap: 1.5rem;
+.gap-y-20 {
+  row-gap: 5rem;
 }
 
 .space-x-3 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
   margin-right: calc(0.75rem * var(--tw-space-x-reverse));
   margin-left: calc(0.75rem * calc(1 - var(--tw-space-x-reverse)));
-}
-
-.space-x-4 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-x-reverse: 0;
-  margin-right: calc(1rem * var(--tw-space-x-reverse));
-  margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
 }
 
 .space-x-8 > :not([hidden]) ~ :not([hidden]) {
@@ -1444,6 +1373,12 @@ button, input, optgroup, select, textarea {
   --tw-space-y-reverse: 0;
   margin-top: calc(2.5rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(2.5rem * var(--tw-space-y-reverse));
+}
+
+.space-y-20 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(5rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(5rem * var(--tw-space-y-reverse));
 }
 
 .space-y-3 > :not([hidden]) ~ :not([hidden]) {
@@ -1476,26 +1411,12 @@ button, input, optgroup, select, textarea {
   margin-bottom: calc(2rem * var(--tw-space-y-reverse));
 }
 
-.space-y-20 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-y-reverse: 0;
-  margin-top: calc(5rem * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(5rem * var(--tw-space-y-reverse));
-}
-
 .overflow-hidden {
   overflow: hidden;
 }
 
 .overflow-y-auto {
   overflow-y: auto;
-}
-
-.overflow-y-hidden {
-  overflow-y: hidden;
-}
-
-.overflow-x-scroll {
-  overflow-x: scroll;
 }
 
 .truncate {
@@ -1625,19 +1546,9 @@ button, input, optgroup, select, textarea {
   padding-bottom: 1rem;
 }
 
-.py-5 {
-  padding-top: 1.25rem;
-  padding-bottom: 1.25rem;
-}
-
 .py-8 {
   padding-top: 2rem;
   padding-bottom: 2rem;
-}
-
-.px-3 {
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
 }
 
 .pb-0 {
@@ -1692,16 +1603,8 @@ button, input, optgroup, select, textarea {
   padding-right: 0.25rem;
 }
 
-.pr-12 {
-  padding-right: 3rem;
-}
-
 .pt-0 {
   padding-top: 0rem;
-}
-
-.pt-1 {
-  padding-top: 0.25rem;
 }
 
 .pt-10 {
@@ -1756,6 +1659,18 @@ button, input, optgroup, select, textarea {
   font-family: "Jannon 10 Pro", serif;
 }
 
+.text-body-xl {
+  font-size: 1.125rem;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.text-sm {
+  font-size: 1.25rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
 .font-bold {
   font-weight: 700;
 }
@@ -1806,16 +1721,8 @@ button, input, optgroup, select, textarea {
   opacity: 0;
 }
 
-.opacity-30 {
-  opacity: 0.3;
-}
-
 .opacity-50 {
   opacity: 0.5;
-}
-
-.opacity-60 {
-  opacity: 0.6;
 }
 
 .outline {
@@ -1852,12 +1759,6 @@ button, input, optgroup, select, textarea {
 
 .transition-all {
   transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
-}
-
-.transition-colors {
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
@@ -1971,40 +1872,23 @@ button, input, optgroup, select, textarea {
   text-decoration-line: underline;
 }
 
-@media (min-width: 768px) {
-  .md\:label-lg {
-    font-size: 0.875rem;
-    line-height: 1.3;
-    letter-spacing: 0.03em;
-    text-transform: uppercase;
-  }
-}
-
 .focus-visible\:ring:focus-visible {
   --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
   --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(3px + var(--tw-ring-offset-width)) var(--tw-ring-color);
   box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
 }
 
-@media (min-width: 640px) {
-  .sm\:relative {
-    position: relative;
-  }
+.focus-visible\:ring-inset:focus-visible {
+  --tw-ring-inset: inset;
+}
 
+@media (min-width: 640px) {
   .sm\:h-35 {
     height: 8.75rem;
   }
 
   .sm\:max-h-40 {
     max-height: 10rem;
-  }
-
-  .sm\:min-h-35 {
-    min-height: 8.75rem;
-  }
-
-  .sm\:max-w-sm {
-    max-width: 24rem;
   }
 }
 
@@ -2033,9 +1917,42 @@ button, input, optgroup, select, textarea {
     top: var(--header-height);
   }
 
+  .md\:col-span-5 {
+    grid-column: span 5 / span 5;
+  }
+
+  .md\:col-span-6 {
+    grid-column: span 6 / span 6;
+  }
+
+  .md\:col-span-7 {
+    grid-column: span 7 / span 7;
+  }
+
+  .md\:col-start-1 {
+    grid-column-start: 1;
+  }
+
+  .md\:col-start-5 {
+    grid-column-start: 5;
+  }
+
+  .md\:col-start-6 {
+    grid-column-start: 6;
+  }
+
+  .md\:col-start-8 {
+    grid-column-start: 8;
+  }
+
   .md\:my-15 {
     margin-top: 3.75rem;
     margin-bottom: 3.75rem;
+  }
+
+  .md\:my-20 {
+    margin-top: 5rem;
+    margin-bottom: 5rem;
   }
 
   .md\:my-5 {
@@ -2123,29 +2040,12 @@ button, input, optgroup, select, textarea {
     height: 100%;
   }
 
-  .md\:h-35 {
-    height: 8.75rem;
-  }
-
-  .md\:max-h-42 {
-    max-height: 10.5rem;
-  }
-
-  .md\:max-h-57 {
-    max-height: 14.25rem;
-  }
-
   .md\:w-1\/2 {
     width: 50%;
   }
 
   .md\:w-2\/5 {
     width: 40%;
-  }
-
-  .md\:w-fit {
-    width: -moz-fit-content;
-    width: fit-content;
   }
 
   .md\:max-w-2xl {
@@ -2172,8 +2072,28 @@ button, input, optgroup, select, textarea {
     flex-grow: 0;
   }
 
+  .md\:grid-flow-dense {
+    grid-auto-flow: dense;
+  }
+
+  .md\:grid-cols-12 {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+
   .md\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .md\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .md\:grid-cols-5 {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .md\:grid-cols-6 {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
   }
 
   .md\:flex-row {
@@ -2182,6 +2102,14 @@ button, input, optgroup, select, textarea {
 
   .md\:justify-between {
     justify-content: space-between;
+  }
+
+  .md\:gap-5 {
+    gap: 1.25rem;
+  }
+
+  .md\:gap-y-25 {
+    row-gap: 6.25rem;
   }
 
   .md\:space-y-0 > :not([hidden]) ~ :not([hidden]) {
@@ -2204,21 +2132,12 @@ button, input, optgroup, select, textarea {
     padding-bottom: 7.5rem;
   }
 
-  .md\:px-3 {
-    padding-left: 0.75rem;
-    padding-right: 0.75rem;
-  }
-
   .md\:pb-0 {
     padding-bottom: 0rem;
   }
 
   .md\:pb-13 {
     padding-bottom: 3.25rem;
-  }
-
-  .md\:pb-15 {
-    padding-bottom: 3.75rem;
   }
 
   .md\:pb-19 {
@@ -2235,6 +2154,14 @@ button, input, optgroup, select, textarea {
 
   .md\:pb-30 {
     padding-bottom: 7.5rem;
+  }
+
+  .md\:pb-7 {
+    padding-bottom: 1.75rem;
+  }
+
+  .md\:pl-10 {
+    padding-left: 2.5rem;
   }
 
   .md\:pr-15 {
@@ -2273,18 +2200,6 @@ button, input, optgroup, select, textarea {
     padding-top: 2rem;
   }
 
-  .md\:pb-7 {
-    padding-bottom: 1.75rem;
-  }
-
-  .md\:pb-10 {
-    padding-bottom: 2.5rem;
-  }
-
-  .md\:pl-10 {
-    padding-left: 2.5rem;
-  }
-
   .md\:padding-x {
     padding-left: 0.75rem;
     padding-right: 0.75rem;
@@ -2301,6 +2216,22 @@ button, input, optgroup, select, textarea {
 @media (min-width: 1024px) {
   .lg\:col-span-3 {
     grid-column: span 3 / span 3;
+  }
+
+  .lg\:col-span-6 {
+    grid-column: span 6 / span 6;
+  }
+
+  .lg\:col-start-1 {
+    grid-column-start: 1;
+  }
+
+  .lg\:col-start-10 {
+    grid-column-start: 10;
+  }
+
+  .lg\:col-start-\[19\] {
+    grid-column-start: 19;
   }
 
   .lg\:mx-15 {
@@ -2324,34 +2255,6 @@ button, input, optgroup, select, textarea {
     display: flex;
   }
 
-  .lg\:table {
-    display: table;
-  }
-
-  .lg\:table-cell {
-    display: table-cell;
-  }
-
-  .lg\:table-header-group {
-    display: table-header-group;
-  }
-
-  .lg\:table-row {
-    display: table-row;
-  }
-
-  .lg\:h-42 {
-    height: 10.5rem;
-  }
-
-  .lg\:max-h-42 {
-    max-height: 10.5rem;
-  }
-
-  .lg\:max-h-57 {
-    max-height: 14.25rem;
-  }
-
   .lg\:w-1\/2 {
     width: 50%;
   }
@@ -2368,6 +2271,10 @@ button, input, optgroup, select, textarea {
     max-width: 32rem;
   }
 
+  .lg\:grid-cols-24 {
+    grid-template-columns: repeat(24, minmax(0, 1fr));
+  }
+
   .lg\:grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
@@ -2380,12 +2287,6 @@ button, input, optgroup, select, textarea {
     --tw-space-x-reverse: 0;
     margin-right: calc(3.75rem * var(--tw-space-x-reverse));
     margin-left: calc(3.75rem * calc(1 - var(--tw-space-x-reverse)));
-  }
-
-  .lg\:space-y-0 > :not([hidden]) ~ :not([hidden]) {
-    --tw-space-y-reverse: 0;
-    margin-top: calc(0rem * calc(1 - var(--tw-space-y-reverse)));
-    margin-bottom: calc(0rem * var(--tw-space-y-reverse));
   }
 
   .lg\:pr-30 {
@@ -2447,17 +2348,5 @@ button, input, optgroup, select, textarea {
 @media (hover: hover) {
   .hoverable\:block {
     display: block;
-  }
-}
-
-@media (min-width: 768px) {
-  @media (hover: hover) {
-    .md\:hoverable\:block {
-      display: block;
-    }
-
-    .md\:hoverable\:hidden {
-      display: none;
-    }
   }
 }

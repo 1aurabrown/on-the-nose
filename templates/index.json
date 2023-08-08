@@ -3,8 +3,8 @@
     "text": {
       "type": "text",
       "settings": {
-        "heading": "Lorem ipsum—",
-        "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nunc lectus, finibus sit amet felis at, mattis imperdiet odio.<\/p>",
+        "heading": "Lorem ipsum",
+        "text": "<p>All profits from On The Nose are donated to charity. We are currently supporting AAPI Community Fund, ACLU, Sister Song and Free Palestine.<\/p>",
         "border": true
       }
     },
@@ -26,6 +26,7 @@
           "settings": {
             "url": "shopify:\/\/products\/name-of-work-1",
             "image": "shopify:\/\/shop_images\/Screen_Shot_2022-06-09_at_11.18-2.png",
+            "text": "<p>Artist Name<\/p><p><em>Name of Work<\/em><\/p><p>Medium<\/p><p>Dimensions<\/p><p><strong>$price—<\/strong><\/p>",
             "desktop_width": 30,
             "desktop_position": 50,
             "mobile_width": 50
@@ -36,6 +37,7 @@
           "settings": {
             "url": "",
             "image": "shopify:\/\/shop_images\/Screen_Shot_2022-06-09_at_11.18-5.png",
+            "text": "<p>Artist Name<\/p><p><em>Name of Work<\/em><\/p><p>Medium<\/p><p>Dimensions<\/p><p><strong>$price—<\/strong><\/p>",
             "desktop_width": 30,
             "desktop_position": 40,
             "mobile_width": 40

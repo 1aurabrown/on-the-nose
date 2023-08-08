@@ -68,7 +68,9 @@ module.exports = {
       "transparent": "transparent",
       "black": "#000",
       "white": '#fff',
+      "off-white": 'F7F5EF',
       "grey": "#EFEEEC",
+      "dark-grey": "#D6D6D6",
       "off-black": "#5C5C5C"
     },
     letterSpacing: {
@@ -93,6 +95,10 @@ module.exports = {
       'label-sm': ['0.6875rem', { // 11px
         lineHeight: '1.3',
         letterSpacing: '0.03em',
+      }],
+      'body-xl': ['1.125rem', { // 18px
+        lineHeight: '1.3',
+        letterSpacing: '-0.01em',
       }],
       'body-lg': ['1rem', { // 16px
         lineHeight: '1.4',
@@ -134,6 +140,10 @@ module.exports = {
       minHeight: spacing,
       width: {
         "max-content": "max-content"
+      },
+      gridTemplateColumns: {
+        // Simple 16 column grid
+        '24': 'repeat(24, minmax(0, 1fr))',
       }
     }
   }

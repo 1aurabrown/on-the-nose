@@ -1,5 +1,4 @@
 {%- assign anchorId = '#products' -%}
-
 <div class="my-10 md:my-15 {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}mt:5 md:mt-5{% endif %}">
   <div id="products" class="relative -top-header w-full h-0"></div>
   {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
@@ -14,18 +13,29 @@
         results: collection,
         enable_filtering: section.settings.enable_filtering,
         enable_sorting: section.settings.enable_sorting,
-        filter_type: section.settings.filter_type
+        filter_type: 'horizontal'
       %}
     </aside>
   {%- endif -%}
 
   <div id="ProductGridContainer">
-  	{% paginate collection.products by 12 %}
+  	{% paginate collection.products by 24 %}
   		{% render 'collection-grid', title: collection.title, products: collection.products, section: section %}
   		{% render 'pagination', paginate: paginate, class: 'mt-16 mb-10', anchor: anchorId %}
   	{% endpaginate %}
   </div>
 </div>
+
+{% style %}
+:root {
+  --collection-background-color: {{ collection.metafields.custom.background_color }};
+}
+{% if collection.metafields.custom.background_color %}
+html, body {
+  background-color: var(--collection-background-color);
+}
+{% endif %}
+{% endstyle %}
 
 
 {% schema %}
@@ -38,13 +48,6 @@
     ]
   },
   "settings": [
-    {
-      "type": "checkbox",
-      "id": "enable_quick_add",
-      "default": true,
-      "label": "t:sections.main-collection-product-grid.settings.enable_quick_buy.label",
-      "info": "t:sections.main-collection-product-grid.settings.enable_quick_buy.info"
-    },
     {
       "type": "checkbox",
       "id": "enable_sorting",

@@ -1,0 +1,46 @@
+{% if section.settings.body != blank or collection.metafields.custom.images != blank %}
+  <div class="hidden md:block padding-x max-w-screen-2xl mx-auto text-link-container padding-top pb-15 md:pb-13 border-b rte">
+    <h2>{{ section.settings.heading }}</h2>
+    <div>{{ section.settings.body }}</div>
+    <div class="mt-[.75em]">({{ collection.metafields.custom.images | split: ',' | uniq | size }} images)</div>
+    <div class="grid md:grid-cols-3 gap-x-5 gap-y-10 mt-25">
+      {% for image in collection.metafields.custom.images.value %}
+        <div>
+          {% render 'image', image: image,
+            class: 'w-full',
+            sizes: '(min-width: 768px) 33vw, 0',
+            width: 300,
+            use_padding: true
+          %}
+          <p class="text-body-xl mt-3">{{ image.alt }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Text with Images",
+  "tag": "section",
+  "enabled_on": {
+    "templates": [
+      "collection"
+    ]
+  },
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "default": "Heading",
+      "label": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "default": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco. Seed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>",
+      "label": "Body"
+    }
+  ]
+}
+{% endschema %}
