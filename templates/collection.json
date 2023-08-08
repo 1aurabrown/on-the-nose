@@ -5,10 +5,16 @@
       "settings": {
       }
     },
+    "collection-text-with-images": {
+      "type": "collection-text-with-images",
+      "settings": {
+        "heading": "{{ collection.metafields.custom.secondary_text_heading.value }}",
+        "body": "{{ collection.metafields.custom.secondary_text_body | metafield_tag }}"
+      }
+    },
     "product-grid": {
       "type": "main-collection-product-grid",
       "settings": {
-        "enable_quick_add": true,
         "enable_sorting": true,
         "enable_filtering": true
       }
@@ -16,6 +22,7 @@
   },
   "order": [
     "e36c4859-20f4-4cf1-abde-353ba52a8c34",
+    "collection-text-with-images",
     "product-grid"
   ]
 }

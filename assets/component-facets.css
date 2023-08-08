@@ -13,7 +13,7 @@
   overflow-y: auto;
 }
 
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 768px) {
   .facets-container > * + * {
     margin-top: 0;
   }
@@ -361,7 +361,7 @@ span.active-facets__button-inner {
   border-radius: 2.6rem;
   min-height: 0;
   min-width: 0;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 2rem 0.5rem 0;
   display: flex;
   align-items: stretch;
 }
@@ -872,7 +872,7 @@ input.mobile-facets__checkbox {
   display: block;
 }
 
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 768px) {
   .facets-vertical {
     display: flex;
   }
@@ -1014,7 +1014,7 @@ input.mobile-facets__checkbox {
   }
 }
 
-@media screen and (min-width: 750px) and (max-width: 989px) {
+@media screen and (min-width: 768px) and (max-width: 989px) {
   .facets-vertical .active-facets__button {
     padding: 1rem;
     margin-bottom: 0;

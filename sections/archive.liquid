@@ -18,7 +18,18 @@
             <div class="mb-2 md:hidden">Item—</div>
             <h2>
               {% if has_images %}<button class="inline text-left" @click="imagesVisible=!imagesVisible">{% endif %}
-                {{ block.settings.text | default: product.title }}
+              {% if block.settings.text != blank %}
+                {{ block.settings.text }}
+              {% else %}
+                {% assign artist_name = product.metafields.custom.artist_name %}
+                {% assign medium = product.metafields.custom.medium %}
+                {% assign dimensions = product.metafields.custom.dimensions %}
+                {% capture title %}<em>{{ product.title }}</em>{% endcapture %}
+                {% assign text = '' %}
+                {%- capture text -%}{% if artist_name != blank %}{{ artist_name }},{% endif %}{{ title }},{% if medium != blank %}{{ medium }},{% endif %}{% if dimensions != blank %}{{ dimensions }}{% endif %}{%- endcapture -%}
+                {% assign text = text | split: ',' | compact | join: ', ' %}
+                {{ text }}
+              {% endif %}
               {% if has_images %}</button>{% endif %}
             </h2>
 
@@ -84,7 +95,9 @@
       "page"
     ]
   },
-  "settings": [],
+  "settings": [
+
+  ],
   "blocks": [
     {
       "name": "Item",
@@ -92,24 +105,24 @@
       "settings": [
         {
           "type": "product",
-          "label": "Item (product)",
+          "label": "Product",
           "id": "product",
           "info": "Populates item text and images."
         },
         {
           "type": "inline_richtext",
-          "label": "Item (text)",
+          "label": "Item Text",
           "id": "text",
-          "info": "Override item text."
+          "info": "Override product text."
         },
         {
           "type": "text",
-          "label": "Cause",
+          "label": "Profits To",
           "id": "cause"
         },
         {
           "type": "number",
-          "label": "Year",
+          "label": "Sold In",
           "id": "year"
         }
       ]

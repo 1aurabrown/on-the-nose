@@ -5,7 +5,10 @@
     "footer": {
       "type": "footer",
       "settings": {
-        "heading": "Heading"
+        "heading": "More On The Nose",
+        "menu": "footer",
+        "credits_heading": "Site Credits",
+        "credits_text": "<p>Lorem ipsum dolor sit amet</p><p>consectetur adipiscing elit</p>"
       }
     }
   },

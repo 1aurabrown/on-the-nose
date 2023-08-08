@@ -4,7 +4,6 @@
   Accepts:
   - card_product: {Object} Product Liquid object (optional)
   - show_rating: {Boolean} Show the product rating. Default: false
-  - show_quick_add: {Boolean} Show the quick add button.
   - section_id: {String} The ID of the section that contains this card.
   - description
   Usage:
@@ -66,45 +65,6 @@
 
         <p class="mt-[0.625rem] md:mt-3">{{ card_product.metafields.my_fields.product_short_description | default: card_product.description | truncatewords: 14 | strip_html }}</p>
 
-        {%- if show_quick_add -%}
-          <div class="mt-4 quick-add no-js-hidden">
-            {%- assign product_form_id = 'quick-add-nonhoverable-' | append: section_id | append: card_product.id -%}
-              <product-form>
-                {%- form 'product', card_product, id: product_form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
-                  <input
-                    type="hidden"
-                    name="id"
-                    value="{{ card_product.selected_or_first_available_variant.id }}"
-                    disabled
-                  >
-                  <button
-                    id="{{ product_form_id }}-submit"
-                    type="submit"
-                    name="add"
-                    class="label hover:text-green transition-colors duration-200"
-                    aria-haspopup="dialog"
-                    aria-label="{{ product_form_id }}-submit"
-                    aria-live="polite"
-                    data-sold-out-message="true"
-                    {% if card_product.selected_or_first_available_variant.available == false %}
-                      disabled
-                    {% endif %}
-                  >
-                    <span>
-                      {%- if card_product.selected_or_first_available_variant.available -%}
-                        {{ card_product.selected_or_first_available_variant.price | money }} - Add to Cart
-                      {%- else -%}
-                        {{ 'products.product.sold_out' | t }}
-                      {%- endif -%}
-                    </span>
-                    <span class="sold-out-message hidden">
-                      {{ 'products.product.sold_out' | t }}
-                    </span>
-                  </button>
-                {%- endform -%}
-              </product-form>
-          </div>
-        {%- endif -%}
       </div>
     </div>
   </div>

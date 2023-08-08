@@ -1,15 +1,9 @@
-{% if section.settings.enable_quick_add %}
-<script>
-  loadDynamicScriptTag("{{ 'product-form.js' | asset_url }}")
-</script>
-{% endif %}
-
 {% liquid
   assign products = products | default: collection.products
 %}
 
 {%- if collection.products.size == 0 -%}
-  <div class="collection collection--empty page-width max-w-screen-2xl mx-auto" id="product-grid" data-id="{{ section.id }}">
+  <div class="padding-x collection collection--empty max-w-screen-2xl mx-auto" id="product-grid" data-id="{{ section.id }}">
     <div class="loading-overlay gradient"></div>
     <div class="title-wrapper center">
       <h2 class="title title--primary">
@@ -23,17 +17,29 @@
     </div>
   </div>
 {%- else -%}
-  <div class="collection page-width max-w-screen-2xl mx-auto">
+  <div class="padding-x collection max-w-screen-2xl mx-auto">
     <div class="loading-overlay gradient"></div>
 
       <ul
         id="product-grid"
         data-id="{{ section.id }}"
-        class="grid grid-cols-2 lg:grid-cols-4 gap-x-5 gap-y-10 lg:gap-y-15" role="list"
+        class="grid md:grid-cols-12 lg:grid-cols-24 gap-x-5 gap-y-20 md:gap-y-25" role="list"
       >
         {% for product in products %}
-          <li>
-            {%- render 'card-product', card_product: product, show_rating: section.settings.show_rating, show_quick_add: section.settings.enable_quick_add -%}
+
+          {% assign lg_position = forloop.index0 %}
+          {% if lg_position == 3 %}{% assign lg_position = forloop.index0 | plus: 1 %}{% elsif lg_position >= 4 %}{% assign lg_position = forloop.index0 | plus: 2 %}{% endif %}
+          {% assign modulo_3 = lg_position | modulo: 3 %}
+          {%- case modulo_3 -%}
+            {% when 0 %}
+              {% assign col_start_lg = 'lg:col-start-1' %}
+            {% when 1 %}
+              {% assign col_start_lg = 'lg:col-start-10' %}
+            {% when 2 %}
+              {% assign col_start_lg = 'lg:col-start-[19]' %}
+          {%- endcase -%}
+          <li class="md:col-span-5 lg:col-span-6 {% cycle 'md:col-start-1', 'md:col-start-8' %} {{ col_start_lg }}">
+            {%- render 'card-product', card_product: product, show_secondary_image: true -%}
           </li>
         {% endfor %}
       </ul>

@@ -16,16 +16,14 @@
 
 
 {%- if paginate.parts.size > 0 -%}
-  <div class="pagination-wrapper page-width max-w-screen-2xl mx-auto {{ class }}">
+  <div class="label-lg pagination-wrapper padding-x max-w-screen-2xl mx-auto {{ class }}">
     <nav class="pagination" role="navigation" aria-label="{{ 'general.pagination.label' | t }}">
-      <div class="w-ful flex items-center justify-between " role="list">
-        <button class="w-11 h-11 button button--yellow cursor-auto p-0 pr-1{% unless paginate.previous %} opacity-50{% endunless %}">
+      <div class="w-ful flex items-center justify-center " role="list">
+        <button class="w-11 h-11 cursor-auto p-0 pr-1{% unless paginate.previous %} cursor-default opacity-50{% endunless %}">
           {%- if paginate.previous -%}
-            <a href="{{ paginate.previous.url }}{{ anchor }}" class="block motion-reduce" aria-label="{{ 'general.pagination.previous' | t }}" >
-              {%- render 'icon-caret', class: 'rotate-180 w-4 h-4' -%}
-            </a>
+            <a href="{{ paginate.previous.url }}{{ anchor }}" class="block motion-reduce" aria-label="{{ 'general.pagination.previous' | t }}" >&larr;</a>
           {%- else -%}
-            {%- render 'icon-caret', class: 'rotate-180 w-4 h-4' -%}
+            &larr;
           {%- endif -%}
         </button>
 
@@ -33,25 +31,23 @@
           {%- for part in paginate.parts -%}
             <li class="mx-4 h4 block">
               {%- if part.is_link -%}
-                <a href="{{ part.url }}{{ anchor }}" class="text-joint-green/50" aria-label="{{ 'general.pagination.page' | t: number: part.title }}">{{ part.title }}</a>
+                <a href="{{ part.url }}{{ anchor }}" aria-label="{{ 'general.pagination.page' | t: number: part.title }}">{{ part.title }}</a>
               {%- else -%}
                 {%- if part.title == paginate.current_page -%}
-                  <span class="text-joint-green" aria-current="page" aria-label="{{ 'general.pagination.page' | t: number: part.title }}">{{ part.title }}</span>
+                  <span class="underline" aria-current="page" aria-label="{{ 'general.pagination.page' | t: number: part.title }}">{{ part.title }}</span>
                 {%- else -%}
-                  <span class="text-joint-green/50">{{ part.title }}</span>
+                  <span>{{ part.title }}</span>
                 {%- endif -%}
               {%- endif -%}
             </li>
           {%- endfor -%}
         </ul>
 
-        <button class="w-11 h-11 button button--yellow p-0 pl-1{% unless paginate.next %} opacity-50{% endunless %}">
+        <button class="w-11 h-11 p-0 pl-1{% unless paginate.next %} cursor-default opacity-50{% endunless %}">
           {%- if paginate.next -%}
-            <a href="{{ paginate.next.url }}{{ anchor }}" class="block motion-reduce" aria-label="{{ 'general.pagination.previous' | t }}" >
-              {%- render 'icon-caret', class: 'w-4 h-4' -%}
-            </a>
+            <a href="{{ paginate.next.url }}{{ anchor }}" class="block motion-reduce" aria-label="{{ 'general.pagination.next' | t }}" >&rarr;</a>
           {%- else -%}
-            {%- render 'icon-caret', class: 'w-4 h-4' -%}
+             &rarr;
           {%- endif -%}
         </button>
       </div>

@@ -10,7 +10,7 @@
 <header-drawer>
   <details id="Details-menu-drawer-container" class="menu-drawer-container">
     <summary
-      class="header__icon header__icon--menu header__icon--summary link focus-inset"
+      class="z-10 relative header__icon header__icon--menu header__icon--summary link focus-inset"
       aria-label="{{ 'sections.header.menu' | t }}"
     >
       <span>
@@ -20,7 +20,7 @@
     <div id="menu-drawer" class="gradient menu-drawer motion-reduce" tabindex="-1">
       <div class="menu-drawer__inner-container padding-x py-4">
         <div class="menu-drawer__navigation-container pl-25">
-          <nav class="menu-drawer__navigation space-y-4">
+          <nav class="underline-links-hover menu-drawer__navigation space-y-4">
             {% for menu in menus %}
               <ul class="menu-drawer__menu has-submenu list-menu" role="list">
                 {%- for link in menu.links -%}

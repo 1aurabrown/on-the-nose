@@ -116,7 +116,7 @@
   grid-template-rows: max-content minmax(0, 1fr) max-content auto;
 }
 
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 768px) {
   .card__information {
     padding-bottom: 1.7rem;
     padding-top: 1.7rem;
@@ -175,7 +175,7 @@
   box-shadow: none;
 }
 
-@media only screen and (min-width: 750px) {
+@media only screen and (min-width: 768px) {
   .card--horizontal .card__heading,
   .card--horizontal .price__container .price-item,
   .card--horizontal__quick-add {
@@ -238,10 +238,6 @@
     transform: scale(1.03);
   }
 
-  .underline-links-hover:hover a {
-    text-decoration: underline;
-    text-underline-offset: 0.3rem;
-  }
 }
 
 .card--standard.card--media .card__inner .card__information,

@@ -21,7 +21,7 @@
         {%- for block in section.blocks -%}
           {%- case block.type -%}
           {%- when 'title' -%}
-            <div class="product__title my-3 md:my-5" {{ block.shopify_attributes }}>
+            <div class="product__title" {{ block.shopify_attributes }}>
               <h1 class="mt-3 h2 md:h1">
                 {{ product.title | escape }}
               </h1>

@@ -127,6 +127,7 @@ class CartItems extends HTMLElement {
         });
         const updatedValue = parsedState.items[line - 1] ? parsedState.items[line - 1].quantity : undefined;
         let message = '';
+        debugger;
         if (items.length === parsedState.items.length && updatedValue !== parseInt(quantityElement.value)) {
           if (typeof updatedValue === 'undefined') {
             message = window.cartStrings.error;
@@ -150,6 +151,7 @@ class CartItems extends HTMLElement {
         publish(PUB_SUB_EVENTS.cartUpdate, { source: 'cart-items' });
       })
       .catch(() => {
+        debugger;
         this.querySelectorAll('.loading-overlay').forEach((overlay) => overlay.classList.add('hidden'));
         const errors = document.getElementById('cart-errors') || document.getElementById('CartDrawer-CartErrors');
         errors.textContent = window.cartStrings.error;

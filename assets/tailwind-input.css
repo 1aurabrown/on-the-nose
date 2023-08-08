@@ -19,6 +19,10 @@
     text-decoration-thickness: .09rem;
   }
 
+  body.template-cart {
+    @apply bg-dark-grey;
+  }
+
   /* Typography*/
 
   button, input, optgroup, select, textarea {

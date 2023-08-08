@@ -38,7 +38,6 @@
   {{ 'component-localization-form.css' | asset_url | stylesheet_tag: preload: true }}
 {%- endif -%}
 
-{{ 'component-cart-drawer.css' | asset_url | stylesheet_tag }}
 {{ 'component-cart.css' | asset_url | stylesheet_tag }}
 {{ 'component-totals.css' | asset_url | stylesheet_tag }}
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
@@ -104,9 +103,6 @@
 <script src="{{ 'details-modal.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'cart-notification.js' | asset_url }}" defer="defer"></script>
 {% if search_enabled %}<script src="{{ 'search-form.js' | asset_url }}" defer="defer"></script>{% endif %}
-{%- if settings.cart_type == "drawer" -%}
-  <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
-{%- endif -%}
 {%- if section.settings.enable_country_selector or section.settings.enable_language_selector -%}
   <script src="{{ 'localization-form.js' | asset_url }}" defer="defer"></script>
 {%- endif -%}

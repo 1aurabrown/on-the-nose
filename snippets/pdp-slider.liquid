@@ -1,70 +1,62 @@
 <style>
-  .pdp-slider {
-    --pdp-image-max-height: calc(100vh - var(--header-height) - 120px);
+  .pdp-slider .swiper-wrapper {
+    --pdp-image-max-height: calc(var(--screen-less-header) * .9);
   }
   @media screen and (min-width: 768px) {
-    .pdp-slider__max-width, .pdp-slider .pdp-image {
-       max-height: var(--pdp-image-max-height);
-       max-width: var(--pdp-image-max-height);
+    .pdp-slider .swiper-slide{
+      width: calc(100% - 40px);
     }
-    .pdp-slider__thumbs {
-       max-width: var(--pdp-image-max-height);
+    .pdp-slider .swiper-slide  img {
+      width: 100%;
+      height: 100%;
+    }
+    .pdp-slider .swiper-slide.portrait img {
+      max-width: var(--pdp-image-max-height);
+      height: auto;
+    }
+    .pdp-slider .swiper-slide.landscape img {
+      max-height: var(--pdp-image-max-height);
+      width: auto;
     }
   }
 </style>
 
-<pdp-slider id="MediaGallery-{{ section.id }}" role="region" aria-label="{{ 'products.product.media.gallery_viewer' | t }}" class="pdp-slider block overflow-hidden">
-  <div id="GalleryStatus-{{ section.id }}" class="visually-hidden" role="status"></div>
-  <a class="skip-to-content-link button visually-hidden" href="#ProductInfo-{{ section.id }}">
-    {{ "accessibility.skip_to_product_info" | t }}
-  </a>
-  <div class="pdp-slider__inner">
-    <div class="pdp-slider__max-width mx-auto overflow-hidden">
-      <div class="" {% if product.media.size > 1 %} data-slider {% endif %} id="GalleryViewer-{{ section.id }}">
-        <ul class="flex items-start embla__container" role="list">
-          {%- for media in product.media -%}
-            <li id="{{ section.id }}-{{ media.id }}"
-              data-media-position="{{ forloop.index0 }}"
-              class="mr-5 min-w-full embla__slide">
-              <div class="pdp-image relative pdp-image--{{ forloop.index }}">
-                {% render 'pdp-slider-media', media: media, section: section %}
-              </div>
-            </li>
-          {%- endfor -%}
-        </ul>
-      </div>
-    </div>
 
-    {% if product.media.size > 1 %}
-      <div class="mt-4 pdp-slider__thumbs overflow-hidden mx-auto" id="GalleryThumbnails-{{ section.id }}">
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"
+/>
+<script defer="defer" type="application/javascript" src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"/>
+<script defer="defer" type="application/javascript" src="{{ 'product-form.js' | asset_url }}"/>
 
-        <ul id="Slider-Thumbnails-{{ section.id }}" class="flex embla__container space-x-4">
+{%- if product.images.size > 1 -%}
+  <script src="{{ 'component-pdp-slider.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
 
-          {%- for media in product.media -%}
-             <li id="Slide-Thumbnails-{{ section.id }}-{{ forloop.index0 }}"  data-target="{{ section.id }}-{{ media.id }}" data-media-position="{{ forloop.index0 }}">
-              <button
-                class="w-16 h-16 rounded-xl flex items-center justify-center transition-all duration-200 overflow-hidden opacity-60"
-                aria-label="{%- if media.media_type == 'image' -%}{{ 'products.product.media.load_image' | t: index: forloop.index0 }}{%- elsif media.media_type == 'model' -%}{{ 'products.product.media.load_model' | t: index: forloop.index0 }}{%- elsif media.media_type == 'video' or media.media_type == 'external_video' -%}{{ 'products.product.media.load_video' | t: index: forloop.index0 }}{%- endif -%}"
-                {% if forloop.index0 == 1 %} aria-current="true"{% endif %}
-                aria-controls="GalleryViewer-{{ section.id }}"
-                aria-describedby="Thumbnail-{{ section.id }}-{{ forloop.index0 }}"
-                data-index={{ forloop.index0 }}
-              >
+<pdp-slider id="MediaGallery-{{ section.id }}" role="region" aria-label="{{ 'products.product.media.gallery_viewer' | t }}" class="block relative -mr-10">
 
-                {{ media.preview_image | image_url: width: 192 | image_tag:
-                  width: 64,
-                  height: 64,
-                  class: 'object-contain w-full h-full bg-white',
-                  widths: '64, 128, 192',
-                  sizes: "64px",
-                  id: id
-                }}
-              </button>
-            </li>
-          {%- endfor -%}
-        </ul>
-      </div>
-    {%
-    endif %}
+  <div class="pdp-prev focus-visible:ring-inset w-18 flex items-center justify-center"><span class="absolute top-1/2 left-padding-sm -translate-y-1/2 label-xl">&larr;</span></div>
+  <div class="pdp-next focus-visible:ring-inset w-18 flex items-center justify-center"><span class="absolute top-1/2 right-padding-sm -translate-y-1/2 label-xl">&rarr;</span></div>
+
+
+  <div {% if product.media.size > 1 %} data-slider {% endif %} class="pdp-swiper pdp-slider relative overflow-hidden" id="GalleryViewer-{{ section.id }}">
+
+
+    <ul class="flex swiper-wrapper" role="list">
+      {%- for image in product.images -%}
+        <li id="Slide-{{ section.id }}-{{ image.id }}" data-media-position="{{ forloop.index0 }}" class="swiper-slide w-full block relative{% if image.aspect_ratio > 1 %} portrait{% else %} landscape{% endif %}">
+            {% render 'image', image: image,
+              use_padding: false,
+              preload: true,
+              fit: 'contain',
+              sizes: "100vw, (min-width: 768px) 50vw"
+            %}
+        </li>
+      {%- endfor -%}
+    </ul>
+
+    <div class="mt-5 text-body-xl swiper-fractions"></div>
+
   </div>
 </pdp-slider>
+

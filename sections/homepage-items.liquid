@@ -7,16 +7,17 @@
   </div>
   <div class="homepage-items__images md:padding-x pt-13 md:pt-15">
     {% for block in section.blocks %}
-
+    {% assign fig_count = blank %}
+      {% capture sizes %}(min-width: 768px) {{ block.settings.desktop_width }}vw, {{ block.settings.mobile_width }}vw{% endcapture %}
       {% if block.settings.url.type == 'product_link' %}
         {% assign product =  block.settings.url.object %}
+        {% assign number = product.metafields.custom.number %}
+        {% capture fig_count %}({% if number < 10 %}00{% elsif number < 100 %}0{% endif %}{{ number }}){% endcapture %}
         {% capture product_text %}
-          <p>Artist Name</p><p><em>{{ product.title }}</em></p><p>Clay</p><p>6x9x4 in</p><p><strong>{{ product.price | money_without_trailing_zeros }}</strong></p>
+          <p>{{ product.metafields.custom.artist_name }}</p><p><em>{{ product.title }}</em></p><p>Clay</p><p>{{ product.metafields.custom.dimensions }}</p><p><strong>{{ product.price | money_without_trailing_zeros }}</strong></p>
         {% endcapture %}
       {% endif %}
 
-      {% capture sizes %}(min-width: 768px) {{ block.settings.desktop_width }}vw, {{ block.settings.mobile_width }}vw{% endcapture %}
-      {% capture fig_count %}({% if forloop.index < 10 %}00{% elsif forloop.index < 100 %}0{% endif%}{{ forloop.index }}){% endcapture %}
       {% liquid
         if block.settings.image
           assign image = block.settings.image
@@ -40,10 +41,16 @@
             }
           }
         </style>
-        <figure class="w-full">
-          {% render 'image', image: image, wrapper_class: "w-full", class: "w-full", padding_bottom: true, sizes: sizes %}
-          <figcaption class="mt-6 hidden md:block">{{ fig_count }}</figcaption>
-        </figure>
+        {% if block.settings.url != blank %}
+          <a class="block" href="{{ block.settings.url }}" title="{{ block.settings.url.object.title }}">
+        {% endif %}
+          <figure class="w-full">
+            {% render 'image', image: image, wrapper_class: "w-full", class: "w-full", padding_bottom: true, sizes: sizes %}
+            {% if fig_count %}<figcaption class="mt-6 hidden md:block">{{ fig_count }}</figcaption>{% endif %}
+          </figure>
+        {% if block.settings.url != blank %}
+          </a>
+        {% endif %}
       </div>
 
     {% endfor %}
@@ -67,21 +74,19 @@ if (!customElements.get('homepage-items')) {
     connectedCallback() {
       const handleIntersection = (entries, observer) => {
         entries.forEach((entry) => {
-          // Each entry describes an intersection change for one observed
-          // target element:
-          //   entry.boundingClientRect
-          //   entry.intersectionRatio
-          //   entry.intersectionRect
-          //   entry.isIntersecting
-          //   entry.rootBounds
-          //   entry.target
-          //   entry.time
-
           if (!entry.isIntersecting) return;
-          this.elements.text.innerHTML = entry.target.dataset.text;
+          const link = entry.target.querySelector('a')
+          const text = entry.target.dataset.text;
+          if (link) {
+            var newLink = link.cloneNode(true);
+            newLink.innerHTML = text
+            this.elements.text.innerHTML = ''
+            this.elements.text.appendChild(newLink)
+          } else {
+            this.elements.text.innerHTML = text;
+          }
           this.elements.figCount.innerHTML = entry.target.dataset.figCount;
         });
-
       }
 
       const observer = new IntersectionObserver(handleIntersection.bind(this), { rootMargin: '-50% 0% -50% 0%' })
@@ -125,7 +130,7 @@ if (!customElements.get('homepage-items')) {
         {
           "type": "richtext",
           "id": "text",
-          "default": "<p>Artist Name</p><p><em>Name of Work</em></p><p>Medium</p><p>Dimensions</p><p><strong>$price—</strong></p>",
+          "default": "<p>Artist Name</p><p><em>Name of Work</em></p><p>Medium</p><p>Dimensions</p><p><strong>$000</strong></p>",
           "label": "Text",
           "info": "Defaults to linked product's information, if a proudct is linked above."
         },
