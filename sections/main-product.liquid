@@ -53,8 +53,8 @@
               <p class="italic text-off-black">(select one)</p>
               {% for value in product.metafields.custom.profits_donated_to.value %}
                 <div class="flex items-center">
-                  <input form="{{ product_form_id }}" type="radio" id="{{ value | handlize }}" name="properties[Profits donated to]" value="{{ value }}">
-                  <label class="ml-2" for="{{ value | handlize }}">{{ value }}</label>
+                  <input form="{{ product_form_id }}" type="radio" id="{{ value | handleize }}" name="properties[Profits donated to]" value="{{ value }}">
+                  <label class="ml-2" for="{{ value | handleize }}">{{ value }}</label>
                 </div>
               {% endfor %}
             </div>
@@ -366,7 +366,9 @@
       "type": "profits_donated_to",
       "name": "Profits donated to",
       "limit": 1,
-      "settings": []
+      "settings": [
+
+      ]
     },
     {
       "type": "complementary",

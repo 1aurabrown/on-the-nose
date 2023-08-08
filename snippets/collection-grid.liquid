@@ -29,7 +29,7 @@
 
           {% assign lg_position = forloop.index0 %}
           {% if lg_position == 3 %}{% assign lg_position = forloop.index0 | plus: 1 %}{% elsif lg_position >= 4 %}{% assign lg_position = forloop.index0 | plus: 2 %}{% endif %}
-          {% assign modulo_3 = lg_position | modulo:  3 %}
+          {% assign modulo_3 = lg_position | modulo: 3 %}
           {%- case modulo_3 -%}
             {% when 0 %}
               {% assign col_start_lg = 'lg:col-start-1' %}

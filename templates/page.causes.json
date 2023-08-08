@@ -4,7 +4,7 @@
       "type": "richtext",
       "settings": {
         "heading": "Lorem ipsum",
-        "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nunc lectus, finibus sit amet felis at, mattis imperdiet odio.<\/p>",
+        "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nunc lectus, finibus sit amet felis at, mattis imperdiet odio.</p>",
         "border": true
       }
     },

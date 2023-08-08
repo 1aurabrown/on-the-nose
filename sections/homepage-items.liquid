@@ -12,7 +12,7 @@
       {% if block.settings.url.type == 'product_link' %}
         {% assign product =  block.settings.url.object %}
         {% assign number = product.metafields.custom.number %}
-        {% capture fig_count %}({% if number < 10 %}00{% elsif number < 100 %}0{% endif%}{{ number }}){% endcapture %}
+        {% capture fig_count %}({% if number < 10 %}00{% elsif number < 100 %}0{% endif %}{{ number }}){% endcapture %}
         {% capture product_text %}
           <p>{{ product.metafields.custom.artist_name }}</p><p><em>{{ product.title }}</em></p><p>Clay</p><p>{{ product.metafields.custom.dimensions }}</p><p><strong>{{ product.price | money_without_trailing_zeros }}</strong></p>
         {% endcapture %}

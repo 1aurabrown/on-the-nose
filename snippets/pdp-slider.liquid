@@ -26,8 +26,8 @@
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"
 />
-<script type="application/javascript" src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"/>
-<script type="application/javascript" src="{{ 'product-form.js' | asset_url }}"/>
+<script defer="defer" type="application/javascript" src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"/>
+<script defer="defer" type="application/javascript" src="{{ 'product-form.js' | asset_url }}"/>
 
 {%- if product.images.size > 1 -%}
   <script src="{{ 'component-pdp-slider.js' | asset_url }}" defer="defer"></script>
@@ -44,7 +44,7 @@
 
     <ul class="flex swiper-wrapper" role="list">
       {%- for image in product.images -%}
-        <li id="Slide-{{ section.id }}-{{ image.id }}" data-media-position="{{ forloop.index0 }}" class="swiper-slide w-full block relative{% if image.aspect_ratio > 1%} portrait{% else %} landscape{% endif %}">
+        <li id="Slide-{{ section.id }}-{{ image.id }}" data-media-position="{{ forloop.index0 }}" class="swiper-slide w-full block relative{% if image.aspect_ratio > 1 %} portrait{% else %} landscape{% endif %}">
             {% render 'image', image: image,
               use_padding: false,
               preload: true,

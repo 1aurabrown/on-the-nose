@@ -14,9 +14,7 @@
     <ul class="list-menu list-menu--inline space-x-8 lg:space-x-15 xl:space-x-25" role="list">
       {%- for link in menu.links -%}
         {% liquid
-          assign is_active = false
           if link.active or link.child_active
-            assign is_active = true
           endif
         %}
         <li>
